@@ -19,6 +19,7 @@ export interface Item {
   spriteUrl?: string;
   spriteSheet?: SpriteSheetInfo;
   isOutfit?: boolean;
+  characterParts?: CharacterParts;
 }
 
 export interface NPCInfo {
@@ -50,6 +51,7 @@ export interface NPC {
   description: string;
   spriteUrl: string;
   spriteSheet?: SpriteSheetInfo;
+  characterParts?: CharacterParts;
   info: NPCInfo;
   dialogue: {
     [phase in Phase]: DialogueNode[];
@@ -74,6 +76,7 @@ export interface GameState {
   inventory: Item[];
   activeOutfitId: string | null;
   playerSpriteUrl: string;
+  playerParts: CharacterParts;
   playerName: string;
   playerRole: string;
   playerPronouns: string;
@@ -83,6 +86,38 @@ export interface GameState {
   notebook: Record<string, NotebookEntry>;
   isGameOver: boolean;
   runCount: number;
+}
+
+export interface BodyPartStyle {
+  /** CSS background (gradient, color, etc.) */
+  bg: string;
+  /** Width in px */
+  w: number;
+  /** Height in px */
+  h: number;
+  /** Border radius CSS value */
+  radius?: string;
+  /** Extra CSS class names */
+  className?: string;
+  /** Optional box-shadow */
+  shadow?: string;
+  /** Optional border */
+  border?: string;
+  /** Extra details rendered as pseudo-element or child divs */
+  details?: { bg: string; w: number; h: number; top: number; left: number; radius?: string }[];
+}
+
+export interface CharacterParts {
+  head: BodyPartStyle;
+  body: BodyPartStyle;
+  leftArm: BodyPartStyle;
+  rightArm: BodyPartStyle;
+  leftLeg: BodyPartStyle;
+  rightLeg: BodyPartStyle;
+  /** Optional accessory on top of head (hat, crown, etc.) */
+  headAccessory?: BodyPartStyle & { offsetY?: number };
+  /** Scale multiplier for the whole character (default 1) */
+  scale?: number;
 }
 
 export interface Decoration {

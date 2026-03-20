@@ -5,6 +5,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 const playerImg = new URL('./assets/player.png', import.meta.url).href;
 import { GameState, Phase, Weather, NotebookEntry, Item } from './types';
 import { NPCS, LOCATIONS, ITEMS } from './data';
+import { ALEX_PARTS } from './characterParts';
 
 const STORAGE_KEY = 'festival_of_disguises_notebook';
 
@@ -18,6 +19,7 @@ export const useGameState = () => {
       activeOutfitId: null,
       // Use our custom raccoon sprite instead of a generic dicebear avatar
       playerSpriteUrl: playerImg,
+      playerParts: ALEX_PARTS,
       playerName: 'Alex',
       playerRole: 'Detective',
       playerPronouns: 'they/them',
@@ -51,6 +53,7 @@ export const useGameState = () => {
       activeOutfitId: null,
       // Reset to our custom raccoon sprite on new runs
       playerSpriteUrl: playerImg,
+      playerParts: ALEX_PARTS,
       playerName: 'Alex',
       playerRole: 'Detective',
       playerPronouns: 'they/them',

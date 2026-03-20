@@ -24,7 +24,9 @@ import {
 } from 'lucide-react';
 import { useGameState } from './useGameState';
 import { NPCS, LOCATIONS, ITEMS } from './data';
-import { NPC, Location, Item, DialogueNode, DialogueOption, Phase } from './types';
+import { NPC, Location, Item, DialogueNode, DialogueOption, Phase, CharacterParts } from './types';
+import CharacterSprite from './CharacterSprite';
+import { COSTUME_PARTS_MAP } from './characterParts';
 
 import { GoogleGenAI } from "@google/genai";
 
@@ -231,13 +233,17 @@ function WorldView({
           onClick={() => onInteract(npc.id)}
         >
           <div className="relative">
-            <div className="w-16 h-16 flex items-center justify-center sprite-bob">
-              <img
-                src={npc.spriteUrl}
-                alt={npc.name}
-                className="w-full h-full object-contain drop-shadow-lg"
-                referrerPolicy="no-referrer"
-              />
+            <div className="w-16 h-16 flex items-center justify-center">
+              {npc.characterParts ? (
+                <CharacterSprite parts={npc.characterParts} size={64} id={npc.id} />
+              ) : (
+                <img
+                  src={npc.spriteUrl}
+                  alt={npc.name}
+                  className="w-full h-full object-contain drop-shadow-lg sprite-bob"
+                  referrerPolicy="no-referrer"
+                />
+              )}
             </div>
             <div className="character-shadow" />
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 npc-nametag">
@@ -257,18 +263,18 @@ function WorldView({
         transition={{ type: 'spring', stiffness: 400, damping: 35 }}
         style={{ width: TILE_SIZE, height: TILE_SIZE }}
       >
-        <div className="relative sprite-bob-delayed">
+        <div className="relative">
           <div className="w-16 h-16 flex items-center justify-center">
-            <img
-              src={state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.spriteUrl || state.playerSpriteUrl : state.playerSpriteUrl}
-              alt={state.playerName}
-              className="w-full h-full object-contain drop-shadow-lg"
-              referrerPolicy="no-referrer"
-            />
+            {(() => {
+              const activeParts = state.activeOutfitId
+                ? COSTUME_PARTS_MAP[state.activeOutfitId] || state.playerParts
+                : state.playerParts;
+              return <CharacterSprite parts={activeParts} size={64} id="player" />;
+            })()}
           </div>
           <div className="character-shadow" />
           {state.activeOutfitId && (
-            <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#d4a54a] rounded-full border-2 border-white flex items-center justify-center shadow-lg rotate-12">
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#d4a54a] rounded-full border-2 border-white flex items-center justify-center shadow-lg rotate-12 z-10">
               <Shirt size={12} className="text-[#4a2f1a]" />
             </div>
           )}
@@ -473,13 +479,13 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="p-8 storybook-card flex flex-col items-center gap-6">
                   <h3 className="font-serif italic text-sm text-[#6b4530]">Character Profile</h3>
-                  <div className="relative w-48 h-48 flex items-center justify-center sprite-bob-delayed">
-                    <img
-                      src={state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.spriteUrl || state.playerSpriteUrl : state.playerSpriteUrl}
-                      alt="Alex"
-                      className="w-full h-full object-contain drop-shadow-lg"
-                      referrerPolicy="no-referrer"
-                    />
+                  <div className="relative w-48 h-48 flex items-center justify-center">
+                    {(() => {
+                      const activeParts = state.activeOutfitId
+                        ? COSTUME_PARTS_MAP[state.activeOutfitId] || state.playerParts
+                        : state.playerParts;
+                      return <CharacterSprite parts={activeParts} size={192} id="profile" />;
+                    })()}
                   </div>
                   <div className="text-center space-y-2">
                     <h4 className="text-4xl font-serif italic text-[#4a2f1a]">{state.playerName}</h4>
@@ -532,12 +538,16 @@ export default function App() {
                           <>
                             <div className="flex items-center gap-4">
                               <div className="w-20 h-20 flex items-center justify-center">
-                                <img
-                                  src={outfit.spriteUrl}
-                                  alt={outfit.name}
-                                  className="w-full h-full object-contain drop-shadow-md"
-                                  referrerPolicy="no-referrer"
-                                />
+                                {outfit.characterParts ? (
+                                  <CharacterSprite parts={outfit.characterParts} size={80} id={`outfit-${outfit.id}`} />
+                                ) : (
+                                  <img
+                                    src={outfit.spriteUrl}
+                                    alt={outfit.name}
+                                    className="w-full h-full object-contain drop-shadow-md"
+                                    referrerPolicy="no-referrer"
+                                  />
+                                )}
                               </div>
                               <div>
                                 <h4 className="text-xl font-serif italic text-[#4a2f1a]">{outfit.name}</h4>
@@ -557,12 +567,7 @@ export default function App() {
                   ) : (
                     <div className="p-12 border-2 border-dashed border-[#d4a54a]/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-2 bg-[#f5e6c8]/50">
                       <div className="w-20 h-20 flex items-center justify-center opacity-40">
-                        <img
-                          src={state.playerSpriteUrl}
-                          alt="Alex"
-                          className="w-full h-full object-contain grayscale"
-                          referrerPolicy="no-referrer"
-                        />
+                        <CharacterSprite parts={state.playerParts} size={80} id="outfit-none" />
                       </div>
                       <p className="text-sm text-[#6b4530]/60 font-serif italic">You are wearing your normal clothes.<br/>NPCs will see you as Alex.</p>
                     </div>
@@ -587,12 +592,16 @@ export default function App() {
                           }`}
                         >
                           <div className="w-12 h-12 flex items-center justify-center">
-                            <img
-                              src={item.spriteUrl}
-                              alt={item.name}
-                              className="w-full h-full object-contain"
-                              referrerPolicy="no-referrer"
-                            />
+                            {item.characterParts ? (
+                              <CharacterSprite parts={item.characterParts} size={48} id={`inv-${item.id}`} />
+                            ) : (
+                              <img
+                                src={item.spriteUrl}
+                                alt={item.name}
+                                className="w-full h-full object-contain"
+                                referrerPolicy="no-referrer"
+                              />
+                            )}
                           </div>
                           <div>
                             <div className="text-sm font-serif italic font-medium text-[#4a2f1a]">{item.name}</div>
@@ -624,12 +633,16 @@ export default function App() {
                       <div key={npc.id} className="p-6 storybook-card space-y-4">
                         <div className="flex items-center gap-4 border-b border-[#4a2f1a]/10 pb-4">
                           <div className="w-16 h-16 flex items-center justify-center">
-                            <img
-                              src={npc.spriteUrl}
-                              alt={npc.name}
-                              className="w-full h-full object-contain drop-shadow-md"
-                              referrerPolicy="no-referrer"
-                            />
+                            {npc.characterParts ? (
+                              <CharacterSprite parts={npc.characterParts} size={64} id={`nb-${npc.id}`} />
+                            ) : (
+                              <img
+                                src={npc.spriteUrl}
+                                alt={npc.name}
+                                className="w-full h-full object-contain drop-shadow-md"
+                                referrerPolicy="no-referrer"
+                              />
+                            )}
                           </div>
                           <div>
                             <h4 className="font-serif italic text-lg text-[#4a2f1a]">{npc.name}</h4>
@@ -679,13 +692,17 @@ export default function App() {
             >
               <div className="p-8 space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-20 h-20 flex items-center justify-center sprite-bob rounded-xl bg-[#3d2b50] p-2">
-                    <img
-                      src={activeDialogue.npc.spriteUrl}
-                      alt={activeDialogue.npc.name}
-                      className="w-full h-full object-contain drop-shadow-lg"
-                      referrerPolicy="no-referrer"
-                    />
+                  <div className="w-20 h-20 flex items-center justify-center rounded-xl bg-[#3d2b50] p-2">
+                    {activeDialogue.npc.characterParts ? (
+                      <CharacterSprite parts={activeDialogue.npc.characterParts} size={72} id={`dlg-${activeDialogue.npc.id}`} />
+                    ) : (
+                      <img
+                        src={activeDialogue.npc.spriteUrl}
+                        alt={activeDialogue.npc.name}
+                        className="w-full h-full object-contain drop-shadow-lg sprite-bob"
+                        referrerPolicy="no-referrer"
+                      />
+                    )}
                   </div>
                   <div>
                     <h3 className="text-3xl font-serif italic text-[#f0d9a0]">{activeDialogue.npc.name}</h3>
