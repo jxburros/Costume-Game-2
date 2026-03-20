@@ -1,4 +1,4 @@
-import { Item, NPC, Location } from './types';
+import { Item, NPC, Location, Building } from './types';
 import { MAYOR_PARTS, OFFICER_PARTS, MISS_PIPS_PARTS, SALTY_SAM_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS } from './characterParts';
 
 // Import custom sprite assets in the style of the provided concept art.  The
@@ -27,24 +27,57 @@ export const LOCATIONS: Location[] = [
     description: 'The heart of Kraed Maas, where the golden hour light lingers on the cobblestones and colorful banners dance in the breeze.',
     npcs: ['mayor_barnaby', 'officer_grruff'],
     connections: [
-      { locationId: 'bakery', x: 0, y: 4, label: 'To Bakery' },
-      { locationId: 'docks', x: 9, y: 4, label: 'To Docks' }
+      { locationId: 'bakery', x: 2, y: 3, label: 'Enter Bakery' },
+      { locationId: 'docks', x: 8, y: 3, label: 'Enter Warehouse' }
     ],
-    bounds: { width: 10, height: 10 },
+    bounds: { width: 11, height: 10 },
+    buildings: [
+      {
+        id: 'bakery_building',
+        name: 'The Crusty Crumb',
+        position: { x: 1, y: 0 },
+        size: { width: 3, height: 3 },
+        doorPosition: { x: 2, y: 3 },
+        targetLocationId: 'bakery',
+        style: 'bakery',
+      },
+      {
+        id: 'docks_building',
+        name: 'Kraed Warehouse',
+        position: { x: 7, y: 0 },
+        size: { width: 3, height: 3 },
+        doorPosition: { x: 8, y: 3 },
+        targetLocationId: 'docks',
+        style: 'warehouse',
+      },
+    ],
     decorations: [
-      { id: 'tree_1', type: 'tree', position: { x: 2, y: 2 } },
-      { id: 'tree_2', type: 'tree', position: { x: 7, y: 2 } },
-      { id: 'lamp_1', type: 'lamp', position: { x: 4, y: 1 } },
-      { id: 'lamp_2', type: 'lamp', position: { x: 5, y: 1 } },
+      { id: 'tree_1', type: 'tree', position: { x: 0, y: 2 } },
+      { id: 'tree_2', type: 'tree', position: { x: 10, y: 2 } },
+      { id: 'lamp_1', type: 'lamp', position: { x: 5, y: 1 } },
+      { id: 'lamp_2', type: 'lamp', position: { x: 5, y: 7 } },
       { id: 'bench_1', type: 'bench', position: { x: 4, y: 8 } },
-      { id: 'bench_2', type: 'bench', position: { x: 5, y: 8 } },
-      { id: 'flower_1', type: 'flower', position: { x: 1, y: 1 } },
-      { id: 'flower_2', type: 'flower', position: { x: 8, y: 1 } },
+      { id: 'bench_2', type: 'bench', position: { x: 6, y: 8 } },
+      { id: 'flower_1', type: 'flower', position: { x: 0, y: 5 } },
+      { id: 'flower_2', type: 'flower', position: { x: 10, y: 5 } },
+      { id: 'flower_3', type: 'flower', position: { x: 4, y: 0 } },
+      { id: 'flower_4', type: 'flower', position: { x: 6, y: 0 } },
     ],
     obstacles: [
-      { x: 2, y: 2 }, { x: 7, y: 2 }, // trees
-      { x: 4, y: 1 }, { x: 5, y: 1 }, // lamps
-      { x: 4, y: 8 }, { x: 5, y: 8 }, // benches
+      // Building walls (bakery: 3x3 at 1,0)
+      { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 },
+      { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 },
+      { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 },
+      // Building walls (warehouse: 3x3 at 7,0)
+      { x: 7, y: 0 }, { x: 8, y: 0 }, { x: 9, y: 0 },
+      { x: 7, y: 1 }, { x: 8, y: 1 }, { x: 9, y: 1 },
+      { x: 7, y: 2 }, { x: 8, y: 2 }, { x: 9, y: 2 },
+      // Trees
+      { x: 0, y: 2 }, { x: 10, y: 2 },
+      // Lamps
+      { x: 5, y: 1 }, { x: 5, y: 7 },
+      // Benches
+      { x: 4, y: 8 }, { x: 6, y: 8 },
     ],
   },
   {
@@ -53,18 +86,20 @@ export const LOCATIONS: Location[] = [
     description: 'A cozy corner filled with the scent of cinnamon and yeast, where the oven glow warms the soul.',
     npcs: ['miss_pips'],
     connections: [
-      { locationId: 'town_square', x: 9, y: 4, label: 'To Town Square' }
+      { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
-    bounds: { width: 10, height: 10 },
+    bounds: { width: 9, height: 10 },
     decorations: [
-      { id: 'barrel_1', type: 'barrel', position: { x: 2, y: 2 } },
-      { id: 'barrel_2', type: 'barrel', position: { x: 2, y: 3 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 1, y: 1 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 1, y: 2 } },
       { id: 'crate_1', type: 'crate', position: { x: 7, y: 7 } },
-      { id: 'crate_2', type: 'crate', position: { x: 8, y: 7 } },
+      { id: 'crate_2', type: 'crate', position: { x: 7, y: 8 } },
+      { id: 'barrel_3', type: 'barrel', position: { x: 0, y: 8 } },
     ],
     obstacles: [
-      { x: 2, y: 2 }, { x: 2, y: 3 }, // barrels
-      { x: 7, y: 7 }, { x: 8, y: 7 }, // crates
+      { x: 1, y: 1 }, { x: 1, y: 2 }, // barrels
+      { x: 7, y: 7 }, { x: 7, y: 8 }, // crates
+      { x: 0, y: 8 }, // barrel
     ],
   },
   {
@@ -73,16 +108,16 @@ export const LOCATIONS: Location[] = [
     description: 'Where the mist clings to the water and the creak of old wood tells stories of distant lands.',
     npcs: ['salty_sam'],
     connections: [
-      { locationId: 'town_square', x: 0, y: 4, label: 'To Town Square' }
+      { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
     bounds: { width: 10, height: 10 },
     decorations: [
-      { id: 'barrel_1', type: 'barrel', position: { x: 4, y: 3 } },
-      { id: 'barrel_2', type: 'barrel', position: { x: 6, y: 3 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 3, y: 2 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 6, y: 2 } },
       { id: 'crate_1', type: 'crate', position: { x: 5, y: 7 } },
     ],
     obstacles: [
-      { x: 4, y: 3 }, { x: 6, y: 3 }, // barrels
+      { x: 3, y: 2 }, { x: 6, y: 2 }, // barrels
       { x: 5, y: 7 }, // crates
     ],
   },
@@ -98,7 +133,7 @@ export const NPCS: NPC[] = [
     // Replace the generic dicebear sprite with our custom mayor image
     spriteUrl: mayorImg,
     characterParts: MAYOR_PARTS,
-    position: { x: 5, y: 2 },
+    position: { x: 5, y: 4 },
     info: {
       secret: 'He is terrified of heights.',
       darkSecret: 'He embezzled the festival funds to buy a collection of porcelain spoons.',
@@ -225,7 +260,7 @@ export const NPCS: NPC[] = [
     // Replace the generic dicebear sprite with our custom officer (cat constable) image
     spriteUrl: officerImg,
     characterParts: OFFICER_PARTS,
-    position: { x: 8, y: 7 },
+    position: { x: 8, y: 6 },
     info: {
       secret: 'He wants to be a poet.',
       darkSecret: 'He let a thief go because they promised to critique his sonnets.',

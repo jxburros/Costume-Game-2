@@ -20,11 +20,13 @@ import {
   MoveLeft,
   MoveRight,
   MapPin,
-  Shirt
+  Shirt,
+  DoorOpen,
+  Home
 } from 'lucide-react';
 import { useGameState } from './useGameState';
 import { NPCS, LOCATIONS, ITEMS } from './data';
-import { NPC, Location, Item, DialogueNode, DialogueOption, Phase, CharacterParts } from './types';
+import { NPC, Location, Item, DialogueNode, DialogueOption, Phase, CharacterParts, Building } from './types';
 import CharacterSprite from './CharacterSprite';
 import { COSTUME_PARTS_MAP } from './characterParts';
 
@@ -59,6 +61,54 @@ function DecorationRenderer({ type }: { type: string }) {
     default:
       return null;
   }
+}
+
+/* ─── Building Component (multi-tile storybook buildings) ─── */
+function BuildingRenderer({ building, tileSize }: { building: Building; tileSize: number }) {
+  const { position, size, name, style, doorPosition } = building;
+  const widthPx = size.width * tileSize;
+  const heightPx = size.height * tileSize;
+
+  return (
+    <>
+      {/* Building body */}
+      <div
+        className={`absolute z-[4] building building-${style}`}
+        style={{
+          left: position.x * tileSize,
+          top: position.y * tileSize,
+          width: widthPx,
+          height: heightPx,
+        }}
+      >
+        {/* Roof */}
+        <div className={`building-roof building-roof-${style}`} />
+        {/* Windows */}
+        <div className="building-windows">
+          <div className="building-window" />
+          <div className="building-window" />
+        </div>
+        {/* Sign */}
+        <div className="building-sign">
+          <span>{name}</span>
+        </div>
+      </div>
+      {/* Door (rendered separately at door position) */}
+      <div
+        className="absolute z-[5] flex items-end justify-center"
+        style={{
+          left: doorPosition.x * tileSize,
+          top: (position.y + size.height) * tileSize - tileSize * 0.3,
+          width: tileSize,
+          height: tileSize,
+        }}
+      >
+        <div className={`building-door building-door-${style}`}>
+          <div className="door-handle" />
+        </div>
+      </div>
+    </>
+  );
 }
 
 /* ─── Get ground class based on location ─── */
@@ -195,6 +245,11 @@ function WorldView({
         </div>
       ))}
 
+      {/* Buildings (overworld) */}
+      {currentLocation.buildings?.map(building => (
+        <BuildingRenderer key={building.id} building={building} tileSize={TILE_SIZE} />
+      ))}
+
       {/* Connections / Exits */}
       {currentLocation.connections.map((conn, i) => (
         <motion.div
@@ -209,9 +264,15 @@ function WorldView({
           }}
           onClick={() => setLocation(conn.locationId)}
         >
-          <div className="exit-marker">
-            <MapPin size={18} className="text-[#d4a54a]" />
-          </div>
+          {conn.isDoor ? (
+            <div className="door-exit-marker">
+              <DoorOpen size={20} className="text-[#f0d9a0]" />
+            </div>
+          ) : (
+            <div className="building-entrance-marker">
+              <Home size={16} className="text-[#f0d9a0] drop-shadow-sm" />
+            </div>
+          )}
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#2a1e38]/90 text-[#f0d9a0] text-[10px] px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-serif italic border border-[#d4a54a]/30">
             {conn.label}
           </div>
@@ -437,8 +498,8 @@ export default function App() {
                   />
 
                   <div className="p-3 bg-[#2a1e38]/80 rounded-xl text-xs font-mono text-[#f0d9a0]/60 flex items-center gap-3 border border-[#d4a54a]/20">
-                    <MapPin size={14} className="text-[#d4a54a]" />
-                    Use WASD or Arrow Keys to move. Walk into NPCs to talk. Walk into exits to travel.
+                    <Home size={14} className="text-[#d4a54a]" />
+                    Use WASD or Arrow Keys to move. Walk into NPCs to talk. Walk into doors to enter buildings.
                   </div>
                 </div>
 

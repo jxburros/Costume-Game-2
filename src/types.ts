@@ -126,13 +126,38 @@ export interface Decoration {
   position: { x: number; y: number };
 }
 
+export interface Building {
+  id: string;
+  name: string;
+  /** Top-left tile of the building footprint */
+  position: { x: number; y: number };
+  /** Size in tiles */
+  size: { width: number; height: number };
+  /** Where the door is on the grid */
+  doorPosition: { x: number; y: number };
+  /** Location this building leads to */
+  targetLocationId: string;
+  /** Visual style */
+  style: 'bakery' | 'warehouse' | 'house';
+}
+
+export interface Connection {
+  locationId: string;
+  x: number;
+  y: number;
+  label: string;
+  /** If true, render as a door instead of a map pin */
+  isDoor?: boolean;
+}
+
 export interface Location {
   id: string;
   name: string;
   description: string;
   npcs: string[]; // NPC IDs
-  connections: { locationId: string; x: number; y: number; label: string }[];
+  connections: Connection[];
   bounds: { width: number; height: number };
   decorations: Decoration[];
   obstacles: { x: number; y: number }[];
+  buildings?: Building[];
 }
