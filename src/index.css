@@ -569,23 +569,187 @@ body::after {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* ─── Connection/Exit marker ─── */
-.exit-marker {
+/* ─── Building Styles ─── */
+.building {
+  border-radius: 4px 4px 0 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.building-bakery {
+  background: linear-gradient(180deg, #c4956e 0%, #a87a55 60%, #8b6340 100%);
+  border: 2px solid #6b4a30;
+  border-bottom: none;
+  box-shadow:
+    inset 0 -8px 16px rgba(0, 0, 0, 0.15),
+    inset 4px 0 8px rgba(255, 255, 255, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.building-warehouse {
+  background: linear-gradient(180deg, #7a8a8a 0%, #5a6a6a 60%, #4a5858 100%);
+  border: 2px solid #3a4848;
+  border-bottom: none;
+  box-shadow:
+    inset 0 -8px 16px rgba(0, 0, 0, 0.2),
+    inset 4px 0 8px rgba(255, 255, 255, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Roof */
+.building-roof {
+  position: absolute;
+  top: -16px;
+  left: -8px;
+  right: -8px;
+  height: 24px;
+  border-radius: 4px 4px 0 0;
+}
+
+.building-roof-bakery {
+  background: linear-gradient(180deg, #c44a3a 0%, #a03a2a 100%);
+  border: 2px solid #8a2a1a;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.building-roof-warehouse {
+  background: linear-gradient(180deg, #5a4a3a 0%, #4a3a2a 100%);
+  border: 2px solid #3a2a1a;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Windows */
+.building-windows {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 12px 0;
+}
+
+.building-window {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, rgba(245, 197, 66, 0.6) 0%, rgba(245, 197, 66, 0.3) 100%);
+  border: 2px solid rgba(74, 47, 26, 0.5);
+  border-radius: 3px 3px 0 0;
+  box-shadow:
+    0 0 12px rgba(245, 197, 66, 0.3),
+    inset 0 0 8px rgba(245, 197, 66, 0.2);
+  position: relative;
+}
+
+.building-window::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(74, 47, 26, 0.4);
+}
+
+.building-window::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(74, 47, 26, 0.4);
+}
+
+/* Building sign */
+.building-sign {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #5a3a18 0%, #4a2a10 100%);
+  border: 1px solid #3a2008;
+  border-radius: 4px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.building-sign span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 9px;
+  color: var(--dialogue-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Door */
+.building-door {
+  width: 28px;
+  height: 38px;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  border: 2px solid;
+  border-bottom: none;
+}
+
+.building-door-bakery {
+  background: linear-gradient(180deg, #6b4a30 0%, #5a3a20 100%);
+  border-color: #4a2a10;
+}
+
+.building-door-warehouse {
+  background: linear-gradient(180deg, #4a3a2a 0%, #3a2a1a 100%);
+  border-color: #2a1a0a;
+}
+
+.door-handle {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--warm-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(212, 165, 74, 0.5);
+}
+
+/* Building entrance marker (replaces old exit-marker for overworld) */
+.building-entrance-marker {
   width: 40px;
   height: 40px;
-  background: radial-gradient(circle, rgba(245, 197, 66, 0.3) 0%, rgba(245, 197, 66, 0.05) 70%);
-  border: 2px dashed rgba(212, 165, 74, 0.5);
+  background: radial-gradient(circle, rgba(212, 165, 74, 0.4) 0%, rgba(212, 165, 74, 0.05) 70%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  animation: entrance-pulse 2s ease-in-out infinite;
 }
 
-.exit-marker:hover {
-  background: radial-gradient(circle, rgba(245, 197, 66, 0.5) 0%, rgba(245, 197, 66, 0.1) 70%);
+.building-entrance-marker:hover {
+  background: radial-gradient(circle, rgba(245, 197, 66, 0.6) 0%, rgba(245, 197, 66, 0.1) 70%);
+  box-shadow: 0 0 20px rgba(245, 197, 66, 0.4);
+}
+
+@keyframes entrance-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+/* Door exit marker (for leaving interior locations) */
+.door-exit-marker {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(180deg, rgba(107, 74, 48, 0.9) 0%, rgba(90, 58, 32, 0.9) 100%);
+  border: 2px solid rgba(212, 165, 74, 0.5);
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.door-exit-marker:hover {
   border-color: var(--warm-gold);
-  box-shadow: 0 0 16px rgba(245, 197, 66, 0.3);
+  box-shadow: 0 0 16px rgba(245, 197, 66, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, rgba(107, 74, 48, 1) 0%, rgba(90, 58, 32, 1) 100%);
 }
 
 /* ─── Header Bar ─── */
