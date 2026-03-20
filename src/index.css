@@ -190,6 +190,119 @@ body::after {
   animation-delay: 1.5s;
 }
 
+/* ─── Articulated Character Part Animations ─── */
+
+/* Head: gentle tilt side to side */
+@keyframes head-tilt {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  30% { transform: rotate(2deg) translateY(-1px); }
+  70% { transform: rotate(-1.5deg) translateY(0.5px); }
+}
+
+.char-head {
+  animation: head-tilt 4s ease-in-out infinite;
+}
+
+/* Body: very subtle sway */
+@keyframes body-sway {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(0.5deg); }
+}
+
+.char-body {
+  animation: body-sway 3s ease-in-out infinite;
+}
+
+/* Left arm: pendulum swing (idle) */
+@keyframes arm-swing-left {
+  0%, 100% { transform: rotate(3deg); }
+  50% { transform: rotate(-5deg); }
+}
+
+.char-left-arm {
+  animation: arm-swing-left 2.8s ease-in-out infinite;
+}
+
+/* Right arm: pendulum swing (opposite phase) */
+@keyframes arm-swing-right {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.char-right-arm {
+  animation: arm-swing-right 2.8s ease-in-out infinite;
+  animation-delay: -1.4s;
+}
+
+/* Left leg idle: subtle shift */
+@keyframes leg-idle-left {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(1px); }
+}
+
+.char-left-leg {
+  animation: leg-idle-left 3s ease-in-out infinite;
+}
+
+/* Right leg idle: subtle shift (offset) */
+@keyframes leg-idle-right {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(1px); }
+}
+
+.char-right-leg {
+  animation: leg-idle-right 3s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+/* Walking overrides — more exaggerated movement */
+@keyframes arm-walk-left {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@keyframes arm-walk-right {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(20deg); }
+}
+
+@keyframes leg-walk-left {
+  0%, 100% { transform: translateY(0) rotate(8deg); }
+  50% { transform: translateY(-2px) rotate(-10deg); }
+}
+
+@keyframes leg-walk-right {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-2px) rotate(10deg); }
+}
+
+.char-left-arm.char-walking {
+  animation: arm-walk-left 0.5s ease-in-out infinite;
+}
+
+.char-right-arm.char-walking {
+  animation: arm-walk-right 0.5s ease-in-out infinite;
+}
+
+.char-left-leg.char-walking {
+  animation: leg-walk-left 0.5s ease-in-out infinite;
+}
+
+.char-right-leg.char-walking {
+  animation: leg-walk-right 0.5s ease-in-out infinite;
+  animation-delay: -0.25s;
+}
+
+/* Head accessory follows head animation */
+.char-head-accessory {
+  animation: head-tilt 4s ease-in-out infinite;
+}
+
+/* Paper cut-out edge effect for character parts */
+.char-sprite div[class*="char-"] > div {
+  filter: drop-shadow(1px 1px 0px rgba(74, 47, 26, 0.15));
+}
+
 /* Character shadow */
 .character-shadow {
   position: absolute;

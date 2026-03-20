@@ -1,4 +1,5 @@
 import { Item, NPC, Location } from './types';
+import { MAYOR_PARTS, OFFICER_PARTS, MISS_PIPS_PARTS, SALTY_SAM_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS } from './characterParts';
 
 // Import custom sprite assets in the style of the provided concept art.  The
 // images live in the ./assets directory and are converted to public URLs via
@@ -11,12 +12,12 @@ const missImg = new URL('./assets/miss.png', import.meta.url).href;
 const saltyImg  = new URL('./assets/salty.png', import.meta.url).href;
 
 export const ITEMS: Item[] = [
-  { id: 'constable_uniform', name: 'Constable Uniform', description: "A warm, royal blue uniform with soft, painterly textures and golden buttons that glow like small suns.", icon: 'Shield', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_constable&backgroundColor=fdf6e3', isOutfit: true },
-  { id: 'baker_apron', name: 'Baker Apron', description: 'Dusted with flour and stained with sweet strawberry jam, smelling of warm hearths and home.', icon: 'ChefHat', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_baker&backgroundColor=fdf6e3', isOutfit: true },
-  { id: 'ghost_sheet', name: 'Ghost Sheet', description: 'A soft, ethereal cloth that seems to shimmer with the light of a thousand distant stars.', icon: 'Ghost', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_ghost&backgroundColor=fdf6e3', isOutfit: true },
+  { id: 'constable_uniform', name: 'Constable Uniform', description: "A warm, royal blue uniform with soft, painterly textures and golden buttons that glow like small suns.", icon: 'Shield', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_constable&backgroundColor=fdf6e3', isOutfit: true, characterParts: CONSTABLE_COSTUME_PARTS },
+  { id: 'baker_apron', name: 'Baker Apron', description: 'Dusted with flour and stained with sweet strawberry jam, smelling of warm hearths and home.', icon: 'ChefHat', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_baker&backgroundColor=fdf6e3', isOutfit: true, characterParts: BAKER_COSTUME_PARTS },
+  { id: 'ghost_sheet', name: 'Ghost Sheet', description: 'A soft, ethereal cloth that seems to shimmer with the light of a thousand distant stars.', icon: 'Ghost', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_ghost&backgroundColor=fdf6e3', isOutfit: true, characterParts: GHOST_COSTUME_PARTS },
   { id: 'old_key', name: 'Old Key', description: 'A heavy brass key, its surface worn smooth by generations of hands, humming with a faint, ancient magic.', icon: 'Key', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_key&backgroundColor=fdf6e3' },
   { id: 'secret_letter', name: 'Soggy Letter', description: 'The ink has bled into beautiful, watercolor-like patterns on thick, handmade parchment.', icon: 'Mail', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_letter&backgroundColor=fdf6e3' },
-  { id: 'strange_mask', name: 'Strange Mask', description: 'A hand-painted mask with vibrant, folk-art features that seem to shift slightly in the twilight.', icon: 'Mask', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_mask&backgroundColor=fdf6e3', isOutfit: true },
+  { id: 'strange_mask', name: 'Strange Mask', description: 'A hand-painted mask with vibrant, folk-art features that seem to shift slightly in the twilight.', icon: 'Mask', spriteUrl: 'https://api.dicebear.com/7.x/lorelei/svg?seed=storybook_mask&backgroundColor=fdf6e3', isOutfit: true, characterParts: MASK_COSTUME_PARTS },
 ];
 
 export const LOCATIONS: Location[] = [
@@ -96,6 +97,7 @@ export const NPCS: NPC[] = [
     description: 'A dapper lion in a warm purple suit, his mane a soft watercolor of gold and amber. He stands with a regal, yet gentle, posture.',
     // Replace the generic dicebear sprite with our custom mayor image
     spriteUrl: mayorImg,
+    characterParts: MAYOR_PARTS,
     position: { x: 5, y: 2 },
     info: {
       secret: 'He is terrified of heights.',
@@ -169,6 +171,7 @@ export const NPCS: NPC[] = [
     description: 'A small rabbit in a soft green dress and a large, floppy witch hat. Her eyes sparkle with a painterly warmth.',
     // Replace the generic dicebear sprite with our custom rabbit seamstress image
     spriteUrl: missImg,
+    characterParts: MISS_PIPS_PARTS,
     position: { x: 3, y: 3 },
     info: {
       secret: 'She hates carrots.',
@@ -221,6 +224,7 @@ export const NPCS: NPC[] = [
     description: 'A large wolf in a soft, polka-dot jumpsuit that looks like it was painted with gentle watercolors. He has a thoughtful, artistic expression.',
     // Replace the generic dicebear sprite with our custom officer (cat constable) image
     spriteUrl: officerImg,
+    characterParts: OFFICER_PARTS,
     position: { x: 8, y: 7 },
     info: {
       secret: 'He wants to be a poet.',
@@ -281,6 +285,7 @@ export const NPCS: NPC[] = [
     description: 'A sturdy walrus in a deep red pirate coat, his tusks yellowed like old ivory. He stands with a weathered, storybook charm.',
     // Replace the generic dicebear sprite with our custom pig musician image for Salty Sam
     spriteUrl: saltyImg,
+    characterParts: SALTY_SAM_PARTS,
     position: { x: 5, y: 5 },
     info: {
       secret: 'He is actually a very good knitter.',
