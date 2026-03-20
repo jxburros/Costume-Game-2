@@ -97,8 +97,8 @@ export const ALEX_PARTS: CharacterParts = {
   },
 };
 
-// ─── Mayor Barnaby (Lion - King costume) ───
-export const MAYOR_PARTS: CharacterParts = {
+// ─── King Arctos (Lion - King costume) ───
+export const KING_ARCTOS_PARTS: CharacterParts = {
   head: {
     bg: 'radial-gradient(ellipse at 50% 50%, #e8c060 0%, #c49530 60%, #a07828 100%)',
     w: 26,
@@ -194,256 +194,291 @@ export const MAYOR_PARTS: CharacterParts = {
   scale: 1.05,
 };
 
-// ─── Officer Grruff (Wolf - Clown costume) ───
-export const OFFICER_PARTS: CharacterParts = {
+// ─── Fennel (Deer - Constable costume) ───
+export const FENNEL_PARTS: CharacterParts = {
   head: {
-    bg: 'radial-gradient(ellipse at 50% 50%, #9a9aaa 0%, #7a7a8a 60%, #5a5a6a 100%)',
+    bg: 'radial-gradient(ellipse at 50% 50%, #c4956a 0%, #a07848 60%, #8a6438 100%)',
     w: 22,
-    h: 22,
-    radius: '45% 45% 40% 40%',
+    h: 20,
+    radius: '48% 48% 45% 45%',
     shadow: '0 2px 4px rgba(0,0,0,0.2)',
     details: [
-      // Snout
-      { bg: '#b0b0c0', w: 12, h: 8, top: 11, left: 5, radius: '40% 40% 50% 50%' },
+      // Left ear (deer, wide)
+      { bg: '#b08858', w: 7, h: 6, top: -3, left: -1, radius: '50% 30% 10% 50%' },
+      // Right ear (deer, wide)
+      { bg: '#b08858', w: 7, h: 6, top: -3, left: 16, radius: '30% 50% 50% 10%' },
+      // Inner ear
+      { bg: '#e0b898', w: 4, h: 3, top: -1, left: 1, radius: '50%' },
+      { bg: '#e0b898', w: 4, h: 3, top: -1, left: 17, radius: '50%' },
       // Left eye
-      { bg: '#2a2a3a', w: 4, h: 5, top: 7, left: 4, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 5, top: 7, left: 4, radius: '50%' },
       // Right eye
-      { bg: '#2a2a3a', w: 4, h: 5, top: 7, left: 14, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 5, top: 7, left: 14, radius: '50%' },
+      // Eye shine
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 5, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 15, radius: '50%' },
       // Nose
-      { bg: '#1a1a2a', w: 5, h: 4, top: 12, left: 9, radius: '50%' },
-      // Left ear (pointed)
-      { bg: '#7a7a8a', w: 6, h: 8, top: -5, left: 1, radius: '40% 40% 10% 10%' },
-      // Right ear (pointed)
-      { bg: '#7a7a8a', w: 6, h: 8, top: -5, left: 15, radius: '40% 40% 10% 10%' },
-      // Clown nose
-      { bg: '#c44a3a', w: 6, h: 5, top: 11, left: 8, radius: '50%' },
+      { bg: '#5a3a2a', w: 5, h: 3, top: 13, left: 9, radius: '50%' },
+      // Left antler
+      { bg: '#6a4a2a', w: 3, h: 8, top: -7, left: 3, radius: '3px 3px 1px 1px' },
+      { bg: '#6a4a2a', w: 5, h: 2, top: -5, left: 1, radius: '2px' },
+      // Right antler
+      { bg: '#6a4a2a', w: 3, h: 8, top: -7, left: 16, radius: '3px 3px 1px 1px' },
+      { bg: '#6a4a2a', w: 5, h: 2, top: -5, left: 16, radius: '2px' },
     ],
   },
   body: {
-    // Polka-dot clown jumpsuit
-    bg: `
-      radial-gradient(circle at 4px 4px, #3a5f8a 3px, transparent 3px),
-      radial-gradient(circle at 12px 12px, #3a5f8a 3px, transparent 3px),
-      linear-gradient(180deg, #e8e0d0 0%, #d8d0c0 100%)
-    `,
-    w: 20,
+    bg: 'linear-gradient(180deg, #2a4a8a 0%, #1a3a7a 60%, #0a2a6a 100%)',
+    w: 18,
     h: 18,
     radius: '6px 6px 4px 4px',
     shadow: '1px 2px 4px rgba(0,0,0,0.2)',
     details: [
-      // Bow tie
-      { bg: '#c44a3a', w: 8, h: 4, top: 0, left: 6, radius: '2px' },
+      // Gold buttons
+      { bg: '#d4a54a', w: 3, h: 3, top: 3, left: 8, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 8, left: 8, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 13, left: 8, radius: '50%' },
+      // Badge
+      { bg: '#d4a54a', w: 5, h: 5, top: 2, left: 2, radius: '2px' },
     ],
   },
   leftArm: {
-    bg: 'linear-gradient(180deg, #e8e0d0 0%, #d8d0c0 100%)',
+    bg: 'linear-gradient(180deg, #2a4a8a 0%, #1a3a7a 100%)',
     w: 7,
     h: 14,
     radius: '4px 4px 3px 3px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      { bg: '#9a9aaa', w: 7, h: 5, top: 9, left: 0, radius: '3px 3px 4px 4px' },
+      // Hoof
+      { bg: '#5a3a2a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' },
     ],
   },
   rightArm: {
-    bg: 'linear-gradient(180deg, #e8e0d0 0%, #d8d0c0 100%)',
+    bg: 'linear-gradient(180deg, #2a4a8a 0%, #1a3a7a 100%)',
     w: 7,
     h: 14,
     radius: '4px 4px 3px 3px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      { bg: '#9a9aaa', w: 7, h: 5, top: 9, left: 0, radius: '3px 3px 4px 4px' },
+      { bg: '#5a3a2a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' },
     ],
   },
   leftLeg: {
-    bg: 'linear-gradient(180deg, #e8e0d0 0%, #d8d0c0 100%)',
-    w: 8,
+    bg: 'linear-gradient(180deg, #1a2a5a 0%, #0a1a4a 100%)',
+    w: 7,
     h: 10,
     radius: '3px 3px 4px 4px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      // Big clown shoe
-      { bg: '#c44a3a', w: 12, h: 5, top: 5, left: -2, radius: '6px' },
+      // Hoof
+      { bg: '#3a2a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' },
     ],
   },
   rightLeg: {
-    bg: 'linear-gradient(180deg, #e8e0d0 0%, #d8d0c0 100%)',
-    w: 8,
+    bg: 'linear-gradient(180deg, #1a2a5a 0%, #0a1a4a 100%)',
+    w: 7,
     h: 10,
     radius: '3px 3px 4px 4px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      { bg: '#c44a3a', w: 12, h: 5, top: 5, left: -2, radius: '6px' },
+      { bg: '#3a2a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' },
     ],
   },
+  headAccessory: {
+    // Constable helmet
+    bg: 'linear-gradient(180deg, #2a4a8a 0%, #1a3a7a 100%)',
+    w: 24,
+    h: 10,
+    radius: '50% 50% 4px 4px',
+    shadow: '0 2px 4px rgba(0,0,0,0.2)',
+    offsetY: 5,
+    details: [
+      // Badge on helmet
+      { bg: '#d4a54a', w: 5, h: 5, top: 2, left: 10, radius: '50%' },
+    ],
+  },
+  scale: 0.95,
 };
 
-// ─── Miss Pips (Rabbit - Witch costume) ───
-export const MISS_PIPS_PARTS: CharacterParts = {
+// ─── Bramm (Bear - Baker costume) ───
+export const BRAMM_PARTS: CharacterParts = {
   head: {
-    bg: 'radial-gradient(ellipse at 50% 55%, #f0e0d0 0%, #e0d0c0 60%, #d0c0b0 100%)',
-    w: 20,
-    h: 18,
+    bg: 'radial-gradient(ellipse at 50% 50%, #8b6040 0%, #6a4830 60%, #5a3820 100%)',
+    w: 24,
+    h: 22,
     radius: '50% 50% 45% 45%',
-    shadow: '0 2px 4px rgba(0,0,0,0.15)',
+    shadow: '0 2px 5px rgba(0,0,0,0.2)',
     details: [
-      // Left ear (long floppy)
-      { bg: 'linear-gradient(180deg, #f0e0d0, #e0d0c0)', w: 6, h: 16, top: -14, left: 2, radius: '50% 50% 30% 30%' },
-      // Right ear (long floppy)
-      { bg: 'linear-gradient(180deg, #f0e0d0, #e0d0c0)', w: 6, h: 16, top: -14, left: 12, radius: '50% 50% 30% 30%' },
-      // Inner ear pink
-      { bg: '#e8a0a0', w: 3, h: 10, top: -12, left: 4, radius: '50%' },
-      { bg: '#e8a0a0', w: 3, h: 10, top: -12, left: 14, radius: '50%' },
-      // Eyes
-      { bg: '#4a2a3a', w: 4, h: 4, top: 6, left: 3, radius: '50%' },
-      { bg: '#4a2a3a', w: 4, h: 4, top: 6, left: 13, radius: '50%' },
-      // Eye sparkle
-      { bg: '#fff', w: 2, h: 2, top: 6, left: 4, radius: '50%' },
-      { bg: '#fff', w: 2, h: 2, top: 6, left: 14, radius: '50%' },
+      // Left ear (round bear ear)
+      { bg: '#7a5838', w: 8, h: 8, top: -4, left: 0, radius: '50%' },
+      // Right ear (round bear ear)
+      { bg: '#7a5838', w: 8, h: 8, top: -4, left: 16, radius: '50%' },
+      // Inner ear
+      { bg: '#a07050', w: 5, h: 5, top: -2, left: 2, radius: '50%' },
+      { bg: '#a07050', w: 5, h: 5, top: -2, left: 17, radius: '50%' },
+      // Muzzle
+      { bg: '#a08060', w: 12, h: 8, top: 11, left: 6, radius: '50%' },
+      // Left eye
+      { bg: '#1a1a1a', w: 4, h: 4, top: 7, left: 5, radius: '50%' },
+      // Right eye
+      { bg: '#1a1a1a', w: 4, h: 4, top: 7, left: 15, radius: '50%' },
+      // Eye shine
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 16, radius: '50%' },
       // Nose
-      { bg: '#e8a0a0', w: 4, h: 3, top: 10, left: 8, radius: '50%' },
+      { bg: '#2a1a0a', w: 5, h: 4, top: 12, left: 10, radius: '50%' },
     ],
   },
   body: {
-    bg: 'linear-gradient(180deg, #4a7a4a 0%, #3a6a3a 60%, #2a5a2a 100%)',
-    w: 16,
-    h: 16,
-    radius: '5px 5px 3px 3px',
+    bg: 'linear-gradient(180deg, #f0e8d8 0%, #e8dcc8 60%, #d8ccb8 100%)',
+    w: 20,
+    h: 20,
+    radius: '6px 6px 4px 4px',
     shadow: '1px 2px 4px rgba(0,0,0,0.18)',
     details: [
       // Apron
-      { bg: 'rgba(255,255,255,0.3)', w: 10, h: 12, top: 2, left: 3, radius: '2px 2px 4px 4px' },
+      { bg: '#fff', w: 14, h: 16, top: 2, left: 3, radius: '2px 2px 4px 4px' },
+      // Flour stains
+      { bg: 'rgba(255,255,255,0.6)', w: 5, h: 3, top: 6, left: 5, radius: '50%' },
+      { bg: 'rgba(255,255,255,0.5)', w: 4, h: 3, top: 11, left: 9, radius: '50%' },
     ],
   },
   leftArm: {
-    bg: 'linear-gradient(180deg, #4a7a4a 0%, #3a6a3a 100%)',
-    w: 6,
-    h: 12,
-    radius: '3px 3px 3px 3px',
-    shadow: '1px 1px 3px rgba(0,0,0,0.12)',
+    bg: 'linear-gradient(180deg, #f0e8d8 0%, #e8dcc8 100%)',
+    w: 8,
+    h: 15,
+    radius: '4px 4px 3px 3px',
+    shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      { bg: '#f0e0d0', w: 6, h: 4, top: 8, left: 0, radius: '2px 2px 4px 4px' },
+      // Paw
+      { bg: '#6a4830', w: 8, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' },
     ],
   },
   rightArm: {
-    bg: 'linear-gradient(180deg, #4a7a4a 0%, #3a6a3a 100%)',
-    w: 6,
-    h: 12,
-    radius: '3px 3px 3px 3px',
-    shadow: '1px 1px 3px rgba(0,0,0,0.12)',
+    bg: 'linear-gradient(180deg, #f0e8d8 0%, #e8dcc8 100%)',
+    w: 8,
+    h: 15,
+    radius: '4px 4px 3px 3px',
+    shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      { bg: '#f0e0d0', w: 6, h: 4, top: 8, left: 0, radius: '2px 2px 4px 4px' },
+      { bg: '#6a4830', w: 8, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' },
     ],
   },
   leftLeg: {
-    bg: 'linear-gradient(180deg, #2a5a2a 0%, #1a4a1a 100%)',
-    w: 6,
-    h: 8,
+    bg: 'linear-gradient(180deg, #5a3820 0%, #4a2810 100%)',
+    w: 8,
+    h: 10,
     radius: '3px 3px 4px 4px',
-    shadow: '1px 1px 3px rgba(0,0,0,0.12)',
-  },
-  rightLeg: {
-    bg: 'linear-gradient(180deg, #2a5a2a 0%, #1a4a1a 100%)',
-    w: 6,
-    h: 8,
-    radius: '3px 3px 4px 4px',
-    shadow: '1px 1px 3px rgba(0,0,0,0.12)',
-  },
-  headAccessory: {
-    // Witch hat
-    bg: 'linear-gradient(180deg, #2a1a3a 0%, #1a0a2a 100%)',
-    w: 22,
-    h: 14,
-    radius: '2px 2px 50% 50%',
-    shadow: '0 2px 6px rgba(0,0,0,0.25)',
-    offsetY: 8,
+    shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      // Hat point
-      { bg: '#2a1a3a', w: 8, h: 12, top: -10, left: 7, radius: '40% 40% 0 0' },
-      // Hat brim
-      { bg: '#1a0a2a', w: 28, h: 3, top: 11, left: -3, radius: '50%' },
-      // Hat band
-      { bg: '#d4a54a', w: 22, h: 2, top: 9, left: 0, radius: '1px' },
+      { bg: '#3a1a0a', w: 9, h: 4, top: 6, left: -1, radius: '3px' },
     ],
   },
-  scale: 0.9,
+  rightLeg: {
+    bg: 'linear-gradient(180deg, #5a3820 0%, #4a2810 100%)',
+    w: 8,
+    h: 10,
+    radius: '3px 3px 4px 4px',
+    shadow: '1px 1px 3px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#3a1a0a', w: 9, h: 4, top: 6, left: 0, radius: '3px' },
+    ],
+  },
+  headAccessory: {
+    // Chef hat (toque)
+    bg: 'linear-gradient(180deg, #fff 0%, #f0e8d8 100%)',
+    w: 22,
+    h: 14,
+    radius: '50% 50% 4px 4px',
+    shadow: '0 2px 4px rgba(0,0,0,0.12)',
+    offsetY: 6,
+    details: [
+      // Poofy top
+      { bg: '#fff', w: 20, h: 10, top: -6, left: 1, radius: '50%' },
+    ],
+  },
+  scale: 1.0,
 };
 
-// ─── Salty Sam (Walrus - Pirate costume) ───
-export const SALTY_SAM_PARTS: CharacterParts = {
+// ─── Dagan (Tiger - Dock Foreman costume) ───
+export const DAGAN_PARTS: CharacterParts = {
   head: {
-    bg: 'radial-gradient(ellipse at 50% 55%, #c4a080 0%, #a08060 60%, #8a6a50 100%)',
-    w: 26,
+    bg: 'radial-gradient(ellipse at 50% 50%, #e0a040 0%, #c08030 60%, #a06820 100%)',
+    w: 24,
     h: 22,
-    radius: '45% 45% 50% 50%',
+    radius: '48% 48% 45% 45%',
     shadow: '0 2px 5px rgba(0,0,0,0.2)',
     details: [
+      // Tiger stripes on forehead
+      { bg: '#3a2010', w: 2, h: 5, top: 2, left: 7, radius: '1px' },
+      { bg: '#3a2010', w: 2, h: 5, top: 2, left: 15, radius: '1px' },
+      { bg: '#3a2010', w: 2, h: 4, top: 3, left: 11, radius: '1px' },
+      // Left ear (rounded)
+      { bg: '#c08030', w: 7, h: 6, top: -3, left: 1, radius: '50% 50% 20% 20%' },
+      // Right ear (rounded)
+      { bg: '#c08030', w: 7, h: 6, top: -3, left: 16, radius: '50% 50% 20% 20%' },
+      // Inner ear
+      { bg: '#e0c0a0', w: 4, h: 3, top: -1, left: 3, radius: '50%' },
+      { bg: '#e0c0a0', w: 4, h: 3, top: -1, left: 17, radius: '50%' },
+      // White muzzle area
+      { bg: '#f0e0d0', w: 12, h: 8, top: 11, left: 6, radius: '50%' },
       // Left eye
-      { bg: '#2a2a2a', w: 4, h: 4, top: 6, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 5, radius: '50%' },
       // Right eye
-      { bg: '#2a2a2a', w: 4, h: 4, top: 6, left: 17, radius: '50%' },
-      // Snout/whisker area
-      { bg: '#d4b890', w: 14, h: 10, top: 10, left: 6, radius: '50%' },
-      // Left tusk
-      { bg: '#f0e8d8', w: 3, h: 8, top: 14, left: 8, radius: '2px 2px 4px 4px' },
-      // Right tusk
-      { bg: '#f0e8d8', w: 3, h: 8, top: 14, left: 15, radius: '2px 2px 4px 4px' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 15, radius: '50%' },
       // Nose
-      { bg: '#6a4a3a', w: 6, h: 4, top: 10, left: 10, radius: '50%' },
+      { bg: '#5a3020', w: 5, h: 3, top: 12, left: 10, radius: '50%' },
     ],
   },
   body: {
-    bg: 'linear-gradient(180deg, #8b3535 0%, #7a2a2a 60%, #6a2020 100%)',
-    w: 22,
+    bg: 'linear-gradient(180deg, #5a4a3a 0%, #4a3a2a 60%, #3a2a1a 100%)',
+    w: 20,
     h: 20,
     radius: '6px 6px 4px 4px',
     shadow: '1px 2px 5px rgba(0,0,0,0.2)',
     details: [
-      // Coat flaps
-      { bg: '#6a2020', w: 4, h: 16, top: 2, left: 0, radius: '2px' },
-      { bg: '#6a2020', w: 4, h: 16, top: 2, left: 18, radius: '2px' },
-      // Gold buttons
-      { bg: '#d4a54a', w: 3, h: 3, top: 3, left: 10, radius: '50%' },
-      { bg: '#d4a54a', w: 3, h: 3, top: 8, left: 10, radius: '50%' },
-      { bg: '#d4a54a', w: 3, h: 3, top: 13, left: 10, radius: '50%' },
-      // Belt/sash
-      { bg: '#d4a54a', w: 22, h: 2, top: 17, left: 0, radius: '1px' },
+      // Vest/work shirt
+      { bg: '#7a6a5a', w: 16, h: 16, top: 2, left: 2, radius: '3px' },
+      // Rope belt
+      { bg: '#a08860', w: 20, h: 2, top: 16, left: 0, radius: '1px' },
+      // Dock foreman badge
+      { bg: '#c49530', w: 4, h: 4, top: 3, left: 3, radius: '50%' },
     ],
   },
   leftArm: {
-    bg: 'linear-gradient(180deg, #8b3535 0%, #7a2a2a 100%)',
+    bg: 'linear-gradient(180deg, #5a4a3a 0%, #4a3a2a 100%)',
     w: 8,
     h: 15,
     radius: '4px 4px 3px 3px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      // Flipper/hand
-      { bg: '#c4a080', w: 9, h: 5, top: 10, left: -1, radius: '4px' },
+      // Paw
+      { bg: '#e0a040', w: 8, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' },
     ],
   },
   rightArm: {
-    bg: 'linear-gradient(180deg, #8b3535 0%, #7a2a2a 100%)',
+    bg: 'linear-gradient(180deg, #5a4a3a 0%, #4a3a2a 100%)',
     w: 8,
     h: 15,
     radius: '4px 4px 3px 3px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      { bg: '#c4a080', w: 9, h: 5, top: 10, left: 0, radius: '4px' },
+      { bg: '#e0a040', w: 8, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' },
     ],
   },
   leftLeg: {
-    bg: 'linear-gradient(180deg, #4a3020 0%, #3a2010 100%)',
+    bg: 'linear-gradient(180deg, #4a3a2a 0%, #3a2a1a 100%)',
     w: 8,
     h: 10,
     radius: '3px 3px 4px 4px',
     shadow: '1px 1px 3px rgba(0,0,0,0.15)',
     details: [
-      // Boot
+      // Work boot
       { bg: '#2a1a0a', w: 10, h: 5, top: 5, left: -1, radius: '3px 4px 4px 3px' },
     ],
   },
   rightLeg: {
-    bg: 'linear-gradient(180deg, #4a3020 0%, #3a2010 100%)',
+    bg: 'linear-gradient(180deg, #4a3a2a 0%, #3a2a1a 100%)',
     w: 8,
     h: 10,
     radius: '3px 3px 4px 4px',
@@ -453,21 +488,19 @@ export const SALTY_SAM_PARTS: CharacterParts = {
     ],
   },
   headAccessory: {
-    // Pirate hat (tricorn)
-    bg: 'linear-gradient(180deg, #2a1a0a 0%, #1a0a00 100%)',
-    w: 28,
-    h: 10,
-    radius: '4px',
-    shadow: '0 2px 6px rgba(0,0,0,0.3)',
-    offsetY: 5,
+    // Dock foreman cap
+    bg: 'linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%)',
+    w: 26,
+    h: 8,
+    radius: '4px 4px 2px 2px',
+    shadow: '0 2px 4px rgba(0,0,0,0.25)',
+    offsetY: 4,
     details: [
-      // Hat brim curve
-      { bg: '#2a1a0a', w: 32, h: 4, top: 6, left: -2, radius: '50%' },
-      // Skull emblem
-      { bg: '#f0e8d8', w: 6, h: 5, top: 2, left: 11, radius: '50% 50% 30% 30%' },
+      // Cap brim
+      { bg: '#2a2a2a', w: 28, h: 3, top: 5, left: -1, radius: '4px' },
     ],
   },
-  scale: 1.1,
+  scale: 1.05,
 };
 
 // ─── Costume Overrides ───
