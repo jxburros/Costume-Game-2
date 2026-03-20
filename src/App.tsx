@@ -1,35 +1,30 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Shield, 
-  ChefHat, 
-  Ghost, 
-  Key, 
-  Mail, 
-  User, 
-  Book, 
-  Map as MapIcon, 
-  Sun, 
-  CloudRain, 
+import {
+  Shield,
+  ChefHat,
+  Ghost,
+  Key,
+  Mail,
+  User,
+  Book,
+  Map as MapIcon,
+  Sun,
+  CloudRain,
   Clock,
   ChevronRight,
   Backpack,
-  Info,
   RotateCcw,
   MoveUp,
   MoveDown,
   MoveLeft,
   MoveRight,
-  Trees,
-  Lamp,
-  Flower,
-  Box,
   MapPin,
   Shirt
 } from 'lucide-react';
 import { useGameState } from './useGameState';
 import { NPCS, LOCATIONS, ITEMS } from './data';
-import { NPC, Location, Item, DialogueNode, DialogueOption } from './types';
+import { NPC, Location, Item, DialogueNode, DialogueOption, Phase } from './types';
 
 import { GoogleGenAI } from "@google/genai";
 
@@ -44,28 +39,66 @@ const ICON_MAP: Record<string, any> = {
 
 const TILE_SIZE = 64;
 
-function WorldView({ 
-  state, 
-  movePlayer, 
-  setLocation, 
+/* ─── Decoration Components (painted storybook style) ─── */
+function DecorationRenderer({ type }: { type: string }) {
+  switch (type) {
+    case 'tree':
+      return <div className="decoration-tree" />;
+    case 'lamp':
+      return <div className="decoration-lamp" />;
+    case 'bench':
+      return <div className="decoration-bench" />;
+    case 'flower':
+      return <div className="decoration-flower" />;
+    case 'barrel':
+      return <div className="decoration-barrel" />;
+    case 'crate':
+      return <div className="decoration-crate" />;
+    default:
+      return null;
+  }
+}
+
+/* ─── Get ground class based on location ─── */
+function getGroundClass(locationId: string): string {
+  switch (locationId) {
+    case 'town_square': return 'world-ground';
+    case 'bakery': return 'world-ground-bakery';
+    case 'docks': return 'world-ground-docks';
+    default: return 'world-ground';
+  }
+}
+
+/* ─── Get time-of-day overlay class ─── */
+function getTimeOverlay(phase: Phase): string | null {
+  switch (phase) {
+    case 'Afternoon': return 'world-afternoon-overlay';
+    case 'Night': return 'world-night-overlay';
+    default: return null;
+  }
+}
+
+function WorldView({
+  state,
+  movePlayer,
+  setLocation,
   onInteract,
   isDialogueActive
-}: { 
-  state: any; 
-  movePlayer: any; 
+}: {
+  state: any;
+  movePlayer: any;
   setLocation: any;
   onInteract: (npcId: string) => void;
   isDialogueActive: boolean;
 }) {
-  const currentLocation = useMemo(() => 
-    LOCATIONS.find(l => l.id === state.currentLocation)!, 
+  const currentLocation = useMemo(() =>
+    LOCATIONS.find(l => l.id === state.currentLocation)!,
   [state.currentLocation]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (isDialogueActive) return;
     const { width, height } = currentLocation.bounds;
-    
-    // Check for obstacles
+
     const isObstacle = (x: number, y: number) => {
       return currentLocation.obstacles?.some(o => o.x === x && o.y === y);
     };
@@ -93,21 +126,18 @@ function WorldView({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentLocation, state.playerPosition, isDialogueActive]);
 
-  // Check for interactions or transitions
   useEffect(() => {
-    // Check NPCs
-    const npcAtPos = NPCS.find(n => 
-      currentLocation.npcs.includes(n.id) && 
-      n.position.x === state.playerPosition.x && 
+    const npcAtPos = NPCS.find(n =>
+      currentLocation.npcs.includes(n.id) &&
+      n.position.x === state.playerPosition.x &&
       n.position.y === state.playerPosition.y
     );
     if (npcAtPos) {
       onInteract(npcAtPos.id);
     }
 
-    // Check Connections
-    const connectionAtPos = currentLocation.connections.find(c => 
-      c.x === state.playerPosition.x && 
+    const connectionAtPos = currentLocation.connections.find(c =>
+      c.x === state.playerPosition.x &&
       c.y === state.playerPosition.y
     );
     if (connectionAtPos) {
@@ -115,73 +145,72 @@ function WorldView({
     }
   }, [state.playerPosition]);
 
-  const getDecorationIcon = (type: string) => {
-    switch (type) {
-      case 'tree': return <Trees className="text-emerald-800 w-10 h-10" />;
-      case 'lamp': return <Lamp className="text-amber-500 w-8 h-8" />;
-      case 'bench': return <div className="w-12 h-4 bg-stone-700 rounded-sm shadow-md" />;
-      case 'flower': return <Flower className="text-rose-500 w-5 h-5" />;
-      case 'barrel': return <div className="w-10 h-10 bg-amber-900 rounded-full border-2 border-amber-950 shadow-md flex items-center justify-center"><div className="w-6 h-6 border border-amber-800 rounded-full" /></div>;
-      case 'crate': return <Box className="text-stone-600 w-9 h-9" />;
-      default: return null;
-    }
-  };
-
-  const getTerrainColor = (locationId: string) => {
-    switch (locationId) {
-      case 'town_square': return '#fdf6e3'; // Parchment
-      case 'bakery': return '#fff9db'; // Warm yellow
-      case 'docks': return '#e3f2fd'; // Soft blue
-      default: return '#fdf6e3';
-    }
-  };
+  // Collect lamp positions for glow effects
+  const lampPositions = currentLocation.decorations?.filter(d => d.type === 'lamp') || [];
 
   return (
-    <div className="relative border-4 border-[#5c3d2e]/20 overflow-hidden rounded-3xl shadow-xl storybook-card" 
-         style={{ 
-           width: currentLocation.bounds.width * TILE_SIZE, 
+    <div className={`relative overflow-hidden rounded-2xl shadow-2xl border-2 border-[#4a2f1a]/30 ${getGroundClass(currentLocation.id)}`}
+         style={{
+           width: currentLocation.bounds.width * TILE_SIZE,
            height: currentLocation.bounds.height * TILE_SIZE,
-           backgroundColor: getTerrainColor(currentLocation.id)
          }}>
-      
-      {/* Terrain Texture */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none" 
-           style={{ 
+
+      {/* Painted paper texture overlay on world */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-[2]"
+           style={{
              backgroundImage: `url("https://www.transparenttextures.com/patterns/paper-fibers.png")`,
-             backgroundSize: `200px 200px`
+             mixBlendMode: 'multiply'
            }} />
+
+      {/* Banner bunting for town square */}
+      {currentLocation.id === 'town_square' && <div className="banner-bunting" />}
+
+      {/* Water effect for docks */}
+      {currentLocation.id === 'docks' && <div className="water-effect" />}
+
+      {/* Lantern glow effects */}
+      {lampPositions.map((lamp, i) => (
+        <div key={`glow-${i}`}
+             className="lantern-glow"
+             style={{
+               left: lamp.position.x * TILE_SIZE - 48,
+               top: lamp.position.y * TILE_SIZE - 48,
+               width: TILE_SIZE + 96,
+               height: TILE_SIZE + 96,
+             }} />
+      ))}
 
       {/* Decorations Layer */}
       {currentLocation.decorations?.map(dec => (
-        <div key={dec.id} className="absolute flex items-center justify-center pointer-events-none z-0"
-             style={{ 
-               left: dec.position.x * TILE_SIZE, 
+        <div key={dec.id} className="absolute flex items-center justify-center pointer-events-none z-[3]"
+             style={{
+               left: dec.position.x * TILE_SIZE,
                top: dec.position.y * TILE_SIZE,
                width: TILE_SIZE,
                height: TILE_SIZE
              }}>
-          {getDecorationIcon(dec.type)}
+          <DecorationRenderer type={dec.type} />
         </div>
       ))}
 
       {/* Connections / Exits */}
       {currentLocation.connections.map((conn, i) => (
-        <motion.div 
-          key={i} 
+        <motion.div
+          key={i}
           className="absolute flex items-center justify-center z-10 group cursor-pointer"
           whileHover={{ scale: 1.1 }}
-          style={{ 
-            left: conn.x * TILE_SIZE, 
-            top: conn.y * TILE_SIZE, 
-            width: TILE_SIZE, 
-            height: TILE_SIZE 
+          style={{
+            left: conn.x * TILE_SIZE,
+            top: conn.y * TILE_SIZE,
+            width: TILE_SIZE,
+            height: TILE_SIZE
           }}
           onClick={() => setLocation(conn.locationId)}
         >
-          <div className="w-10 h-10 bg-stone-200/80 rounded-full flex items-center justify-center border-2 border-dashed border-stone-400 group-hover:bg-stone-300 transition-colors">
-            <MapPin size={20} className="text-stone-600" />
+          <div className="exit-marker">
+            <MapPin size={18} className="text-[#d4a54a]" />
           </div>
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-stone-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-bold uppercase tracking-wider">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#2a1e38]/90 text-[#f0d9a0] text-[10px] px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-serif italic border border-[#d4a54a]/30">
             {conn.label}
           </div>
         </motion.div>
@@ -193,24 +222,25 @@ function WorldView({
           key={npc.id}
           className="absolute z-20 flex items-center justify-center cursor-pointer"
           whileHover={{ scale: 1.05 }}
-          style={{ 
-            left: npc.position.x * TILE_SIZE, 
-            top: npc.position.y * TILE_SIZE, 
-            width: TILE_SIZE, 
-            height: TILE_SIZE 
+          style={{
+            left: npc.position.x * TILE_SIZE,
+            top: npc.position.y * TILE_SIZE,
+            width: TILE_SIZE,
+            height: TILE_SIZE
           }}
           onClick={() => onInteract(npc.id)}
         >
           <div className="relative">
             <div className="w-16 h-16 flex items-center justify-center sprite-bob">
-              <img 
-                src={npc.spriteUrl} 
-                alt={npc.name} 
-                className="w-full h-full object-contain"
+              <img
+                src={npc.spriteUrl}
+                alt={npc.name}
+                className="w-full h-full object-contain drop-shadow-lg"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm border border-[#5c3d2e]/20 text-[#5c3d2e] text-[10px] px-2 py-0.5 rounded-full font-serif italic shadow-sm whitespace-nowrap">
+            <div className="character-shadow" />
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 npc-nametag">
               {npc.name}
             </div>
           </div>
@@ -220,44 +250,51 @@ function WorldView({
       {/* Player (Alex) */}
       <motion.div
         className="absolute z-30 flex items-center justify-center pointer-events-none"
-        animate={{ 
-          left: state.playerPosition.x * TILE_SIZE, 
-          top: state.playerPosition.y * TILE_SIZE 
+        animate={{
+          left: state.playerPosition.x * TILE_SIZE,
+          top: state.playerPosition.y * TILE_SIZE
         }}
         transition={{ type: 'spring', stiffness: 400, damping: 35 }}
         style={{ width: TILE_SIZE, height: TILE_SIZE }}
       >
         <div className="relative sprite-bob-delayed">
           <div className="w-16 h-16 flex items-center justify-center">
-            <img 
-              src={state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.spriteUrl || state.playerSpriteUrl : state.playerSpriteUrl} 
-              alt={state.playerName} 
-              className="w-full h-full object-contain"
+            <img
+              src={state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.spriteUrl || state.playerSpriteUrl : state.playerSpriteUrl}
+              alt={state.playerName}
+              className="w-full h-full object-contain drop-shadow-lg"
               referrerPolicy="no-referrer"
             />
           </div>
+          <div className="character-shadow" />
           {state.activeOutfitId && (
-            <div className="absolute -top-3 -right-3 w-7 h-7 bg-amber-400 rounded-full border-2 border-white flex items-center justify-center shadow-lg rotate-12">
-              <Shirt size={14} className="text-amber-900" />
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#d4a54a] rounded-full border-2 border-white flex items-center justify-center shadow-lg rotate-12">
+              <Shirt size={12} className="text-[#4a2f1a]" />
             </div>
           )}
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#5c3d2e] text-white text-[10px] px-2 py-0.5 rounded-full font-serif italic shadow-md">
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 player-nametag">
             {state.playerName}
           </div>
         </div>
       </motion.div>
+
+      {/* Time-of-day overlay */}
+      {getTimeOverlay(state.phase) && <div className={getTimeOverlay(state.phase)!} />}
+
+      {/* Rain overlay */}
+      {state.weather === 'Rain' && <div className="world-rain-overlay" />}
     </div>
   );
 }
 
 export default function App() {
-  const { 
-    state, 
-    setLocation, 
+  const {
+    state,
+    setLocation,
     movePlayer,
-    setActiveOutfit, 
-    advancePhase, 
-    resetRun, 
+    setActiveOutfit,
+    advancePhase,
+    resetRun,
     updateNotebook,
     addFlag,
     addItem
@@ -266,8 +303,8 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'explore' | 'notebook' | 'inventory' | 'character'>('explore');
   const [activeDialogue, setActiveDialogue] = useState<{ npc: NPC; node: DialogueNode } | null>(null);
 
-  const currentLocation = useMemo(() => 
-    LOCATIONS.find(l => l.id === state.currentLocation)!, 
+  const currentLocation = useMemo(() =>
+    LOCATIONS.find(l => l.id === state.currentLocation)!,
   [state.currentLocation]);
 
   const handleInteract = (npcId: string) => {
@@ -297,20 +334,20 @@ export default function App() {
 
   if (state.isGameOver) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-items-center justify-center p-8">
-        <motion.div 
+      <div className="min-h-screen game-over-bg text-zinc-100 flex items-center justify-center p-8">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-md w-full text-center space-y-6"
         >
-          <h1 className="text-4xl font-serif italic">The Festival Ends</h1>
-          <p className="text-zinc-400">
-            The sun sets on Kraed Maas. The costumes are taken off, but the secrets remain. 
+          <h1 className="text-5xl font-serif italic text-[#f0d9a0]">The Festival Ends</h1>
+          <p className="text-zinc-400 leading-relaxed">
+            The sun sets on Kraed Maas. The costumes are taken off, but the secrets remain.
             You failed to save everyone, but you learned something, didn't you?
           </p>
-          <button 
+          <button
             onClick={resetRun}
-            className="w-full py-4 bg-zinc-100 text-zinc-950 rounded-xl font-medium hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2"
+            className="w-full py-4 bg-[#d4a54a] text-[#4a2f1a] rounded-xl font-serif italic font-bold text-lg hover:bg-[#e0b050] transition-all flex items-center justify-center gap-2 shadow-lg"
           >
             <RotateCcw size={20} />
             Begin a New Run
@@ -321,23 +358,24 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fdf6e3] text-[#5c3d2e] font-sans selection:bg-[#5c3d2e] selection:text-[#fdf6e3]">
+    <div className="min-h-screen bg-[#f5e6c8] text-[#4a2f1a] font-sans selection:bg-[#4a2f1a] selection:text-[#f5e6c8]">
       <div className="vignette" />
       <div className="creepy-overlay" />
+
       {/* Header */}
-      <header className="border-b border-[#5c3d2e]/10 p-4 flex justify-between items-center sticky top-0 bg-[#fdf6e3]/80 backdrop-blur-md z-20">
+      <header className="game-header p-4 flex justify-between items-center sticky top-0 z-20">
         <div className="flex items-center gap-4">
-          <h1 className="font-serif italic text-2xl tracking-tight text-[#5c3d2e]">Festival of Disguises</h1>
-          <div className="flex items-center gap-2 px-3 py-1 bg-[#5c3d2e] text-[#fdf6e3] rounded-full text-xs font-serif italic">
+          <h1 className="font-serif italic text-2xl tracking-tight text-[#f0d9a0]">Festival of Disguises</h1>
+          <div className="phase-badge flex items-center gap-2">
             <Clock size={14} />
             {state.phase}
           </div>
-          <div className="flex items-center gap-2 px-3 py-1 border border-[#5c3d2e]/20 rounded-full text-xs font-serif italic">
+          <div className="phase-badge flex items-center gap-2">
             {state.weather === 'Sun' ? <Sun size={14} /> : <CloudRain size={14} />}
             {state.weather}
           </div>
         </div>
-        <div className="text-xs font-serif italic opacity-60 flex items-center gap-4">
+        <div className="text-xs font-serif italic text-[#f0d9a0]/50 flex items-center gap-4">
           <span>{state.playerName} ({state.playerRole})</span>
           <span>Run #{state.runCount}</span>
         </div>
@@ -345,7 +383,7 @@ export default function App() {
 
       <main className="max-w-5xl mx-auto p-6 space-y-8">
         {/* Navigation Tabs */}
-        <nav className="flex gap-2 border-b border-[#141414]/20 pb-4 overflow-x-auto">
+        <nav className="flex gap-2 pb-4">
           {[
             { id: 'explore', icon: MapIcon, label: 'Explore' },
             { id: 'character', icon: User, label: 'Character' },
@@ -356,10 +394,11 @@ export default function App() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                activeTab === tab.id 
-                  ? 'bg-[#141414] text-[#E4E3E0]' 
-                  : 'hover:bg-[#141414]/5'
+                activeTab === tab.id
+                  ? 'tab-btn-active'
+                  : 'tab-btn'
               }`}
+              style={activeTab !== tab.id ? { color: '#6b4530' } : {}}
             >
               <tab.icon size={18} />
               <span className="text-sm font-medium">{tab.label}</span>
@@ -379,41 +418,41 @@ export default function App() {
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="space-y-6 flex-1">
                   <div className="space-y-2">
-                    <h2 className="text-3xl font-serif italic">{currentLocation.name}</h2>
-                    <p className="text-zinc-600 leading-relaxed">{currentLocation.description}</p>
+                    <h2 className="text-3xl font-serif italic text-[#4a2f1a]">{currentLocation.name}</h2>
+                    <p className="text-[#6b4530] leading-relaxed font-serif italic">{currentLocation.description}</p>
                   </div>
 
-                  <WorldView 
-                    state={state} 
-                    movePlayer={movePlayer} 
+                  <WorldView
+                    state={state}
+                    movePlayer={movePlayer}
                     setLocation={setLocation}
                     onInteract={handleInteract}
                     isDialogueActive={!!activeDialogue}
                   />
 
-                  <div className="p-4 bg-zinc-100 border border-[#141414]/10 rounded-xl text-xs font-mono text-zinc-500 flex items-center gap-4">
-                    <Info size={16} />
+                  <div className="p-3 bg-[#2a1e38]/80 rounded-xl text-xs font-mono text-[#f0d9a0]/60 flex items-center gap-3 border border-[#d4a54a]/20">
+                    <MapPin size={14} className="text-[#d4a54a]" />
                     Use WASD or Arrow Keys to move. Walk into NPCs to talk. Walk into exits to travel.
                   </div>
                 </div>
 
                 <div className="w-full md:w-64 space-y-6">
                   <div className="space-y-4">
-                    <h3 className="font-mono text-[11px] uppercase tracking-widest opacity-50">Controls</h3>
+                    <h3 className="font-serif italic text-sm text-[#6b4530]">Controls</h3>
                     <div className="grid grid-cols-3 gap-2">
                       <div />
-                      <button onClick={() => movePlayer(0, -1, currentLocation.bounds)} className="p-3 border border-[#141414] rounded-lg hover:bg-zinc-100 flex items-center justify-center"><MoveUp size={18}/></button>
+                      <button onClick={() => movePlayer(0, -1, currentLocation.bounds)} className="move-btn flex items-center justify-center"><MoveUp size={18}/></button>
                       <div />
-                      <button onClick={() => movePlayer(-1, 0, currentLocation.bounds)} className="p-3 border border-[#141414] rounded-lg hover:bg-zinc-100 flex items-center justify-center"><MoveLeft size={18}/></button>
-                      <button onClick={() => movePlayer(0, 1, currentLocation.bounds)} className="p-3 border border-[#141414] rounded-lg hover:bg-zinc-100 flex items-center justify-center"><MoveDown size={18}/></button>
-                      <button onClick={() => movePlayer(1, 0, currentLocation.bounds)} className="p-3 border border-[#141414] rounded-lg hover:bg-zinc-100 flex items-center justify-center"><MoveRight size={18}/></button>
+                      <button onClick={() => movePlayer(-1, 0, currentLocation.bounds)} className="move-btn flex items-center justify-center"><MoveLeft size={18}/></button>
+                      <button onClick={() => movePlayer(0, 1, currentLocation.bounds)} className="move-btn flex items-center justify-center"><MoveDown size={18}/></button>
+                      <button onClick={() => movePlayer(1, 0, currentLocation.bounds)} className="move-btn flex items-center justify-center"><MoveRight size={18}/></button>
                     </div>
                   </div>
 
                   <div className="pt-8">
-                    <button 
+                    <button
                       onClick={advancePhase}
-                      className="w-full p-4 bg-zinc-900 text-white rounded-xl font-medium hover:bg-black transition-colors flex items-center justify-center gap-2"
+                      className="w-full phase-advance-btn flex items-center justify-center gap-2"
                     >
                       Wait for {state.phase === 'Morning' ? 'Afternoon' : state.phase === 'Afternoon' ? 'Night' : 'End of Day'}
                     </button>
@@ -431,43 +470,42 @@ export default function App() {
               exit={{ opacity: 0, x: 10 }}
               className="space-y-8"
             >
-              {/* Character Preview */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="p-8 border border-[#5c3d2e]/10 rounded-3xl bg-white flex flex-col items-center gap-6 shadow-xl storybook-card">
-                  <h3 className="font-serif italic text-sm opacity-50">Character Profile</h3>
+                <div className="p-8 storybook-card flex flex-col items-center gap-6">
+                  <h3 className="font-serif italic text-sm text-[#6b4530]">Character Profile</h3>
                   <div className="relative w-48 h-48 flex items-center justify-center sprite-bob-delayed">
-                    <img 
-                      src={state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.spriteUrl || state.playerSpriteUrl : state.playerSpriteUrl} 
-                      alt="Alex" 
-                      className="w-full h-full object-contain"
+                    <img
+                      src={state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.spriteUrl || state.playerSpriteUrl : state.playerSpriteUrl}
+                      alt="Alex"
+                      className="w-full h-full object-contain drop-shadow-lg"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                   <div className="text-center space-y-2">
-                    <h4 className="text-4xl font-serif italic">{state.playerName}</h4>
-                    <p className="text-sm font-serif italic opacity-60">{state.playerRole}</p>
+                    <h4 className="text-4xl font-serif italic text-[#4a2f1a]">{state.playerName}</h4>
+                    <p className="text-sm font-serif italic text-[#6b4530]">{state.playerRole}</p>
                     <div className="flex gap-2 justify-center pt-4">
-                      <div className="px-3 py-1 bg-[#fdf6e3] rounded-full text-[10px] font-serif italic border border-[#5c3d2e]/10">Intuition: 8</div>
-                      <div className="px-3 py-1 bg-[#fdf6e3] rounded-full text-[10px] font-serif italic border border-[#5c3d2e]/10">Disguise: 5</div>
-                      <div className="px-3 py-1 bg-[#fdf6e3] rounded-full text-[10px] font-serif italic border border-[#5c3d2e]/10">Stealth: 4</div>
+                      <div className="px-3 py-1 bg-[#d4a54a]/20 rounded-full text-[10px] font-serif italic border border-[#d4a54a]/30 text-[#6b4530]">Intuition: 8</div>
+                      <div className="px-3 py-1 bg-[#d4a54a]/20 rounded-full text-[10px] font-serif italic border border-[#d4a54a]/30 text-[#6b4530]">Disguise: 5</div>
+                      <div className="px-3 py-1 bg-[#d4a54a]/20 rounded-full text-[10px] font-serif italic border border-[#d4a54a]/30 text-[#6b4530]">Stealth: 4</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-8 border border-[#5c3d2e]/10 rounded-3xl bg-white space-y-6 shadow-xl storybook-card">
-                  <h3 className="font-serif italic text-sm opacity-50">Current Status</h3>
+                <div className="p-8 storybook-card space-y-6">
+                  <h3 className="font-serif italic text-sm text-[#6b4530]">Current Status</h3>
                   <div className="space-y-4">
-                    <div className="p-4 bg-[#fdf6e3] rounded-2xl border border-[#5c3d2e]/10">
-                      <div className="text-[10px] uppercase font-serif italic opacity-40 mb-1">Active Outfit</div>
-                      <div className="text-lg font-serif italic">{state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.name : 'Default Alex'}</div>
+                    <div className="p-4 bg-[#d4a54a]/10 rounded-2xl border border-[#d4a54a]/20">
+                      <div className="text-[10px] uppercase font-serif italic text-[#6b4530]/60 mb-1">Active Outfit</div>
+                      <div className="text-lg font-serif italic text-[#4a2f1a]">{state.activeOutfitId ? ITEMS.find(i => i.id === state.activeOutfitId)?.name : 'Default Alex'}</div>
                     </div>
-                    <div className="p-4 bg-[#fdf6e3] rounded-2xl border border-[#5c3d2e]/10">
-                      <div className="text-[10px] uppercase font-serif italic opacity-40 mb-1">Time Remaining</div>
-                      <div className="text-lg font-serif italic">{state.phase === 'Morning' ? '8 Hours' : state.phase === 'Afternoon' ? '4 Hours' : '1 Hour'}</div>
+                    <div className="p-4 bg-[#d4a54a]/10 rounded-2xl border border-[#d4a54a]/20">
+                      <div className="text-[10px] uppercase font-serif italic text-[#6b4530]/60 mb-1">Time Remaining</div>
+                      <div className="text-lg font-serif italic text-[#4a2f1a]">{state.phase === 'Morning' ? '8 Hours' : state.phase === 'Afternoon' ? '4 Hours' : '1 Hour'}</div>
                     </div>
-                    <div className="p-4 bg-[#fdf6e3] rounded-2xl border border-[#5c3d2e]/10">
-                      <div className="text-[10px] uppercase font-serif italic opacity-40 mb-1">Location</div>
-                      <div className="text-lg font-serif italic">{currentLocation.name}</div>
+                    <div className="p-4 bg-[#d4a54a]/10 rounded-2xl border border-[#d4a54a]/20">
+                      <div className="text-[10px] uppercase font-serif italic text-[#6b4530]/60 mb-1">Location</div>
+                      <div className="text-lg font-serif italic text-[#4a2f1a]">{currentLocation.name}</div>
                     </div>
                   </div>
                 </div>
@@ -485,30 +523,30 @@ export default function App() {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h3 className="font-mono text-[11px] uppercase tracking-widest opacity-50">Current Outfit</h3>
+                  <h3 className="font-serif italic text-sm text-[#6b4530]">Current Outfit</h3>
                   {state.activeOutfitId ? (
-                    <div className="p-6 border-2 border-[#141414] rounded-2xl bg-white space-y-4">
+                    <div className="p-6 storybook-card border-2 border-[#d4a54a]/40 space-y-4">
                       {(() => {
                         const outfit = ITEMS.find(i => i.id === state.activeOutfitId)!;
                         return (
                           <>
                             <div className="flex items-center gap-4">
                               <div className="w-20 h-20 flex items-center justify-center">
-                                <img 
-                                  src={outfit.spriteUrl} 
-                                  alt={outfit.name} 
-                                  className="w-full h-full object-contain"
+                                <img
+                                  src={outfit.spriteUrl}
+                                  alt={outfit.name}
+                                  className="w-full h-full object-contain drop-shadow-md"
                                   referrerPolicy="no-referrer"
                                 />
                               </div>
                               <div>
-                                <h4 className="text-xl font-serif italic">{outfit.name}</h4>
-                                <p className="text-sm text-zinc-500">{outfit.description}</p>
+                                <h4 className="text-xl font-serif italic text-[#4a2f1a]">{outfit.name}</h4>
+                                <p className="text-sm text-[#6b4530]">{outfit.description}</p>
                               </div>
                             </div>
-                            <button 
+                            <button
                               onClick={() => setActiveOutfit(null)}
-                              className="w-full py-2 text-xs font-mono border border-[#141414] rounded-lg hover:bg-zinc-100"
+                              className="w-full py-2 text-xs font-serif italic border border-[#4a2f1a]/30 rounded-lg hover:bg-[#d4a54a]/10 text-[#4a2f1a] transition-colors"
                             >
                               Remove Outfit
                             </button>
@@ -517,48 +555,48 @@ export default function App() {
                       })()}
                     </div>
                   ) : (
-                    <div className="p-12 border-2 border-dashed border-[#141414]/20 rounded-2xl flex flex-col items-center justify-center text-center space-y-2">
+                    <div className="p-12 border-2 border-dashed border-[#d4a54a]/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-2 bg-[#f5e6c8]/50">
                       <div className="w-20 h-20 flex items-center justify-center opacity-40">
-                        <img 
-                          src={state.playerSpriteUrl} 
-                          alt="Alex" 
+                        <img
+                          src={state.playerSpriteUrl}
+                          alt="Alex"
                           className="w-full h-full object-contain grayscale"
                           referrerPolicy="no-referrer"
                         />
                       </div>
-                      <p className="text-sm text-zinc-400">You are wearing your normal clothes.<br/>NPCs will see you as Alex.</p>
+                      <p className="text-sm text-[#6b4530]/60 font-serif italic">You are wearing your normal clothes.<br/>NPCs will see you as Alex.</p>
                     </div>
                   )}
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="font-mono text-[11px] uppercase tracking-widest opacity-50">Items & Outfits</h3>
+                  <h3 className="font-serif italic text-sm text-[#6b4530]">Items & Outfits</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {state.inventory.length === 0 && (
-                      <p className="col-span-2 text-sm text-zinc-400 py-8 text-center">Your pockets are empty.</p>
+                      <p className="col-span-2 text-sm text-[#6b4530]/40 py-8 text-center font-serif italic">Your pockets are empty.</p>
                     )}
                     {state.inventory.map(item => {
                       return (
                         <button
                           key={item.id}
                           onClick={() => item.isOutfit && setActiveOutfit(item.id)}
-                          className={`p-4 border rounded-xl flex flex-col gap-2 text-left transition-all ${
-                            state.activeOutfitId === item.id 
-                              ? 'bg-[#141414] text-[#E4E3E0]' 
-                              : 'hover:bg-white'
+                          className={`p-4 rounded-xl flex flex-col gap-2 text-left transition-all info-card ${
+                            state.activeOutfitId === item.id
+                              ? 'border-2 border-[#d4a54a] bg-[#d4a54a]/10 shadow-lg'
+                              : 'hover:shadow-md'
                           }`}
                         >
                           <div className="w-12 h-12 flex items-center justify-center">
-                            <img 
-                              src={item.spriteUrl} 
-                              alt={item.name} 
+                            <img
+                              src={item.spriteUrl}
+                              alt={item.name}
                               className="w-full h-full object-contain"
                               referrerPolicy="no-referrer"
                             />
                           </div>
                           <div>
-                            <div className="text-sm font-medium">{item.name}</div>
-                            {item.isOutfit && <div className="text-[10px] uppercase font-mono opacity-60">Outfit</div>}
+                            <div className="text-sm font-serif italic font-medium text-[#4a2f1a]">{item.name}</div>
+                            {item.isOutfit && <div className="text-[10px] uppercase font-serif italic text-[#d4a54a]">Outfit</div>}
                           </div>
                         </button>
                       );
@@ -578,27 +616,27 @@ export default function App() {
               className="space-y-6"
             >
               <div className="space-y-4">
-                <h3 className="font-mono text-[11px] uppercase tracking-widest opacity-50">Knowledge Base</h3>
+                <h3 className="font-serif italic text-sm text-[#6b4530]">Knowledge Base</h3>
                 <div className="grid grid-cols-1 gap-4">
                   {NPCS.map(npc => {
                     const entry = state.notebook[npc.id];
                     return (
-                      <div key={npc.id} className="p-6 border border-[#141414] rounded-2xl bg-white space-y-4">
-                        <div className="flex items-center gap-4 border-b border-[#141414]/10 pb-4">
+                      <div key={npc.id} className="p-6 storybook-card space-y-4">
+                        <div className="flex items-center gap-4 border-b border-[#4a2f1a]/10 pb-4">
                           <div className="w-16 h-16 flex items-center justify-center">
-                            <img 
-                              src={npc.spriteUrl} 
-                              alt={npc.name} 
-                              className="w-full h-full object-contain"
+                            <img
+                              src={npc.spriteUrl}
+                              alt={npc.name}
+                              className="w-full h-full object-contain drop-shadow-md"
                               referrerPolicy="no-referrer"
                             />
                           </div>
                           <div>
-                            <h4 className="font-serif italic text-lg">{npc.name}</h4>
-                            <p className="text-xs font-mono opacity-50">{npc.species}</p>
+                            <h4 className="font-serif italic text-lg text-[#4a2f1a]">{npc.name}</h4>
+                            <p className="text-xs font-serif italic text-[#6b4530]/60">{npc.species}</p>
                           </div>
                         </div>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {[
                             { label: 'Secret', discovered: entry?.discoveredSecret, value: npc.info.secret },
@@ -607,8 +645,8 @@ export default function App() {
                             { label: 'False Rumor', discovered: entry?.discoveredFalseRumor, value: npc.info.falseRumor },
                           ].map(info => (
                             <div key={info.label} className="space-y-1">
-                              <div className="text-[10px] uppercase font-mono opacity-40">{info.label}</div>
-                              <div className={`text-sm ${info.discovered ? 'text-zinc-900' : 'text-zinc-300 italic'}`}>
+                              <div className="text-[10px] uppercase font-serif italic text-[#6b4530]/50">{info.label}</div>
+                              <div className={`text-sm font-serif italic ${info.discovered ? 'text-[#4a2f1a]' : 'text-[#a89478] italic'}`}>
                                 {info.discovered ? info.value : 'Undiscovered'}
                               </div>
                             </div>
@@ -624,38 +662,38 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* Dialogue Overlay */}
+      {/* Dialogue Overlay - Dark purple panel matching reference art */}
       <AnimatePresence>
         {activeDialogue && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-end justify-center p-6"
+            className="fixed inset-0 bg-black/50 z-50 flex items-end justify-center p-6"
           >
             <motion.div
               initial={{ y: 100 }}
               animate={{ y: 0 }}
               exit={{ y: 100 }}
-              className="max-w-2xl w-full bg-[#fffdfa] border border-[#5c3d2e]/20 rounded-3xl shadow-2xl overflow-hidden storybook-card"
+              className="max-w-2xl w-full dialogue-panel rounded-2xl overflow-hidden shadow-2xl"
             >
               <div className="p-8 space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-20 h-20 flex items-center justify-center sprite-bob">
-                    <img 
-                      src={activeDialogue.npc.spriteUrl} 
-                      alt={activeDialogue.npc.name} 
-                      className="w-full h-full object-contain"
+                  <div className="w-20 h-20 flex items-center justify-center sprite-bob rounded-xl bg-[#3d2b50] p-2">
+                    <img
+                      src={activeDialogue.npc.spriteUrl}
+                      alt={activeDialogue.npc.name}
+                      className="w-full h-full object-contain drop-shadow-lg"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                   <div>
-                    <h3 className="text-3xl font-serif italic">{activeDialogue.npc.name}</h3>
-                    <p className="text-xs font-serif italic opacity-50">Wearing: {activeDialogue.npc.baseCostume}</p>
+                    <h3 className="text-3xl font-serif italic text-[#f0d9a0]">{activeDialogue.npc.name}</h3>
+                    <p className="text-xs font-serif italic text-[#f0d9a0]/40">Wearing: {activeDialogue.npc.baseCostume}</p>
                   </div>
                 </div>
 
-                <div className="text-2xl leading-relaxed font-serif italic">
+                <div className="text-xl leading-relaxed font-serif italic text-[#f0d9a0]">
                   "{activeDialogue.node.text}"
                 </div>
 
@@ -666,18 +704,18 @@ export default function App() {
                       <button
                         key={i}
                         onClick={() => handleOptionClick(option)}
-                        className="w-full p-4 text-left border border-[#5c3d2e]/10 rounded-2xl hover:bg-[#5c3d2e] hover:text-[#fdf6e3] transition-all flex justify-between items-center group font-serif italic"
+                        className="w-full p-4 text-left dialogue-option rounded-xl flex justify-between items-center group font-serif italic"
                       >
                         <span>{option.text}</span>
-                        <ChevronRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ChevronRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#d4a54a]" />
                       </button>
                     ))}
                   {activeDialogue.node.options.length === 0 && (
                     <button
                       onClick={() => setActiveDialogue(null)}
-                      className="w-full p-4 text-center border border-[#5c3d2e]/10 rounded-2xl hover:bg-[#5c3d2e] hover:text-[#fdf6e3] transition-all font-serif italic"
+                      className="w-full p-4 text-center btn-next rounded-xl font-serif italic"
                     >
-                      End Conversation
+                      NEXT
                     </button>
                   )}
                 </div>
@@ -689,32 +727,32 @@ export default function App() {
 
       {/* Intro Splash (First Run) */}
       {state.runCount === 1 && state.phase === 'Morning' && !state.flags.has('intro_seen') && (
-        <motion.div 
-          className="fixed inset-0 bg-zinc-950 z-[100] flex items-center justify-center p-8 text-center"
+        <motion.div
+          className="fixed inset-0 game-over-bg z-[100] flex items-center justify-center p-8 text-center"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <div className="max-w-xl space-y-8">
-            <motion.h1 
+            <motion.h1
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="text-6xl font-serif italic text-white"
+              className="text-6xl font-serif italic text-[#f0d9a0]"
             >
               Festival of Disguises
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-zinc-400 text-lg leading-relaxed"
+              className="text-[#f0d9a0]/60 text-lg leading-relaxed font-serif italic"
             >
-              On the island of Kraed Maas, everyone is wearing a costume. 
-              But this year, they believe the masks are real. 
-              You have one day. 
+              On the island of Kraed Maas, everyone is wearing a costume.
+              But this year, they believe the masks are real.
+              You have one day.
               You will probably fail.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
@@ -725,7 +763,7 @@ export default function App() {
                   addFlag('intro_seen');
                   addItem(ITEMS.find(i => i.id === 'constable_uniform')!);
                 }}
-                className="px-12 py-6 bg-[#5c3d2e] text-[#fdf6e3] rounded-2xl font-serif italic text-2xl hover:bg-[#4a3125] transition-all shadow-xl"
+                className="px-12 py-6 bg-[#d4a54a] text-[#4a2f1a] rounded-2xl font-serif italic text-2xl font-bold hover:bg-[#e0b050] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
               >
                 Begin the Investigation
               </button>
