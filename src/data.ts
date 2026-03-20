@@ -1,5 +1,5 @@
 import { Item, NPC, Location, Building } from './types';
-import { MAYOR_PARTS, OFFICER_PARTS, MISS_PIPS_PARTS, SALTY_SAM_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS } from './characterParts';
+import { KING_ARCTOS_PARTS, FENNEL_PARTS, BRAMM_PARTS, DAGAN_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS } from './characterParts';
 
 // Import custom sprite assets in the style of the provided concept art.  The
 // images live in the ./assets directory and are converted to public URLs via
@@ -25,7 +25,7 @@ export const LOCATIONS: Location[] = [
     id: 'town_square',
     name: 'Town Square',
     description: 'The heart of Kraed Maas, where the golden hour light lingers on the cobblestones and colorful banners dance in the breeze.',
-    npcs: ['mayor_barnaby', 'officer_grruff'],
+    npcs: ['king_arctos', 'fennel'],
     connections: [
       { locationId: 'bakery', x: 2, y: 3, label: 'Enter Bakery' },
       { locationId: 'docks', x: 8, y: 3, label: 'Enter Warehouse' }
@@ -84,7 +84,7 @@ export const LOCATIONS: Location[] = [
     id: 'bakery',
     name: 'The Crusty Crumb',
     description: 'A cozy corner filled with the scent of cinnamon and yeast, where the oven glow warms the soul.',
-    npcs: ['miss_pips'],
+    npcs: ['bramm'],
     connections: [
       { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
@@ -106,7 +106,7 @@ export const LOCATIONS: Location[] = [
     id: 'docks',
     name: 'Kraed Docks',
     description: 'Where the mist clings to the water and the creak of old wood tells stories of distant lands.',
-    npcs: ['salty_sam'],
+    npcs: ['dagan'],
     connections: [
       { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
@@ -125,252 +125,256 @@ export const LOCATIONS: Location[] = [
 
 export const NPCS: NPC[] = [
   {
-    id: 'mayor_barnaby',
-    name: 'Mayor Barnaby',
+    id: 'king_arctos',
+    name: 'King Arctos',
     species: 'Lion',
     baseCostume: 'King',
-    description: 'A dapper lion in a warm purple suit, his mane a soft watercolor of gold and amber. He stands with a regal, yet gentle, posture.',
-    // Replace the generic dicebear sprite with our custom mayor image
+    description: 'An indulgent lion king in flowing purple robes, his golden mane framing a cunning smile. A crown sits atop his head like it was always meant to be there.',
     spriteUrl: mayorImg,
-    characterParts: MAYOR_PARTS,
+    characterParts: KING_ARCTOS_PARTS,
     position: { x: 5, y: 4 },
     info: {
-      secret: 'He is terrified of heights.',
-      darkSecret: 'He embezzled the festival funds to buy a collection of porcelain spoons.',
-      rumor: 'He sleeps with a nightlight.',
-      falseRumor: 'He can actually roar loud enough to shake the island.',
+      secret: 'He is the secret endgame antagonist.',
+      darkSecret: 'He fathered a white tiger child and has been covering it up for years.',
+      rumor: 'He fathered a white tiger child.',
+      falseRumor: 'He keeps a room of stuffed animals.',
     },
     dialogue: {
       Morning: [
         {
           id: 'start',
-          text: "Welcome, citizen! Or... wait, are you a citizen? That costume is remarkably convincing.",
+          text: "Ah, a visitor to my festival! Tell me, what brings you to the square on this fine morning?",
           options: [
             { text: "I am the new Constable.", nextNodeId: 'constable_path', condition: (s) => s.activeOutfitId === 'constable_uniform' },
-            { text: "Just a humble traveler.", nextNodeId: 'traveler_path' },
+            { text: "Just taking in the sights.", nextNodeId: 'traveler_path' },
           ],
         },
         {
           id: 'constable_path',
-          text: "Ah, Constable! Good. I need you to keep an eye on the docks. I've heard... rumors.",
+          text: "A constable! Excellent. I could use someone reliable. There have been... irregularities at the docks. Investigate, would you?",
           options: [
-            { text: "What kind of rumors?", nextNodeId: 'rumors' },
-            { text: "I'm on it, Sire.", action: (s) => s.flags.add('mayor_task_docks') },
+            { text: "What sort of irregularities?", nextNodeId: 'rumors' },
+            { text: "At once, Your Majesty.", action: (s) => s.flags.add('king_task_docks') },
           ],
         },
         {
           id: 'rumors',
-          text: "Salty Sam has been acting strange. Even for him. Go see what he's hiding.",
-          options: [{ text: "Understood." }],
+          text: "The dock workers have been moving crates at odd hours. My son Lio thinks it's nothing, but a king must be thorough.",
+          options: [{ text: "I'll look into it." }],
         },
         {
           id: 'traveler_path',
-          text: "A traveler! How exotic. Enjoy the festivities, but stay out of trouble.",
-          options: [{ text: "Thank you, Mayor." }],
+          text: "Then enjoy yourself! The Festival of Disguises is the jewel of our little island. Everyone becomes someone else for a day.",
+          options: [{ text: "Thank you, Your Majesty." }],
         },
       ],
       Afternoon: [
         {
           id: 'start',
-          text: "The sun is high, and the festival is in full swing! Have you found anything at the docks?",
+          text: "The festival grows lively! Have you uncovered anything at the docks?",
           options: [
             { text: "I found this old key.", nextNodeId: 'key_found', condition: (s) => s.flags.has('has_key') },
-            { text: "Not yet, Mayor.", nextNodeId: 'not_yet' },
+            { text: "Still investigating, Your Majesty.", nextNodeId: 'not_yet' },
           ],
         },
         {
           id: 'key_found',
-          text: "A key? Let me see... Oh my. This looks like the key to the old treasury. Or my spoon cabinet. Keep it safe.",
+          text: "A key? Interesting. That looks like it belongs to the old treasury vault. Hold onto it—I may have a use for it later.",
           options: [{ text: "I will." }],
         },
         {
           id: 'not_yet',
-          text: "Hurry along then. Time is a precious resource, much like porcelain.",
-          options: [{ text: "Right." }],
+          text: "Do hurry. A king's patience is generous, but not infinite.",
+          options: [{ text: "Understood." }],
         },
       ],
       Night: [
         {
           id: 'start',
-          text: "The stars are out. The festival is almost over. I hope you've enjoyed your stay, Constable.",
+          text: "The stars are out, and the masks come off. Or do they? Sometimes the festival reveals more than we'd like.",
           options: [{ text: "It's been... revealing." }],
         },
       ],
     },
   },
   {
-    id: 'miss_pips',
-    name: 'Miss Pips',
-    species: 'Rabbit',
-    baseCostume: 'Witch',
-    description: 'A small rabbit in a soft green dress and a large, floppy witch hat. Her eyes sparkle with a painterly warmth.',
-    // Replace the generic dicebear sprite with our custom rabbit seamstress image
+    id: 'bramm',
+    name: 'Bramm',
+    species: 'Bear',
+    baseCostume: 'Baker',
+    description: 'A broad-shouldered bear in a flour-dusted apron and a tall chef hat. His paws are surprisingly gentle for their size.',
     spriteUrl: missImg,
-    characterParts: MISS_PIPS_PARTS,
+    characterParts: BRAMM_PARTS,
     position: { x: 3, y: 3 },
     info: {
-      secret: 'She hates carrots.',
-      darkSecret: 'She once turned a rival baker into a loaf of sourdough.',
-      rumor: 'She can see the future in flour dust.',
-      falseRumor: 'She is actually three squirrels in a rabbit suit.',
+      secret: 'He is gluten-intolerant and cannot taste most of his own creations.',
+      darkSecret: 'He secretly judges all his baked goods by smell alone, terrified someone will find out.',
+      rumor: "He's dating the king's son.",
+      falseRumor: "He's dating the sheriff's daughter.",
     },
     dialogue: {
       Morning: [
         {
           id: 'start',
-          text: "Bubble, bubble... oh, hello dear. Want a muffin?",
+          text: "Morning! Fresh rolls are almost ready. Don't touch the sourdough—it's temperamental today.",
           options: [
-            { text: "I'm here for the Constable's breakfast.", nextNodeId: 'constable_breakfast', condition: (s) => s.activeOutfitId === 'constable_uniform' },
-            { text: "Just looking.", nextNodeId: 'looking' },
+            { text: "The Constable needs breakfast.", nextNodeId: 'constable_breakfast', condition: (s) => s.activeOutfitId === 'constable_uniform' },
+            { text: "Just browsing.", nextNodeId: 'looking' },
           ],
         },
         {
           id: 'constable_breakfast',
-          text: "Of course! One 'Justice Muffin' coming right up. Don't tell anyone it's mostly sugar.",
-          options: [{ text: "My secret is safe.", action: (s) => s.flags.add('has_muffin') }],
+          text: "A constable! Coming right up. My mother Hesta always said to stay on the right side of the law. One honey roll, on the house.",
+          options: [{ text: "Much appreciated.", action: (s) => s.flags.add('has_muffin') }],
         },
         {
           id: 'looking',
-          text: "Look all you want, but don't touch the sourdough. It's... temperamental.",
-          options: [{ text: "Got it." }],
+          text: "Look all you want! But if you see Prince Lio around, tell him his order is ready. He's always late.",
+          options: [{ text: "I'll keep an eye out." }],
         },
       ],
       Afternoon: [
         {
           id: 'start',
-          text: "The oven is hot! The afternoon rush is no joke. Need another muffin?",
-          options: [{ text: "Maybe later, Miss Pips." }],
+          text: "Afternoon rush! I can barely keep up. The whole island wants festival pastries.",
+          options: [{ text: "Hang in there, Bramm." }],
         },
       ],
       Night: [
         {
           id: 'start',
-          text: "Closing time soon. The moon is the best timer, don't you think?",
-          options: [{ text: "I suppose so." }],
+          text: "Finally closing up. You know, the best part of baking is the quiet after the ovens cool.",
+          options: [{ text: "Sounds peaceful." }],
         },
       ],
     },
   },
   {
-    id: 'officer_grruff',
-    name: 'Officer Grruff',
-    species: 'Wolf',
-    baseCostume: 'Clown',
-    description: 'A large wolf in a soft, polka-dot jumpsuit that looks like it was painted with gentle watercolors. He has a thoughtful, artistic expression.',
-    // Replace the generic dicebear sprite with our custom officer (cat constable) image
+    id: 'fennel',
+    name: 'Fennel',
+    species: 'Deer',
+    baseCostume: 'Constable',
+    description: 'A bumbling deer in an oversized constable uniform, antlers poking through a too-small helmet. He means well.',
     spriteUrl: officerImg,
-    characterParts: OFFICER_PARTS,
+    characterParts: FENNEL_PARTS,
     position: { x: 8, y: 6 },
     info: {
-      secret: 'He wants to be a poet.',
-      darkSecret: 'He let a thief go because they promised to critique his sonnets.',
-      rumor: 'He cries during parades.',
-      falseRumor: 'He is the strongest wolf on the island.',
+      secret: "He doesn't fully understand the laws he enforces.",
+      darkSecret: 'He once accidentally arrested the wrong person and never corrected it.',
+      rumor: 'He lets people off with warnings.',
+      falseRumor: 'He is secretly a mastermind.',
     },
     dialogue: {
       Morning: [
         {
           id: 'start',
-          text: "Honk. Honk. I'm a clown. Are you happy now?",
+          text: "Oh! Hello there. I'm Constable Fennel. Well, I think I am. The badge says so, anyway.",
           options: [
-            { text: "You look... great.", nextNodeId: 'compliment' },
-            { text: "Why the long face?", nextNodeId: 'why' },
+            { text: "Nice uniform. I have one too.", nextNodeId: 'same_uniform', condition: (s) => s.activeOutfitId === 'constable_uniform' },
+            { text: "What are you doing here?", nextNodeId: 'duties' },
           ],
         },
         {
-          id: 'compliment',
-          text: "Don't lie to me. I'm a wolf in a tutu. It's a disgrace.",
-          options: [{ text: "Sorry." }],
-        },
-        {
-          id: 'why',
-          text: "Tradition. My father was a clown wolf. His father was a clown wolf. I just want to write verses about the moon.",
+          id: 'same_uniform',
+          text: "Wait—you're a constable too? Sheriff Halden didn't mention a second one. Hmm. Well, two heads are better than... however many heads there usually are.",
           options: [
-            { text: "I'd love to hear a poem.", action: (s) => s.flags.add('heard_poem') },
-            { text: "Stick to the honking.", nextNodeId: 'honk' },
+            { text: "Have you noticed anything strange?", nextNodeId: 'strange' },
+            { text: "I'll patrol the other areas.", action: (s) => s.flags.add('fennel_partner') },
           ],
         },
         {
-          id: 'honk',
-          text: "*Honk.* Happy?",
-          options: [{ text: "Very." }],
+          id: 'duties',
+          text: "Keeping the peace! Or trying to. Mostly I give warnings. The Sheriff says I'm too lenient, but people seem happier that way.",
+          options: [
+            { text: "Have you noticed anything strange?", nextNodeId: 'strange' },
+            { text: "Keep up the good work.", nextNodeId: 'thanks' },
+          ],
+        },
+        {
+          id: 'strange',
+          text: "Strange? Well, I saw some odd crates being moved at the docks late last night. Dagan was there. He said it was normal, and I believed him. Should I... not have?",
+          options: [{ text: "I'll check it out.", action: (s) => s.flags.add('king_task_docks') }],
+        },
+        {
+          id: 'thanks',
+          text: "Thanks! That means a lot. Most people just laugh at the antlers poking through the helmet.",
+          options: [{ text: "It's a good look." }],
         },
       ],
       Afternoon: [
         {
           id: 'start',
-          text: "The sun is too bright for sonnets. *Honk.*",
-          options: [{ text: "Hang in there, Grruff." }],
+          text: "Afternoon patrol! Well, I've mostly been standing here. Is that patrolling? I think it counts.",
+          options: [{ text: "Close enough, Fennel." }],
         },
       ],
       Night: [
         {
           id: 'start',
-          text: "The moon! Finally! 'O silver orb, so cold and bright...' What do you think?",
-          options: [{ text: "It's beautiful." }],
+          text: "It's getting dark. I should probably look more official. *straightens helmet* How's this?",
+          options: [{ text: "Very official." }],
         },
       ],
     },
   },
   {
-    id: 'salty_sam',
-    name: 'Salty Sam',
-    species: 'Walrus',
-    baseCostume: 'Pirate',
-    description: 'A sturdy walrus in a deep red pirate coat, his tusks yellowed like old ivory. He stands with a weathered, storybook charm.',
-    // Replace the generic dicebear sprite with our custom pig musician image for Salty Sam
+    id: 'dagan',
+    name: 'Dagan',
+    species: 'Tiger',
+    baseCostume: 'Dock Foreman',
+    description: 'A practical, steady tiger in a worn work vest. His orange-and-black stripes are half-hidden by dock grime, but his eyes are sharp.',
     spriteUrl: saltyImg,
-    characterParts: SALTY_SAM_PARTS,
+    characterParts: DAGAN_PARTS,
     position: { x: 5, y: 5 },
     info: {
-      secret: 'He is actually a very good knitter.',
-      darkSecret: 'He found the Mayor\'s porcelain spoons and is holding them for ransom.',
-      rumor: 'He once wrestled a sea serpent.',
-      falseRumor: 'He has a map to buried gold.',
+      secret: 'He works secret night shifts for extra pay.',
+      darkSecret: 'The night shipments he oversees contain goods the King wants kept hidden.',
+      rumor: 'He owes favors to dock handlers.',
+      falseRumor: 'He plans to leave the island.',
     },
     dialogue: {
       Morning: [
         {
           id: 'start',
-          text: "Arr! What brings a landlubber like ye to me docks?",
+          text: "Watch your step. The docks are slippery this morning. What do you need?",
           options: [
-            { text: "The Mayor sent me.", nextNodeId: 'mayor_sent', condition: (s) => s.flags.has('mayor_task_docks') },
-            { text: "Just enjoying the sea air.", nextNodeId: 'sea_air' },
+            { text: "The King sent me to investigate.", nextNodeId: 'king_sent', condition: (s) => s.flags.has('king_task_docks') },
+            { text: "Just passing through.", nextNodeId: 'passing' },
           ],
         },
         {
-          id: 'mayor_sent',
-          text: "Barnaby, eh? That old lion's always poking his nose where it don't belong. Tell him I found nothing but seaweed.",
+          id: 'king_sent',
+          text: "Arctos sent you? That old lion worries too much. Everything here is routine. Crates in, crates out.",
           options: [
-            { text: "You're lying.", nextNodeId: 'lying', condition: (s) => s.activeOutfitId === 'constable_uniform' },
-            { text: "Okay, I'll tell him.", action: (s) => s.flags.add('sam_lied') },
+            { text: "I need to see for myself.", nextNodeId: 'investigate', condition: (s) => s.activeOutfitId === 'constable_uniform' },
+            { text: "If you say so.", action: (s) => s.flags.add('dagan_dismissed') },
           ],
         },
         {
-          id: 'lying',
-          text: "Ye got sharp eyes for a constable. Fine. I found a key. A heavy one. Want it?",
+          id: 'investigate',
+          text: "...Fine. You've got the uniform. There's a locked storage room in the back. I don't have the key—lost it. Or so I tell people.",
           options: [
-            { text: "Yes, please.", action: (s) => { s.inventory.push(ITEMS.find(i => i.id === 'old_key')!); s.flags.add('has_key'); } },
+            { text: "Hand it over.", action: (s) => { s.inventory.push(ITEMS.find(i => i.id === 'old_key')!); s.flags.add('has_key'); } },
           ],
         },
         {
-          id: 'sea_air',
-          text: "Careful ye don't fall in. The water's cold and the crabs are hungry.",
-          options: [{ text: "I'll be careful." }],
+          id: 'passing',
+          text: "Then pass through quickly. My kids Nyra and Kiri are helping today and I don't need distractions.",
+          options: [{ text: "I'll be quick." }],
         },
       ],
       Afternoon: [
         {
           id: 'start',
-          text: "The tide is coming in. Best be moving along before ye get wet feet.",
-          options: [{ text: "Thanks for the warning." }],
+          text: "Busy afternoon. Sera's been worrying about the festival preparations, so I'm handling extra loads.",
+          options: [{ text: "You work hard, Dagan." }],
         },
       ],
       Night: [
         {
           id: 'start',
-          text: "The sea is dark tonight. Like a giant bowl of ink. Don't spill any.",
-          options: [{ text: "Goodnight, Sam." }],
+          text: "Night shift. The docks are different after dark. Quieter. More honest, in a way.",
+          options: [{ text: "Goodnight, Dagan." }],
         },
       ],
     },
