@@ -74,6 +74,8 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
   const widthPx = size.width * tileSize;
   const heightPx = size.height * tileSize;
 
+  const isCastle = style === 'castle';
+
   return (
     <>
       {/* Building body */}
@@ -88,13 +90,41 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
       >
         {/* Roof */}
         <div className={`building-roof building-roof-${style}`} />
+
+        {/* Castle towers */}
+        {isCastle && (
+          <>
+            <div className="castle-tower castle-tower-left" />
+            <div className="castle-tower castle-tower-right" />
+            <div className="castle-battlement" />
+          </>
+        )}
+
         {/* Windows */}
-        <div className="building-windows">
-          <div className="building-window" />
-          <div className="building-window" />
+        <div className={`building-windows ${isCastle ? 'building-windows-castle' : ''}`}>
+          {isCastle ? (
+            <>
+              <div className="building-window castle-window" />
+              <div className="castle-emblem" />
+              <div className="building-window castle-window" />
+            </>
+          ) : (
+            <>
+              <div className={`building-window building-window-${style}`} />
+              <div className={`building-window building-window-${style}`} />
+            </>
+          )}
         </div>
+
+        {/* Style-specific details */}
+        {style === 'tailor' && <div className="tailor-awning" />}
+        {style === 'tailor' && <div className="tailor-fabric-swatches" />}
+        {style === 'sheriff' && <div className="sheriff-badge-emblem" />}
+        {style === 'coffee' && <div className="coffee-steam" />}
+        {style === 'coffee' && <div className="coffee-awning" />}
+
         {/* Sign */}
-        <div className="building-sign">
+        <div className={`building-sign building-sign-${style}`}>
           <span>{name}</span>
         </div>
       </div>
@@ -109,7 +139,8 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
         }}
       >
         <div className={`building-door building-door-${style}`}>
-          <div className="door-handle" />
+          <div className={`door-handle ${isCastle ? 'door-handle-castle' : ''}`} />
+          {isCastle && <div className="door-handle door-handle-castle" style={{ left: 4 }} />}
         </div>
       </div>
     </>
@@ -122,6 +153,7 @@ function getGroundClass(locationId: string): string {
     case 'town_square': return 'world-ground';
     case 'bakery': return 'world-ground-bakery';
     case 'docks': return 'world-ground-docks';
+    case 'castle_grounds': return 'world-ground-castle';
     default: return 'world-ground';
   }
 }
@@ -134,6 +166,9 @@ function getTimeOverlay(phase: Phase): string | null {
     default: return null;
   }
 }
+
+const VIEWPORT_W = 12; // visible tiles wide
+const VIEWPORT_H = 10; // visible tiles tall
 
 function WorldView({
   state,
@@ -231,15 +266,35 @@ function WorldView({
   // Collect lamp positions for glow effects
   const lampPositions = currentLocation.decorations?.filter(d => d.type === 'lamp') || [];
 
+  // Camera: center on player, clamped to map edges
+  const worldW = currentLocation.bounds.width * TILE_SIZE;
+  const worldH = currentLocation.bounds.height * TILE_SIZE;
+  const vpW = Math.min(VIEWPORT_W, currentLocation.bounds.width) * TILE_SIZE;
+  const vpH = Math.min(VIEWPORT_H, currentLocation.bounds.height) * TILE_SIZE;
+
+  const targetCamX = state.playerPosition.x * TILE_SIZE + TILE_SIZE / 2 - vpW / 2;
+  const targetCamY = state.playerPosition.y * TILE_SIZE + TILE_SIZE / 2 - vpH / 2;
+  const camX = Math.max(0, Math.min(targetCamX, worldW - vpW));
+  const camY = Math.max(0, Math.min(targetCamY, worldH - vpH));
+
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl shadow-2xl border-2 border-[#4a2f1a]/30 ${getGroundClass(currentLocation.id)}`}
+      className="relative overflow-hidden rounded-2xl shadow-2xl border-2 border-[#4a2f1a]/30"
       style={{
-        width: currentLocation.bounds.width * TILE_SIZE,
-        height: currentLocation.bounds.height * TILE_SIZE,
+        width: vpW,
+        height: vpH,
       }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+    >
+    <motion.div
+      className={`absolute ${getGroundClass(currentLocation.id)}`}
+      animate={{ x: -camX, y: -camY }}
+      transition={{ type: 'spring', stiffness: 300, damping: 35 }}
+      style={{
+        width: worldW,
+        height: worldH,
+      }}
     >
       {/* Painted paper texture overlay on world */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-[2]"
@@ -384,6 +439,7 @@ function WorldView({
 
       {/* Rain overlay */}
       {state.weather === 'Rain' && <div className="world-rain-overlay" />}
+    </motion.div>
     </div>
   );
 }
@@ -437,16 +493,16 @@ export default function App() {
     LOCATIONS.find(l => l.id === state.currentLocation)!,
   [state.currentLocation]);
 
-  // Auto-scale the game world to fill available space
+  // Auto-scale the viewport to fill available space
   useEffect(() => {
     const updateScale = () => {
       if (!gameContainerRef.current) return;
       const container = gameContainerRef.current;
       const availableW = container.clientWidth;
       const availableH = container.clientHeight;
-      const worldW = currentLocation.bounds.width * TILE_SIZE;
-      const worldH = currentLocation.bounds.height * TILE_SIZE;
-      const newScale = Math.min(availableW / worldW, availableH / worldH, 1.5);
+      const vpW = Math.min(VIEWPORT_W, currentLocation.bounds.width) * TILE_SIZE;
+      const vpH = Math.min(VIEWPORT_H, currentLocation.bounds.height) * TILE_SIZE;
+      const newScale = Math.min(availableW / vpW, availableH / vpH, 1.5);
       setScale(Math.max(newScale, 0.5));
     };
     updateScale();

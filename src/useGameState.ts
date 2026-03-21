@@ -25,7 +25,7 @@ export const useGameState = () => {
       playerPronouns: 'they/them',
       flags: new Set<string>(),
       currentLocation: 'town_square',
-      playerPosition: { x: 4, y: 4 },
+      playerPosition: { x: 10, y: 6 },
       notebook: savedNotebook ? JSON.parse(savedNotebook) : {},
       isGameOver: false,
       runCount: 1,
@@ -59,7 +59,7 @@ export const useGameState = () => {
       playerPronouns: 'they/them',
       flags: new Set<string>(),
       currentLocation: 'town_square',
-      playerPosition: { x: 4, y: 4 },
+      playerPosition: { x: 10, y: 6 },
       isGameOver: false,
       runCount: prev.runCount + 1,
     }));

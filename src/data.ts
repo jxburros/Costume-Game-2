@@ -27,94 +27,173 @@ export const LOCATIONS: Location[] = [
     description: 'The heart of Kraed Maas, where the golden hour light lingers on the cobblestones and colorful banners dance in the breeze.',
     npcs: ['king_arctos', 'fennel'],
     connections: [
-      { locationId: 'bakery', x: 2, y: 3, label: 'Enter Bakery' },
-      { locationId: 'docks', x: 8, y: 3, label: 'Enter Warehouse' },
-      { locationId: 'tailor_shop', x: 1, y: 10, label: 'Enter Tailor Shop' },
-      { locationId: 'sheriff_office', x: 5, y: 10, label: 'Enter Sheriff Office' },
-      { locationId: 'coffee_shop', x: 9, y: 10, label: 'Enter Coffee Shop' },
+      { locationId: 'bakery', x: 4, y: 3, label: 'Enter Bakery' },
+      { locationId: 'docks', x: 17, y: 3, label: 'Enter Warehouse' },
+      { locationId: 'tailor_shop', x: 2, y: 11, label: 'Enter Tailor Shop' },
+      { locationId: 'sheriff_office', x: 10, y: 11, label: 'Enter Sheriff Office' },
+      { locationId: 'coffee_shop', x: 18, y: 11, label: 'Enter Coffee Shop' },
+      { locationId: 'castle_grounds', x: 11, y: 3, label: 'Enter Castle Grounds' },
     ],
-    bounds: { width: 11, height: 13 },
+    bounds: { width: 22, height: 20 },
     buildings: [
       {
         id: 'bakery_building',
         name: 'The Crusty Crumb',
-        position: { x: 1, y: 0 },
+        position: { x: 3, y: 0 },
         size: { width: 3, height: 3 },
-        doorPosition: { x: 2, y: 3 },
+        doorPosition: { x: 4, y: 3 },
         targetLocationId: 'bakery',
         style: 'bakery',
       },
       {
         id: 'docks_building',
         name: 'Kraed Warehouse',
-        position: { x: 7, y: 0 },
+        position: { x: 16, y: 0 },
         size: { width: 3, height: 3 },
-        doorPosition: { x: 8, y: 3 },
+        doorPosition: { x: 17, y: 3 },
         targetLocationId: 'docks',
         style: 'warehouse',
       },
       {
         id: 'tailor_building',
         name: "Ivelle's Needlework",
-        position: { x: 0, y: 8 },
+        position: { x: 1, y: 9 },
         size: { width: 3, height: 2 },
-        doorPosition: { x: 1, y: 10 },
+        doorPosition: { x: 2, y: 11 },
         targetLocationId: 'tailor_shop',
-        style: 'house',
+        style: 'tailor',
       },
       {
         id: 'sheriff_building',
         name: "Sheriff's Office",
-        position: { x: 4, y: 8 },
+        position: { x: 9, y: 9 },
         size: { width: 3, height: 2 },
-        doorPosition: { x: 5, y: 10 },
+        doorPosition: { x: 10, y: 11 },
         targetLocationId: 'sheriff_office',
-        style: 'house',
+        style: 'sheriff',
       },
       {
         id: 'coffee_building',
         name: "Mallow's Brew",
-        position: { x: 8, y: 8 },
+        position: { x: 17, y: 9 },
         size: { width: 3, height: 2 },
-        doorPosition: { x: 9, y: 10 },
+        doorPosition: { x: 18, y: 11 },
         targetLocationId: 'coffee_shop',
-        style: 'house',
+        style: 'coffee',
+      },
+      {
+        id: 'castle_building',
+        name: 'Castle Kraed',
+        position: { x: 9, y: 0 },
+        size: { width: 5, height: 3 },
+        doorPosition: { x: 11, y: 3 },
+        targetLocationId: 'castle_grounds',
+        style: 'castle',
       },
     ],
     decorations: [
-      { id: 'tree_1', type: 'tree', position: { x: 0, y: 2 } },
-      { id: 'tree_2', type: 'tree', position: { x: 10, y: 2 } },
-      { id: 'lamp_1', type: 'lamp', position: { x: 5, y: 1 } },
-      { id: 'lamp_2', type: 'lamp', position: { x: 5, y: 7 } },
-      { id: 'flower_1', type: 'flower', position: { x: 0, y: 5 } },
-      { id: 'flower_2', type: 'flower', position: { x: 10, y: 5 } },
-      { id: 'flower_3', type: 'flower', position: { x: 4, y: 0 } },
-      { id: 'flower_4', type: 'flower', position: { x: 6, y: 0 } },
-      { id: 'lamp_3', type: 'lamp', position: { x: 3, y: 11 } },
-      { id: 'lamp_4', type: 'lamp', position: { x: 7, y: 11 } },
+      // Trees lining the northern edge
+      { id: 'tree_1', type: 'tree', position: { x: 0, y: 0 } },
+      { id: 'tree_2', type: 'tree', position: { x: 1, y: 0 } },
+      { id: 'tree_3', type: 'tree', position: { x: 7, y: 0 } },
+      { id: 'tree_5', type: 'tree', position: { x: 20, y: 0 } },
+      { id: 'tree_6', type: 'tree', position: { x: 21, y: 0 } },
+      // Trees along west side
+      { id: 'tree_7', type: 'tree', position: { x: 0, y: 4 } },
+      { id: 'tree_8', type: 'tree', position: { x: 0, y: 7 } },
+      { id: 'tree_9', type: 'tree', position: { x: 0, y: 13 } },
+      // Trees along east side
+      { id: 'tree_10', type: 'tree', position: { x: 21, y: 4 } },
+      { id: 'tree_11', type: 'tree', position: { x: 21, y: 7 } },
+      { id: 'tree_12', type: 'tree', position: { x: 21, y: 13 } },
+      // Park area in the south
+      { id: 'tree_13', type: 'tree', position: { x: 3, y: 15 } },
+      { id: 'tree_14', type: 'tree', position: { x: 7, y: 15 } },
+      { id: 'tree_15', type: 'tree', position: { x: 14, y: 15 } },
+      { id: 'tree_16', type: 'tree', position: { x: 18, y: 15 } },
+      { id: 'tree_17', type: 'tree', position: { x: 5, y: 18 } },
+      { id: 'tree_18', type: 'tree', position: { x: 16, y: 18 } },
+      // Southern boundary trees
+      { id: 'tree_19', type: 'tree', position: { x: 0, y: 19 } },
+      { id: 'tree_20', type: 'tree', position: { x: 1, y: 19 } },
+      { id: 'tree_21', type: 'tree', position: { x: 10, y: 19 } },
+      { id: 'tree_22', type: 'tree', position: { x: 11, y: 19 } },
+      { id: 'tree_23', type: 'tree', position: { x: 20, y: 19 } },
+      { id: 'tree_24', type: 'tree', position: { x: 21, y: 19 } },
+      // Lamps along the main paths
+      { id: 'lamp_1', type: 'lamp', position: { x: 10, y: 1 } },
+      { id: 'lamp_2', type: 'lamp', position: { x: 10, y: 5 } },
+      { id: 'lamp_3', type: 'lamp', position: { x: 5, y: 7 } },
+      { id: 'lamp_4', type: 'lamp', position: { x: 15, y: 7 } },
+      { id: 'lamp_5', type: 'lamp', position: { x: 6, y: 13 } },
+      { id: 'lamp_6', type: 'lamp', position: { x: 15, y: 13 } },
+      { id: 'lamp_7', type: 'lamp', position: { x: 10, y: 17 } },
+      // Flowers scattered around
+      { id: 'flower_1', type: 'flower', position: { x: 2, y: 5 } },
+      { id: 'flower_2', type: 'flower', position: { x: 19, y: 5 } },
+      { id: 'flower_3', type: 'flower', position: { x: 8, y: 2 } },
+      { id: 'flower_4', type: 'flower', position: { x: 14, y: 2 } },
+      { id: 'flower_5', type: 'flower', position: { x: 4, y: 13 } },
+      { id: 'flower_6', type: 'flower', position: { x: 17, y: 13 } },
+      { id: 'flower_7', type: 'flower', position: { x: 9, y: 16 } },
+      { id: 'flower_8', type: 'flower', position: { x: 12, y: 16 } },
+      { id: 'flower_9', type: 'flower', position: { x: 2, y: 17 } },
+      { id: 'flower_10', type: 'flower', position: { x: 19, y: 17 } },
+      // Benches in the park area
+      { id: 'bench_1', type: 'bench', position: { x: 5, y: 16 } },
+      { id: 'bench_2', type: 'bench', position: { x: 16, y: 16 } },
+      { id: 'bench_3', type: 'bench', position: { x: 10, y: 8 } },
+      // Barrels and crates near buildings
+      { id: 'barrel_1', type: 'barrel', position: { x: 7, y: 3 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 14, y: 3 } },
+      { id: 'crate_1', type: 'crate', position: { x: 5, y: 9 } },
+      { id: 'crate_2', type: 'crate', position: { x: 15, y: 9 } },
+      { id: 'barrel_3', type: 'barrel', position: { x: 8, y: 14 } },
+      { id: 'barrel_4', type: 'barrel', position: { x: 13, y: 14 } },
     ],
     obstacles: [
-      // Building walls (bakery: 3x3 at 1,0)
-      { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 },
-      { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 },
-      { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 },
-      // Building walls (warehouse: 3x3 at 7,0)
-      { x: 7, y: 0 }, { x: 8, y: 0 }, { x: 9, y: 0 },
-      { x: 7, y: 1 }, { x: 8, y: 1 }, { x: 9, y: 1 },
-      { x: 7, y: 2 }, { x: 8, y: 2 }, { x: 9, y: 2 },
-      // Building walls (tailor: 3x2 at 0,8)
-      { x: 0, y: 8 }, { x: 1, y: 8 }, { x: 2, y: 8 },
-      { x: 0, y: 9 }, { x: 1, y: 9 }, { x: 2, y: 9 },
-      // Building walls (sheriff: 3x2 at 4,8)
-      { x: 4, y: 8 }, { x: 5, y: 8 }, { x: 6, y: 8 },
-      { x: 4, y: 9 }, { x: 5, y: 9 }, { x: 6, y: 9 },
-      // Building walls (coffee: 3x2 at 8,8)
-      { x: 8, y: 8 }, { x: 9, y: 8 }, { x: 10, y: 8 },
-      { x: 8, y: 9 }, { x: 9, y: 9 }, { x: 10, y: 9 },
-      // Trees
-      { x: 0, y: 2 }, { x: 10, y: 2 },
+      // Building walls (bakery: 3x3 at 3,0)
+      { x: 3, y: 0 }, { x: 4, y: 0 }, { x: 5, y: 0 },
+      { x: 3, y: 1 }, { x: 4, y: 1 }, { x: 5, y: 1 },
+      { x: 3, y: 2 }, { x: 4, y: 2 }, { x: 5, y: 2 },
+      // Building walls (warehouse: 3x3 at 16,0)
+      { x: 16, y: 0 }, { x: 17, y: 0 }, { x: 18, y: 0 },
+      { x: 16, y: 1 }, { x: 17, y: 1 }, { x: 18, y: 1 },
+      { x: 16, y: 2 }, { x: 17, y: 2 }, { x: 18, y: 2 },
+      // Building walls (tailor: 3x2 at 1,9)
+      { x: 1, y: 9 }, { x: 2, y: 9 }, { x: 3, y: 9 },
+      { x: 1, y: 10 }, { x: 2, y: 10 }, { x: 3, y: 10 },
+      // Building walls (sheriff: 3x2 at 9,9)
+      { x: 9, y: 9 }, { x: 10, y: 9 }, { x: 11, y: 9 },
+      { x: 9, y: 10 }, { x: 10, y: 10 }, { x: 11, y: 10 },
+      // Building walls (coffee: 3x2 at 17,9)
+      { x: 17, y: 9 }, { x: 18, y: 9 }, { x: 19, y: 9 },
+      { x: 17, y: 10 }, { x: 18, y: 10 }, { x: 19, y: 10 },
+      // Building walls (castle: 5x3 at 9,0)
+      { x: 9, y: 0 }, { x: 10, y: 0 }, { x: 11, y: 0 }, { x: 12, y: 0 }, { x: 13, y: 0 },
+      { x: 9, y: 1 }, { x: 10, y: 1 }, { x: 11, y: 1 }, { x: 12, y: 1 }, { x: 13, y: 1 },
+      { x: 9, y: 2 }, { x: 10, y: 2 }, { x: 11, y: 2 }, { x: 12, y: 2 }, { x: 13, y: 2 },
+      // Trees (northern edge) - removed x:13 since castle is there now
+      { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 7, y: 0 },
+      { x: 20, y: 0 }, { x: 21, y: 0 },
+      // Trees (west side)
+      { x: 0, y: 4 }, { x: 0, y: 7 }, { x: 0, y: 13 },
+      // Trees (east side)
+      { x: 21, y: 4 }, { x: 21, y: 7 }, { x: 21, y: 13 },
+      // Trees (park area)
+      { x: 3, y: 15 }, { x: 7, y: 15 }, { x: 14, y: 15 }, { x: 18, y: 15 },
+      { x: 5, y: 18 }, { x: 16, y: 18 },
+      // Trees (southern boundary)
+      { x: 0, y: 19 }, { x: 1, y: 19 }, { x: 10, y: 19 }, { x: 11, y: 19 },
+      { x: 20, y: 19 }, { x: 21, y: 19 },
       // Lamps
-      { x: 5, y: 1 }, { x: 5, y: 7 }, { x: 3, y: 11 }, { x: 7, y: 11 },
+      { x: 10, y: 1 }, { x: 10, y: 5 }, { x: 5, y: 7 }, { x: 15, y: 7 },
+      { x: 6, y: 13 }, { x: 15, y: 13 }, { x: 10, y: 17 },
+      // Benches
+      { x: 5, y: 16 }, { x: 16, y: 16 }, { x: 10, y: 8 },
+      // Barrels and crates
+      { x: 7, y: 3 }, { x: 14, y: 3 }, { x: 5, y: 9 }, { x: 15, y: 9 },
+      { x: 8, y: 14 }, { x: 13, y: 14 },
     ],
   },
   {
@@ -221,6 +300,40 @@ export const LOCATIONS: Location[] = [
       { x: 3, y: 2 }, { x: 5, y: 2 }, // benches/tables
     ],
   },
+  {
+    id: 'castle_grounds',
+    name: 'Castle Kraed',
+    description: 'The grand courtyard of Castle Kraed. Stone walls rise high, draped with royal purple banners. A fountain glistens in the center.',
+    npcs: [],
+    connections: [
+      { locationId: 'town_square', x: 5, y: 9, label: 'Exit to Town Square', isDoor: true }
+    ],
+    bounds: { width: 11, height: 10 },
+    decorations: [
+      { id: 'lamp_1', type: 'lamp', position: { x: 1, y: 1 } },
+      { id: 'lamp_2', type: 'lamp', position: { x: 9, y: 1 } },
+      { id: 'lamp_3', type: 'lamp', position: { x: 1, y: 7 } },
+      { id: 'lamp_4', type: 'lamp', position: { x: 9, y: 7 } },
+      { id: 'flower_1', type: 'flower', position: { x: 3, y: 3 } },
+      { id: 'flower_2', type: 'flower', position: { x: 7, y: 3 } },
+      { id: 'flower_3', type: 'flower', position: { x: 3, y: 7 } },
+      { id: 'flower_4', type: 'flower', position: { x: 7, y: 7 } },
+      { id: 'bench_1', type: 'bench', position: { x: 4, y: 6 } },
+      { id: 'bench_2', type: 'bench', position: { x: 6, y: 6 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 0, y: 0 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 10, y: 0 } },
+      { id: 'crate_1', type: 'crate', position: { x: 0, y: 9 } },
+      { id: 'crate_2', type: 'crate', position: { x: 10, y: 9 } },
+    ],
+    obstacles: [
+      { x: 1, y: 1 }, { x: 9, y: 1 }, // lamps
+      { x: 1, y: 7 }, { x: 9, y: 7 }, // lamps
+      { x: 5, y: 4 }, // fountain center
+      { x: 4, y: 6 }, { x: 6, y: 6 }, // benches
+      { x: 0, y: 0 }, { x: 10, y: 0 }, // barrels
+      { x: 0, y: 9 }, { x: 10, y: 9 }, // crates
+    ],
+  },
 ];
 
 export const NPCS: NPC[] = [
@@ -232,7 +345,7 @@ export const NPCS: NPC[] = [
     description: 'An indulgent lion king in flowing purple robes, his golden mane framing a cunning smile. A crown sits atop his head like it was always meant to be there.',
     spriteUrl: mayorImg,
     characterParts: KING_ARCTOS_PARTS,
-    position: { x: 5, y: 4 },
+    position: { x: 10, y: 4 },
     info: {
       secret: 'He is the secret endgame antagonist.',
       darkSecret: 'He fathered a white tiger child and has been covering it up for years.',
@@ -357,7 +470,7 @@ export const NPCS: NPC[] = [
     description: 'A bumbling deer in an oversized constable uniform, antlers poking through a too-small helmet. He means well.',
     spriteUrl: officerImg,
     characterParts: FENNEL_PARTS,
-    position: { x: 8, y: 6 },
+    position: { x: 14, y: 6 },
     info: {
       secret: "He doesn't fully understand the laws he enforces.",
       darkSecret: 'He once accidentally arrested the wrong person and never corrected it.',
