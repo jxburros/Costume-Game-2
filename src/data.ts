@@ -1,5 +1,5 @@
 import { Item, NPC, Location, Building } from './types';
-import { KING_ARCTOS_PARTS, FENNEL_PARTS, BRAMM_PARTS, DAGAN_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS } from './characterParts';
+import { KING_ARCTOS_PARTS, FENNEL_PARTS, BRAMM_PARTS, DAGAN_PARTS, IVELLE_PARTS, PRINCE_LIO_PARTS, SHERIFF_HALDEN_PARTS, MALLOW_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS } from './characterParts';
 
 // Import custom sprite assets in the style of the provided concept art.  The
 // images live in the ./assets directory and are converted to public URLs via
@@ -28,9 +28,12 @@ export const LOCATIONS: Location[] = [
     npcs: ['king_arctos', 'fennel'],
     connections: [
       { locationId: 'bakery', x: 2, y: 3, label: 'Enter Bakery' },
-      { locationId: 'docks', x: 8, y: 3, label: 'Enter Warehouse' }
+      { locationId: 'docks', x: 8, y: 3, label: 'Enter Warehouse' },
+      { locationId: 'tailor_shop', x: 1, y: 10, label: 'Enter Tailor Shop' },
+      { locationId: 'sheriff_office', x: 5, y: 10, label: 'Enter Sheriff Office' },
+      { locationId: 'coffee_shop', x: 9, y: 10, label: 'Enter Coffee Shop' },
     ],
-    bounds: { width: 11, height: 10 },
+    bounds: { width: 11, height: 13 },
     buildings: [
       {
         id: 'bakery_building',
@@ -50,18 +53,45 @@ export const LOCATIONS: Location[] = [
         targetLocationId: 'docks',
         style: 'warehouse',
       },
+      {
+        id: 'tailor_building',
+        name: "Ivelle's Needlework",
+        position: { x: 0, y: 8 },
+        size: { width: 3, height: 2 },
+        doorPosition: { x: 1, y: 10 },
+        targetLocationId: 'tailor_shop',
+        style: 'house',
+      },
+      {
+        id: 'sheriff_building',
+        name: "Sheriff's Office",
+        position: { x: 4, y: 8 },
+        size: { width: 3, height: 2 },
+        doorPosition: { x: 5, y: 10 },
+        targetLocationId: 'sheriff_office',
+        style: 'house',
+      },
+      {
+        id: 'coffee_building',
+        name: "Mallow's Brew",
+        position: { x: 8, y: 8 },
+        size: { width: 3, height: 2 },
+        doorPosition: { x: 9, y: 10 },
+        targetLocationId: 'coffee_shop',
+        style: 'house',
+      },
     ],
     decorations: [
       { id: 'tree_1', type: 'tree', position: { x: 0, y: 2 } },
       { id: 'tree_2', type: 'tree', position: { x: 10, y: 2 } },
       { id: 'lamp_1', type: 'lamp', position: { x: 5, y: 1 } },
       { id: 'lamp_2', type: 'lamp', position: { x: 5, y: 7 } },
-      { id: 'bench_1', type: 'bench', position: { x: 4, y: 8 } },
-      { id: 'bench_2', type: 'bench', position: { x: 6, y: 8 } },
       { id: 'flower_1', type: 'flower', position: { x: 0, y: 5 } },
       { id: 'flower_2', type: 'flower', position: { x: 10, y: 5 } },
       { id: 'flower_3', type: 'flower', position: { x: 4, y: 0 } },
       { id: 'flower_4', type: 'flower', position: { x: 6, y: 0 } },
+      { id: 'lamp_3', type: 'lamp', position: { x: 3, y: 11 } },
+      { id: 'lamp_4', type: 'lamp', position: { x: 7, y: 11 } },
     ],
     obstacles: [
       // Building walls (bakery: 3x3 at 1,0)
@@ -72,12 +102,19 @@ export const LOCATIONS: Location[] = [
       { x: 7, y: 0 }, { x: 8, y: 0 }, { x: 9, y: 0 },
       { x: 7, y: 1 }, { x: 8, y: 1 }, { x: 9, y: 1 },
       { x: 7, y: 2 }, { x: 8, y: 2 }, { x: 9, y: 2 },
+      // Building walls (tailor: 3x2 at 0,8)
+      { x: 0, y: 8 }, { x: 1, y: 8 }, { x: 2, y: 8 },
+      { x: 0, y: 9 }, { x: 1, y: 9 }, { x: 2, y: 9 },
+      // Building walls (sheriff: 3x2 at 4,8)
+      { x: 4, y: 8 }, { x: 5, y: 8 }, { x: 6, y: 8 },
+      { x: 4, y: 9 }, { x: 5, y: 9 }, { x: 6, y: 9 },
+      // Building walls (coffee: 3x2 at 8,8)
+      { x: 8, y: 8 }, { x: 9, y: 8 }, { x: 10, y: 8 },
+      { x: 8, y: 9 }, { x: 9, y: 9 }, { x: 10, y: 9 },
       // Trees
       { x: 0, y: 2 }, { x: 10, y: 2 },
       // Lamps
-      { x: 5, y: 1 }, { x: 5, y: 7 },
-      // Benches
-      { x: 4, y: 8 }, { x: 6, y: 8 },
+      { x: 5, y: 1 }, { x: 5, y: 7 }, { x: 3, y: 11 }, { x: 7, y: 11 },
     ],
   },
   {
@@ -119,6 +156,69 @@ export const LOCATIONS: Location[] = [
     obstacles: [
       { x: 3, y: 2 }, { x: 6, y: 2 }, // barrels
       { x: 5, y: 7 }, // crates
+    ],
+  },
+  {
+    id: 'tailor_shop',
+    name: "Ivelle's Needlework",
+    description: 'Bolts of fabric line every wall, and the air smells of lavender and old thread. Mannequins wear half-finished festival costumes.',
+    npcs: ['ivelle', 'prince_lio'],
+    connections: [
+      { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
+    ],
+    bounds: { width: 9, height: 10 },
+    decorations: [
+      { id: 'crate_1', type: 'crate', position: { x: 0, y: 1 } },
+      { id: 'crate_2', type: 'crate', position: { x: 0, y: 2 } },
+      { id: 'crate_3', type: 'crate', position: { x: 8, y: 1 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 8, y: 7 } },
+    ],
+    obstacles: [
+      { x: 0, y: 1 }, { x: 0, y: 2 }, // fabric crates
+      { x: 8, y: 1 }, // supply crate
+      { x: 8, y: 7 }, // dye barrel
+    ],
+  },
+  {
+    id: 'sheriff_office',
+    name: "Sheriff's Office",
+    description: 'A cluttered office with wanted posters on the walls and a desk buried under paperwork. A jail cell sits in the corner.',
+    npcs: ['sheriff_halden'],
+    connections: [
+      { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
+    ],
+    bounds: { width: 9, height: 10 },
+    decorations: [
+      { id: 'crate_1', type: 'crate', position: { x: 0, y: 0 } },
+      { id: 'crate_2', type: 'crate', position: { x: 1, y: 0 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 7, y: 8 } },
+      { id: 'crate_3', type: 'crate', position: { x: 8, y: 8 } },
+    ],
+    obstacles: [
+      { x: 0, y: 0 }, { x: 1, y: 0 }, // desk
+      { x: 7, y: 8 }, { x: 8, y: 8 }, // cell corner
+    ],
+  },
+  {
+    id: 'coffee_shop',
+    name: "Mallow's Brew",
+    description: 'Warm light spills over mismatched chairs and steaming cups. The rich aroma of roasted beans fills every corner.',
+    npcs: ['mallow'],
+    connections: [
+      { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
+    ],
+    bounds: { width: 9, height: 10 },
+    decorations: [
+      { id: 'barrel_1', type: 'barrel', position: { x: 0, y: 1 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 1, y: 1 } },
+      { id: 'crate_1', type: 'crate', position: { x: 7, y: 7 } },
+      { id: 'bench_1', type: 'bench', position: { x: 3, y: 2 } },
+      { id: 'bench_2', type: 'bench', position: { x: 5, y: 2 } },
+    ],
+    obstacles: [
+      { x: 0, y: 1 }, { x: 1, y: 1 }, // counter barrels
+      { x: 7, y: 7 }, // supply crate
+      { x: 3, y: 2 }, { x: 5, y: 2 }, // benches/tables
     ],
   },
 ];
@@ -375,6 +475,269 @@ export const NPCS: NPC[] = [
           id: 'start',
           text: "Night shift. The docks are different after dark. Quieter. More honest, in a way.",
           options: [{ text: "Goodnight, Dagan." }],
+        },
+      ],
+    },
+  },
+  {
+    id: 'ivelle',
+    name: 'Ivelle',
+    species: 'Crane',
+    baseCostume: 'Mourning Widow',
+    description: 'An older crane in dark mourning clothes, her long beak tilted with sharp-witted precision. A golden brooch glints at her collar.',
+    spriteUrl: missImg,
+    characterParts: IVELLE_PARTS,
+    position: { x: 4, y: 4 },
+    info: {
+      secret: 'She bought her first designs from an underground merchant.',
+      darkSecret: 'She performs cemetery rituals to commune with her late husband Oryn.',
+      rumor: 'She performs cemetery rituals.',
+      falseRumor: 'She switches newborns.',
+    },
+    dialogue: {
+      Morning: [
+        {
+          id: 'start',
+          text: "Mind the pins on the floor. I'm working on a commission for the festival. What do you need?",
+          options: [
+            { text: "I'm looking for the tailor's apprentice.", nextNodeId: 'apprentice' },
+            { text: "Beautiful fabrics you have here.", nextNodeId: 'fabrics' },
+          ],
+        },
+        {
+          id: 'apprentice',
+          text: "My apprentice? Young Theo, I call him. Quiet lad, keeps his head down. Arrived a few months ago—no family name, no references. But his stitching is impeccable.",
+          options: [
+            { text: "Does he seem familiar to you?", nextNodeId: 'familiar', condition: (s) => s.flags.has('king_task_docks') },
+            { text: "I see. Thank you.", nextNodeId: 'thanks' },
+          ],
+        },
+        {
+          id: 'familiar',
+          text: "...Now that you mention it, there is something about his bearing. Regal, almost. But that's ridiculous. He's just a boy with nimble fingers.",
+          options: [{ text: "Interesting." }],
+        },
+        {
+          id: 'fabrics',
+          text: "I've collected them over forty years. Some from merchants, some from... less conventional sources. A tailor must be resourceful.",
+          options: [{ text: "I can see that." }],
+        },
+        {
+          id: 'thanks',
+          text: "Of course. Now, if you'll excuse me, this hem won't finish itself.",
+          options: [{ text: "I'll let you work." }],
+        },
+      ],
+      Afternoon: [
+        {
+          id: 'start',
+          text: "The afternoon light is best for detail work. Oryn always said that. My late husband, rest his soul.",
+          options: [{ text: "He sounds wise." }],
+        },
+      ],
+      Night: [
+        {
+          id: 'start',
+          text: "I should close up. But the cemetery is so quiet at night. Perfect for... reflection.",
+          options: [{ text: "Take care, Ivelle." }],
+        },
+      ],
+    },
+  },
+  {
+    id: 'prince_lio',
+    name: 'Lio',
+    species: 'Lion',
+    baseCostume: "Tailor's Apprentice",
+    description: 'A young lion with a gentle mane, dressed in a modest green vest with a measuring tape draped over one shoulder. His eyes are kind but distracted.',
+    spriteUrl: mayorImg,
+    characterParts: PRINCE_LIO_PARTS,
+    position: { x: 6, y: 6 },
+    info: {
+      secret: 'He plans to propose to Bramm the baker.',
+      darkSecret: "He's been working for the tailor in disguise to escape royal life.",
+      rumor: "He's been working for the tailor in disguise.",
+      falseRumor: 'He parties off-island.',
+    },
+    dialogue: {
+      Morning: [
+        {
+          id: 'start',
+          text: "Oh! A customer? I mean—welcome to the shop. I'm Theo. The apprentice. Just the apprentice.",
+          options: [
+            { text: "You look a lot like the King.", nextNodeId: 'king_resemblance', condition: (s) => s.flags.has('king_task_docks') },
+            { text: "Do you have any costumes for sale?", nextNodeId: 'costumes' },
+          ],
+        },
+        {
+          id: 'king_resemblance',
+          text: "I—what? No, no. Lots of lions have golden manes. That's just... lion genetics. Please don't tell anyone you said that.",
+          options: [
+            { text: "Your secret is safe with me.", action: (s) => s.flags.add('lio_secret') },
+            { text: "The King is looking for you.", nextNodeId: 'king_looking' },
+          ],
+        },
+        {
+          id: 'king_looking',
+          text: "He's not—he doesn't know I'm here. Please. I just want to learn a trade and live a quiet life. With... someone special.",
+          options: [{ text: "Bramm?", action: (s) => s.flags.add('lio_bramm_hint') }],
+        },
+        {
+          id: 'costumes',
+          text: "Ivelle handles commissions. I just do alterations. But between you and me, I made Bramm's festival apron. Don't tell Ivelle.",
+          options: [{ text: "It's a nice apron." }],
+        },
+      ],
+      Afternoon: [
+        {
+          id: 'start',
+          text: "I need to run an errand to the bakery soon. Bramm's order is ready, and... well, I like delivering it personally.",
+          options: [{ text: "Say hi to him for me." }],
+        },
+      ],
+      Night: [
+        {
+          id: 'start',
+          text: "The shop's closing. I love this time—when the town is quiet and I'm just... Lio. Not a prince. Just me.",
+          options: [{ text: "Sounds freeing." }],
+        },
+      ],
+    },
+  },
+  {
+    id: 'sheriff_halden',
+    name: 'Sheriff Halden',
+    species: 'Dog',
+    baseCostume: 'Sheriff',
+    description: 'A tired-looking hound in a well-worn sheriff uniform, his floppy ears poking from under a wide-brimmed hat. Brilliant eyes hide behind heavy lids.',
+    spriteUrl: officerImg,
+    characterParts: SHERIFF_HALDEN_PARTS,
+    position: { x: 4, y: 4 },
+    info: {
+      secret: 'He faked his credentials to get the sheriff position.',
+      darkSecret: 'He lets criminals out early because he believes in second chances, not because of the law.',
+      rumor: 'He lets criminals out early.',
+      falseRumor: "He collects prisoners' hair.",
+    },
+    dialogue: {
+      Morning: [
+        {
+          id: 'start',
+          text: "Sheriff Halden. Yes, I'm the real one. You've probably met my deputy Fennel out there. Good kid. Confused, but good.",
+          options: [
+            { text: "I'm the new Constable.", nextNodeId: 'constable', condition: (s) => s.activeOutfitId === 'constable_uniform' },
+            { text: "Busy morning, Sheriff?", nextNodeId: 'busy' },
+          ],
+        },
+        {
+          id: 'constable',
+          text: "Another constable? I didn't authorize—well, never mind. The King does what the King wants. What has he got you doing?",
+          options: [
+            { text: "Investigating the docks.", nextNodeId: 'docks_info', condition: (s) => s.flags.has('king_task_docks') },
+            { text: "Just patrolling.", nextNodeId: 'patrol' },
+          ],
+        },
+        {
+          id: 'docks_info',
+          text: "The docks, eh? Dagan runs a tight operation. Too tight, if you ask me. I've seen crates that don't match any manifest. But when I asked the King, he told me to drop it.",
+          options: [
+            { text: "The King told you to drop it?", action: (s) => s.flags.add('halden_suspicious') },
+            { text: "I'll be careful.", nextNodeId: 'careful' },
+          ],
+        },
+        {
+          id: 'patrol',
+          text: "Good. Keep Fennel out of trouble if you can. And don't touch the jail cells—the locks are temperamental.",
+          options: [{ text: "Understood, Sheriff." }],
+        },
+        {
+          id: 'busy',
+          text: "Always busy. My daughter Elia keeps telling me to retire, but who'd replace me? Fennel? The boy can barely remember which end of the badge faces up.",
+          options: [{ text: "He tries his best." }],
+        },
+        {
+          id: 'careful',
+          text: "You'd better be. This island has more secrets than it has sand.",
+          options: [{ text: "Noted." }],
+        },
+      ],
+      Afternoon: [
+        {
+          id: 'start',
+          text: "Afternoon already? I've been staring at this paperwork so long the words are swimming. Elia says I need glasses.",
+          options: [{ text: "Maybe she's right." }],
+        },
+      ],
+      Night: [
+        {
+          id: 'start',
+          text: "Night watch. The prisoners are quiet—I let Tallo and Lerr play cards after sundown. Don't tell anyone.",
+          options: [{ text: "Your secret is safe." }],
+        },
+      ],
+    },
+  },
+  {
+    id: 'mallow',
+    name: 'Mallow',
+    species: 'Cow',
+    baseCostume: 'Barista',
+    description: 'A calm, nurturing cow in a brown apron with a green coffee-stained front. Black patches dot her white face, and small curved horns frame warm eyes.',
+    spriteUrl: saltyImg,
+    characterParts: MALLOW_PARTS,
+    position: { x: 4, y: 4 },
+    info: {
+      secret: 'She waters down the premium beans to stretch supply.',
+      darkSecret: 'She overheard the King discussing secret shipments but says nothing to protect her business.',
+      rumor: 'Best coffee on the island.',
+      falseRumor: 'She overcharges tourists.',
+    },
+    dialogue: {
+      Morning: [
+        {
+          id: 'start',
+          text: "Morning, dear. Sit anywhere you like. First cup is on the house during festival week.",
+          options: [
+            { text: "What's the talk of the town?", nextNodeId: 'gossip' },
+            { text: "Just coffee, please.", nextNodeId: 'coffee' },
+          ],
+        },
+        {
+          id: 'gossip',
+          text: "Oh, where to begin? Bramm and that apprentice boy from the tailor shop have been inseparable. The King's been unusually tense. And Fennel gave a warning to a lamppost yesterday.",
+          options: [
+            { text: "What about the docks?", nextNodeId: 'docks_gossip', condition: (s) => s.flags.has('king_task_docks') },
+            { text: "Sounds like a normal day.", nextNodeId: 'normal' },
+          ],
+        },
+        {
+          id: 'docks_gossip',
+          text: "The docks? Dagan's been working double shifts. His wife Sera comes in worried every morning. Says he barely sleeps. Whatever he's moving, it's got the King's attention.",
+          options: [{ text: "Interesting. Thank you, Mallow." }],
+        },
+        {
+          id: 'coffee',
+          text: "One house special coming up. I use a secret blend—well, it's not that secret. Mostly it's just strong.",
+          options: [{ text: "Perfect." }],
+        },
+        {
+          id: 'normal',
+          text: "Normal for Kraed Maas, maybe. This island's version of normal would make mainland folk faint.",
+          options: [{ text: "Fair point." }],
+        },
+      ],
+      Afternoon: [
+        {
+          id: 'start',
+          text: "Afternoon rush! Everyone needs a pick-me-up. Even the King sends his maid Elara for a cup.",
+          options: [{ text: "Popular place." }],
+        },
+      ],
+      Night: [
+        {
+          id: 'start',
+          text: "Last call. The night crowd is different—quieter, more honest. People tell me things over late coffee they'd never say in daylight.",
+          options: [{ text: "What kind of things?" }],
         },
       ],
     },
