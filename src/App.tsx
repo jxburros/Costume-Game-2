@@ -74,6 +74,8 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
   const widthPx = size.width * tileSize;
   const heightPx = size.height * tileSize;
 
+  const isCastle = style === 'castle';
+
   return (
     <>
       {/* Building body */}
@@ -88,13 +90,41 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
       >
         {/* Roof */}
         <div className={`building-roof building-roof-${style}`} />
+
+        {/* Castle towers */}
+        {isCastle && (
+          <>
+            <div className="castle-tower castle-tower-left" />
+            <div className="castle-tower castle-tower-right" />
+            <div className="castle-battlement" />
+          </>
+        )}
+
         {/* Windows */}
-        <div className="building-windows">
-          <div className="building-window" />
-          <div className="building-window" />
+        <div className={`building-windows ${isCastle ? 'building-windows-castle' : ''}`}>
+          {isCastle ? (
+            <>
+              <div className="building-window castle-window" />
+              <div className="castle-emblem" />
+              <div className="building-window castle-window" />
+            </>
+          ) : (
+            <>
+              <div className={`building-window building-window-${style}`} />
+              <div className={`building-window building-window-${style}`} />
+            </>
+          )}
         </div>
+
+        {/* Style-specific details */}
+        {style === 'tailor' && <div className="tailor-awning" />}
+        {style === 'tailor' && <div className="tailor-fabric-swatches" />}
+        {style === 'sheriff' && <div className="sheriff-badge-emblem" />}
+        {style === 'coffee' && <div className="coffee-steam" />}
+        {style === 'coffee' && <div className="coffee-awning" />}
+
         {/* Sign */}
-        <div className="building-sign">
+        <div className={`building-sign building-sign-${style}`}>
           <span>{name}</span>
         </div>
       </div>
@@ -109,7 +139,8 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
         }}
       >
         <div className={`building-door building-door-${style}`}>
-          <div className="door-handle" />
+          <div className={`door-handle ${isCastle ? 'door-handle-castle' : ''}`} />
+          {isCastle && <div className="door-handle door-handle-castle" style={{ left: 4 }} />}
         </div>
       </div>
     </>
@@ -122,6 +153,7 @@ function getGroundClass(locationId: string): string {
     case 'town_square': return 'world-ground';
     case 'bakery': return 'world-ground-bakery';
     case 'docks': return 'world-ground-docks';
+    case 'castle_grounds': return 'world-ground-castle';
     default: return 'world-ground';
   }
 }

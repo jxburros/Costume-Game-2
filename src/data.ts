@@ -32,6 +32,7 @@ export const LOCATIONS: Location[] = [
       { locationId: 'tailor_shop', x: 2, y: 11, label: 'Enter Tailor Shop' },
       { locationId: 'sheriff_office', x: 10, y: 11, label: 'Enter Sheriff Office' },
       { locationId: 'coffee_shop', x: 18, y: 11, label: 'Enter Coffee Shop' },
+      { locationId: 'castle_grounds', x: 11, y: 3, label: 'Enter Castle Grounds' },
     ],
     bounds: { width: 22, height: 20 },
     buildings: [
@@ -60,7 +61,7 @@ export const LOCATIONS: Location[] = [
         size: { width: 3, height: 2 },
         doorPosition: { x: 2, y: 11 },
         targetLocationId: 'tailor_shop',
-        style: 'house',
+        style: 'tailor',
       },
       {
         id: 'sheriff_building',
@@ -69,7 +70,7 @@ export const LOCATIONS: Location[] = [
         size: { width: 3, height: 2 },
         doorPosition: { x: 10, y: 11 },
         targetLocationId: 'sheriff_office',
-        style: 'house',
+        style: 'sheriff',
       },
       {
         id: 'coffee_building',
@@ -78,7 +79,16 @@ export const LOCATIONS: Location[] = [
         size: { width: 3, height: 2 },
         doorPosition: { x: 18, y: 11 },
         targetLocationId: 'coffee_shop',
-        style: 'house',
+        style: 'coffee',
+      },
+      {
+        id: 'castle_building',
+        name: 'Castle Kraed',
+        position: { x: 9, y: 0 },
+        size: { width: 5, height: 3 },
+        doorPosition: { x: 11, y: 3 },
+        targetLocationId: 'castle_grounds',
+        style: 'castle',
       },
     ],
     decorations: [
@@ -86,7 +96,6 @@ export const LOCATIONS: Location[] = [
       { id: 'tree_1', type: 'tree', position: { x: 0, y: 0 } },
       { id: 'tree_2', type: 'tree', position: { x: 1, y: 0 } },
       { id: 'tree_3', type: 'tree', position: { x: 7, y: 0 } },
-      { id: 'tree_4', type: 'tree', position: { x: 13, y: 0 } },
       { id: 'tree_5', type: 'tree', position: { x: 20, y: 0 } },
       { id: 'tree_6', type: 'tree', position: { x: 21, y: 0 } },
       // Trees along west side
@@ -122,8 +131,8 @@ export const LOCATIONS: Location[] = [
       // Flowers scattered around
       { id: 'flower_1', type: 'flower', position: { x: 2, y: 5 } },
       { id: 'flower_2', type: 'flower', position: { x: 19, y: 5 } },
-      { id: 'flower_3', type: 'flower', position: { x: 8, y: 0 } },
-      { id: 'flower_4', type: 'flower', position: { x: 12, y: 0 } },
+      { id: 'flower_3', type: 'flower', position: { x: 8, y: 2 } },
+      { id: 'flower_4', type: 'flower', position: { x: 14, y: 2 } },
       { id: 'flower_5', type: 'flower', position: { x: 4, y: 13 } },
       { id: 'flower_6', type: 'flower', position: { x: 17, y: 13 } },
       { id: 'flower_7', type: 'flower', position: { x: 9, y: 16 } },
@@ -160,8 +169,12 @@ export const LOCATIONS: Location[] = [
       // Building walls (coffee: 3x2 at 17,9)
       { x: 17, y: 9 }, { x: 18, y: 9 }, { x: 19, y: 9 },
       { x: 17, y: 10 }, { x: 18, y: 10 }, { x: 19, y: 10 },
-      // Trees (northern edge)
-      { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 7, y: 0 }, { x: 13, y: 0 },
+      // Building walls (castle: 5x3 at 9,0)
+      { x: 9, y: 0 }, { x: 10, y: 0 }, { x: 11, y: 0 }, { x: 12, y: 0 }, { x: 13, y: 0 },
+      { x: 9, y: 1 }, { x: 10, y: 1 }, { x: 11, y: 1 }, { x: 12, y: 1 }, { x: 13, y: 1 },
+      { x: 9, y: 2 }, { x: 10, y: 2 }, { x: 11, y: 2 }, { x: 12, y: 2 }, { x: 13, y: 2 },
+      // Trees (northern edge) - removed x:13 since castle is there now
+      { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 7, y: 0 },
       { x: 20, y: 0 }, { x: 21, y: 0 },
       // Trees (west side)
       { x: 0, y: 4 }, { x: 0, y: 7 }, { x: 0, y: 13 },
@@ -285,6 +298,40 @@ export const LOCATIONS: Location[] = [
       { x: 0, y: 1 }, { x: 1, y: 1 }, // counter barrels
       { x: 7, y: 7 }, // supply crate
       { x: 3, y: 2 }, { x: 5, y: 2 }, // benches/tables
+    ],
+  },
+  {
+    id: 'castle_grounds',
+    name: 'Castle Kraed',
+    description: 'The grand courtyard of Castle Kraed. Stone walls rise high, draped with royal purple banners. A fountain glistens in the center.',
+    npcs: [],
+    connections: [
+      { locationId: 'town_square', x: 5, y: 9, label: 'Exit to Town Square', isDoor: true }
+    ],
+    bounds: { width: 11, height: 10 },
+    decorations: [
+      { id: 'lamp_1', type: 'lamp', position: { x: 1, y: 1 } },
+      { id: 'lamp_2', type: 'lamp', position: { x: 9, y: 1 } },
+      { id: 'lamp_3', type: 'lamp', position: { x: 1, y: 7 } },
+      { id: 'lamp_4', type: 'lamp', position: { x: 9, y: 7 } },
+      { id: 'flower_1', type: 'flower', position: { x: 3, y: 3 } },
+      { id: 'flower_2', type: 'flower', position: { x: 7, y: 3 } },
+      { id: 'flower_3', type: 'flower', position: { x: 3, y: 7 } },
+      { id: 'flower_4', type: 'flower', position: { x: 7, y: 7 } },
+      { id: 'bench_1', type: 'bench', position: { x: 4, y: 6 } },
+      { id: 'bench_2', type: 'bench', position: { x: 6, y: 6 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 0, y: 0 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 10, y: 0 } },
+      { id: 'crate_1', type: 'crate', position: { x: 0, y: 9 } },
+      { id: 'crate_2', type: 'crate', position: { x: 10, y: 9 } },
+    ],
+    obstacles: [
+      { x: 1, y: 1 }, { x: 9, y: 1 }, // lamps
+      { x: 1, y: 7 }, { x: 9, y: 7 }, // lamps
+      { x: 5, y: 4 }, // fountain center
+      { x: 4, y: 6 }, { x: 6, y: 6 }, // benches
+      { x: 0, y: 0 }, { x: 10, y: 0 }, // barrels
+      { x: 0, y: 9 }, { x: 10, y: 9 }, // crates
     ],
   },
 ];

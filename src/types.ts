@@ -138,7 +138,7 @@ export interface Building {
   /** Location this building leads to */
   targetLocationId: string;
   /** Visual style */
-  style: 'bakery' | 'warehouse' | 'house';
+  style: 'bakery' | 'warehouse' | 'house' | 'tailor' | 'sheriff' | 'coffee' | 'castle';
 }
 
 export interface Connection {

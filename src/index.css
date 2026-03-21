@@ -934,6 +934,403 @@
   border-color: #2a1a0a;
 }
 
+/* ─── Tailor building ─── */
+.building-tailor {
+  background: linear-gradient(180deg, #b48ec4 0%, #9668a8 60%, #7a508c 100%);
+  border: 2px solid #5a3870;
+  border-bottom: none;
+  box-shadow:
+    inset 0 -8px 16px rgba(0, 0, 0, 0.15),
+    inset 4px 0 8px rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.building-roof-tailor {
+  background: linear-gradient(180deg, #e8a0c8 0%, #c87aa8 100%);
+  border: 2px solid #a85888;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.building-window-tailor {
+  background: linear-gradient(135deg, rgba(255, 200, 240, 0.5) 0%, rgba(200, 140, 200, 0.3) 100%);
+  border-color: rgba(90, 56, 112, 0.5);
+  box-shadow:
+    0 0 12px rgba(255, 200, 240, 0.25),
+    inset 0 0 8px rgba(255, 200, 240, 0.15);
+}
+
+.building-door-tailor {
+  background: linear-gradient(180deg, #6a3880 0%, #5a2870 100%);
+  border-color: #4a1860;
+}
+
+.tailor-awning {
+  position: absolute;
+  bottom: -6px;
+  left: 8px;
+  right: 8px;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    #e8a0c8 0px,
+    #e8a0c8 8px,
+    #f5c8e0 8px,
+    #f5c8e0 16px
+  );
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #a85888;
+  border-top: none;
+}
+
+.tailor-fabric-swatches {
+  position: absolute;
+  top: 8px;
+  right: 4px;
+  width: 8px;
+  height: 24px;
+  background: linear-gradient(180deg, #e85050 0%, #e85050 33%, #50a0e8 33%, #50a0e8 66%, #e8c850 66%, #e8c850 100%);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.building-sign-tailor {
+  background: linear-gradient(180deg, #5a2870 0%, #4a1860 100%);
+  border-color: #3a0850;
+}
+
+/* ─── Sheriff building ─── */
+.building-sheriff {
+  background: linear-gradient(180deg, #c4a882 0%, #a88860 60%, #8c7048 100%);
+  border: 2px solid #6a5030;
+  border-bottom: none;
+  box-shadow:
+    inset 0 -8px 16px rgba(0, 0, 0, 0.15),
+    inset 4px 0 8px rgba(255, 255, 255, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.building-roof-sheriff {
+  background: linear-gradient(180deg, #5a4a3a 0%, #4a3a28 100%);
+  border: 2px solid #3a2a18;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.building-window-sheriff {
+  background: linear-gradient(135deg, rgba(245, 220, 160, 0.5) 0%, rgba(200, 170, 100, 0.3) 100%);
+  border-color: rgba(106, 80, 48, 0.5);
+  box-shadow:
+    0 0 8px rgba(245, 220, 160, 0.2),
+    inset 0 0 8px rgba(245, 220, 160, 0.15);
+}
+
+/* Iron bars on sheriff windows */
+.building-window-sheriff::after {
+  height: 0;
+  border: none;
+  top: 0;
+  bottom: 0;
+  left: 33%;
+  width: 2px;
+  height: 100%;
+  background: rgba(60, 60, 60, 0.6);
+}
+
+.building-window-sheriff::before {
+  width: 0;
+  border: none;
+  left: 0;
+  right: 0;
+  top: 33%;
+  height: 2px;
+  width: 100%;
+  background: rgba(60, 60, 60, 0.6);
+}
+
+.building-door-sheriff {
+  background: linear-gradient(180deg, #5a4a30 0%, #4a3a20 100%);
+  border-color: #3a2a10;
+}
+
+.sheriff-badge-emblem {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #d4a54a 30%, #c49030 70%, transparent 71%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.building-sign-sheriff {
+  background: linear-gradient(180deg, #4a3a20 0%, #3a2a10 100%);
+  border-color: #2a1a08;
+}
+
+/* ─── Coffee building ─── */
+.building-coffee {
+  background: linear-gradient(180deg, #8c6844 0%, #704c2c 60%, #583818 100%);
+  border: 2px solid #402810;
+  border-bottom: none;
+  box-shadow:
+    inset 0 -8px 16px rgba(0, 0, 0, 0.18),
+    inset 4px 0 8px rgba(255, 255, 255, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.building-roof-coffee {
+  background: linear-gradient(180deg, #a0482a 0%, #803820 100%);
+  border: 2px solid #602818;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.building-window-coffee {
+  background: linear-gradient(135deg, rgba(245, 200, 120, 0.6) 0%, rgba(200, 150, 60, 0.3) 100%);
+  border-color: rgba(64, 40, 16, 0.5);
+  box-shadow:
+    0 0 14px rgba(245, 200, 120, 0.3),
+    inset 0 0 10px rgba(245, 200, 120, 0.2);
+}
+
+.building-door-coffee {
+  background: linear-gradient(180deg, #5a3818 0%, #4a2810 100%);
+  border-color: #3a1808;
+}
+
+.coffee-awning {
+  position: absolute;
+  bottom: -6px;
+  left: 8px;
+  right: 8px;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    #a0482a 0px,
+    #a0482a 8px,
+    #c0583a 8px,
+    #c0583a 16px
+  );
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #602818;
+  border-top: none;
+}
+
+.coffee-steam {
+  position: absolute;
+  top: -24px;
+  right: 12px;
+  width: 20px;
+  height: 16px;
+  opacity: 0.5;
+  animation: steam-rise 2.5s ease-in-out infinite;
+}
+
+.coffee-steam::before,
+.coffee-steam::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+}
+
+.coffee-steam::before {
+  left: 0;
+  animation: steam-wiggle 1.8s ease-in-out infinite;
+}
+
+.coffee-steam::after {
+  left: 10px;
+  top: 4px;
+  animation: steam-wiggle 1.8s ease-in-out infinite 0.4s;
+}
+
+@keyframes steam-rise {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 0.6; transform: translateY(-4px); }
+}
+
+@keyframes steam-wiggle {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(2px); }
+}
+
+.building-sign-coffee {
+  background: linear-gradient(180deg, #3a2010 0%, #2a1008 100%);
+  border-color: #1a0800;
+}
+
+/* ─── Castle building ─── */
+.building-castle {
+  background: linear-gradient(180deg, #8090a0 0%, #607080 40%, #506070 70%, #405060 100%);
+  border: 3px solid #384858;
+  border-bottom: none;
+  box-shadow:
+    inset 0 -12px 20px rgba(0, 0, 0, 0.2),
+    inset 4px 0 12px rgba(255, 255, 255, 0.06),
+    0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.building-roof-castle {
+  background: linear-gradient(180deg, #384858 0%, #283848 100%);
+  border: 2px solid #182838;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  height: 16px;
+  top: -14px;
+}
+
+.castle-tower {
+  position: absolute;
+  width: 28px;
+  height: 40px;
+  background: linear-gradient(180deg, #7888a0 0%, #586878 100%);
+  border: 2px solid #384858;
+  top: -38px;
+  z-index: 1;
+}
+
+.castle-tower::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -4px;
+  right: -4px;
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    #384858 0px,
+    #384858 6px,
+    transparent 6px,
+    transparent 10px
+  );
+  border: 1px solid #283848;
+}
+
+.castle-tower::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 12px;
+  background: linear-gradient(135deg, rgba(245, 197, 66, 0.5) 0%, rgba(245, 197, 66, 0.2) 100%);
+  border: 1px solid rgba(56, 72, 88, 0.5);
+  border-radius: 4px 4px 0 0;
+}
+
+.castle-tower-left {
+  left: -14px;
+}
+
+.castle-tower-right {
+  right: -14px;
+}
+
+.castle-battlement {
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  right: 20px;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    #384858 0px,
+    #384858 8px,
+    transparent 8px,
+    transparent 14px
+  );
+}
+
+.building-windows-castle {
+  padding-top: 16px;
+  gap: 8px;
+}
+
+.castle-window {
+  width: 20px;
+  height: 32px;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(135deg, rgba(245, 197, 66, 0.4) 0%, rgba(200, 150, 60, 0.2) 100%);
+  border: 2px solid rgba(56, 72, 88, 0.6);
+  box-shadow:
+    0 0 10px rgba(245, 197, 66, 0.2),
+    inset 0 0 6px rgba(245, 197, 66, 0.15);
+}
+
+.castle-window::after {
+  top: 0;
+  height: 100%;
+}
+
+.castle-window::before {
+  left: 0;
+  width: 100%;
+}
+
+.castle-emblem {
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, #d4a54a 0%, #b08030 60%, transparent 62%);
+  border: 2px solid #8a6020;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(212, 165, 74, 0.4);
+  position: relative;
+}
+
+.castle-emblem::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #8a6020;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.building-door-castle {
+  width: 38px;
+  height: 48px;
+  background: linear-gradient(180deg, #4a3a2a 0%, #3a2a18 100%);
+  border-color: #2a1a08;
+  border-radius: 12px 12px 0 0;
+}
+
+.door-handle-castle {
+  width: 6px;
+  height: 6px;
+  top: 55%;
+}
+
+.building-sign-castle {
+  background: linear-gradient(180deg, #384858 0%, #283848 100%);
+  border-color: #182838;
+}
+
+/* ─── Castle Grounds floor ─── */
+.world-ground-castle {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 63px,
+      rgba(0, 0, 0, 0.06) 63px,
+      rgba(0, 0, 0, 0.06) 64px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 63px,
+      rgba(0, 0, 0, 0.06) 63px,
+      rgba(0, 0, 0, 0.06) 64px
+    ),
+    linear-gradient(135deg, #7a8890 0%, #687880 50%, #606e78 100%);
+}
+
 .door-handle {
   position: absolute;
   right: 4px;
