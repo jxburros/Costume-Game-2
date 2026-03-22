@@ -997,6 +997,169 @@
   border-color: #2a1a0a;
 }
 
+/* ─── Bakery window ─── */
+.building-window-bakery {
+  background: linear-gradient(135deg, rgba(255, 210, 150, 0.65) 0%, rgba(245, 180, 80, 0.35) 100%);
+  border-color: rgba(107, 74, 48, 0.55);
+  box-shadow:
+    0 0 14px rgba(255, 200, 100, 0.35),
+    inset 0 0 10px rgba(255, 200, 100, 0.2);
+}
+
+/* ─── Bakery chimney smoke ─── */
+.bakery-chimney {
+  position: absolute;
+  top: -38px;
+  right: 18px;
+  width: 12px;
+  height: 22px;
+  background: linear-gradient(180deg, #8b6340 0%, #6b4a30 100%);
+  border: 2px solid #4a2a10;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+}
+
+.bakery-chimney::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 11px;
+  border: 2px solid rgba(200, 180, 160, 0.5);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+  animation: chimney-puff 3.5s ease-in-out infinite;
+}
+
+.bakery-chimney::after {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 9px;
+  border: 2px solid rgba(180, 160, 140, 0.38);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+  animation: chimney-puff 3.5s ease-in-out infinite 0.9s;
+}
+
+@keyframes chimney-puff {
+  0%, 100% { opacity: 0.35; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.65; transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ─── Bakery awning ─── */
+.bakery-awning {
+  position: absolute;
+  bottom: -6px;
+  left: 8px;
+  right: 8px;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    #c44a3a 0px,
+    #c44a3a 8px,
+    #e07050 8px,
+    #e07050 16px
+  );
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #8a2a1a;
+  border-top: none;
+}
+
+/* ─── Warehouse window (industrial) ─── */
+.building-window-warehouse {
+  background: linear-gradient(135deg, rgba(180, 200, 220, 0.4) 0%, rgba(140, 160, 180, 0.2) 100%);
+  border-color: rgba(58, 72, 72, 0.65);
+  box-shadow:
+    0 0 6px rgba(160, 190, 210, 0.15),
+    inset 0 0 6px rgba(160, 190, 210, 0.1);
+}
+
+/* Industrial crosshatch bars on warehouse windows */
+.building-window-warehouse::after {
+  border: none;
+  top: 0;
+  bottom: 0;
+  left: 33%;
+  width: 2px;
+  height: 100%;
+  background: rgba(50, 60, 60, 0.55);
+}
+
+.building-window-warehouse::before {
+  border: none;
+  left: 0;
+  right: 0;
+  top: 33%;
+  height: 2px;
+  width: 100%;
+  background: rgba(50, 60, 60, 0.55);
+}
+
+/* ─── Warehouse loading beam ─── */
+.warehouse-loading-beam {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 8px;
+  background: linear-gradient(180deg, #5a4a3a 0%, #4a3a28 100%);
+  border: 2px solid #3a2a18;
+  border-radius: 2px 2px 0 0;
+}
+
+.warehouse-loading-beam::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 12px;
+  background: rgba(120, 100, 80, 0.65);
+}
+
+/* ─── Warehouse anchor emblem ─── */
+.warehouse-anchor-emblem {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 20px;
+}
+
+/* Vertical stem of anchor */
+.warehouse-anchor-emblem::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 3px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 14px;
+  background: rgba(160, 180, 200, 0.65);
+  border-radius: 1px;
+}
+
+/* Horizontal crossbar of anchor */
+.warehouse-anchor-emblem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 100%;
+  height: 2px;
+  background: rgba(160, 180, 200, 0.65);
+  border-radius: 1px;
+}
+
 /* ─── Tailor building ─── */
 .building-tailor {
   background: linear-gradient(180deg, #b48ec4 0%, #9668a8 60%, #7a508c 100%);
