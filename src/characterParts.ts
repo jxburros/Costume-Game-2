@@ -3296,6 +3296,840 @@ export const BRISK_PARTS: CharacterParts = {
   scale: 0.92,
 };
 
+// ─── Brune (Boar - Chef costume) ───
+export const BRUNE_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 55%, #7a6a5a 0%, #5a4a3a 60%, #3a2a1a 100%)',
+    w: 26, h: 24, radius: '50% 50% 45% 45%',
+    shadow: '0 2px 5px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#5a4a3a', w: 8, h: 6, top: -2, left: 0, radius: '50%' },
+      { bg: '#5a4a3a', w: 8, h: 6, top: -2, left: 18, radius: '50%' },
+      { bg: '#9a8a78', w: 16, h: 10, top: 12, left: 5, radius: '40%' },
+      { bg: '#f0ece0', w: 5, h: 8, top: 13, left: 6, radius: '30% 30% 50% 50%' },
+      { bg: '#f0ece0', w: 5, h: 8, top: 13, left: 15, radius: '30% 30% 50% 50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 6, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 16, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 60%, #d8d4d0 100%)',
+    w: 22, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#d4a54a', w: 3, h: 3, top: 3, left: 10, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 8, left: 10, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 13, left: 10, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 9, h: 15, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#7a6a5a', w: 9, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 9, h: 15, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#7a6a5a', w: 9, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #3a2a1a 0%, #2a1a0a 100%)', w: 9, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 10, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #3a2a1a 0%, #2a1a0a 100%)', w: 9, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 10, h: 4, top: 6, left: 0, radius: '3px' }] },
+  headAccessory: { bg: 'linear-gradient(180deg, #fff 0%, #f0ece8 100%)', w: 24, h: 16, radius: '50% 50% 4px 4px', shadow: '0 2px 4px rgba(0,0,0,0.12)', offsetY: 6, details: [{ bg: '#fff', w: 22, h: 12, top: -8, left: 1, radius: '50%' }] },
+  scale: 1.05,
+};
+
+// ─── Pelli (Deer - Host costume) ───
+export const PELLI_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #c4956a 0%, #a07848 60%, #8a6438 100%)',
+    w: 22, h: 20, radius: '48% 48% 45% 45%',
+    shadow: '0 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#b08858', w: 7, h: 6, top: -3, left: -1, radius: '50% 30% 10% 50%' },
+      { bg: '#b08858', w: 7, h: 6, top: -3, left: 16, radius: '30% 50% 50% 10%' },
+      { bg: '#e0b898', w: 4, h: 3, top: -1, left: 1, radius: '50%' },
+      { bg: '#e0b898', w: 4, h: 3, top: -1, left: 17, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 5, top: 7, left: 4, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 5, top: 7, left: 14, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 5, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 15, radius: '50%' },
+      { bg: '#5a3a2a', w: 5, h: 3, top: 13, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #2a3a5a 0%, #1a2a4a 60%, #0a1a3a 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#f8f4f0', w: 5, h: 16, top: 2, left: 7, radius: '2px' },
+      { bg: '#d4a54a', w: 7, h: 2, top: 6, left: 6, radius: '3px' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 2, left: 13, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #2a3a5a 0%, #1a2a4a 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#c4956a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #2a3a5a 0%, #1a2a4a 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#c4956a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #0a1a3a 0%, #051028 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #0a1a3a 0%, #051028 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+};
+
+// ─── Nira (Otter - Server costume) ───
+export const NIRA_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #8a6040 0%, #6a4828 60%, #4a3018 100%)',
+    w: 22, h: 20, radius: '50% 50% 44% 44%',
+    shadow: '0 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#6a4828', w: 6, h: 5, top: -2, left: 0, radius: '50%' },
+      { bg: '#6a4828', w: 6, h: 5, top: -2, left: 16, radius: '50%' },
+      { bg: '#d0a878', w: 10, h: 8, top: 10, left: 6, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 13, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 14, radius: '50%' },
+      { bg: '#3a2010', w: 4, h: 3, top: 14, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 60%, #d8d4d0 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#2a2a2a', w: 5, h: 14, top: 3, left: 7, radius: '2px' },
+      { bg: '#d4a54a', w: 5, h: 3, top: 5, left: 7, radius: '3px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#8a6040', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#8a6040', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+};
+
+// ─── Drem (Goat - Waiter costume) ───
+export const DREM_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #e0d8c8 0%, #c0b8a8 60%, #a09888 100%)',
+    w: 22, h: 20, radius: '50% 50% 44% 44%',
+    shadow: '0 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#c8c0b0', w: 5, h: 8, top: -4, left: 0, radius: '50% 20% 10% 50%' },
+      { bg: '#c8c0b0', w: 5, h: 8, top: -4, left: 17, radius: '20% 50% 50% 10%' },
+      { bg: '#7a6a5a', w: 3, h: 5, top: -5, left: 5, radius: '50% 50% 20% 20%' },
+      { bg: '#7a6a5a', w: 3, h: 5, top: -5, left: 14, radius: '50% 50% 20% 20%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 13, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 14, radius: '50%' },
+      { bg: '#7a6858', w: 4, h: 3, top: 13, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 60%, #050505 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#f8f4f0', w: 5, h: 14, top: 3, left: 7, radius: '2px' },
+      { bg: '#2a2a2a', w: 7, h: 3, top: 6, left: 6, radius: '4px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#e0d8c8', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#e0d8c8', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+  scale: 0.93,
+};
+
+// ─── Soot (Cat - Chef costume) ───
+export const SOOT_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #3a3a3a 0%, #2a2a2a 60%, #1a1a1a 100%)',
+    w: 22, h: 20, radius: '50% 50% 44% 44%',
+    shadow: '0 2px 4px rgba(0,0,0,0.25)',
+    details: [
+      { bg: '#2a2a2a', w: 6, h: 7, top: -4, left: 0, radius: '50% 20% 10% 50%' },
+      { bg: '#2a2a2a', w: 6, h: 7, top: -4, left: 16, radius: '20% 50% 50% 10%' },
+      { bg: '#5a9090', w: 5, h: 5, top: 7, left: 4, radius: '50%' },
+      { bg: '#5a9090', w: 5, h: 5, top: 7, left: 13, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 5, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 14, radius: '50%' },
+      { bg: '#1a1a1a', w: 4, h: 3, top: 13, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 60%, #d8d4d0 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#d4a54a', w: 3, h: 3, top: 3, left: 8, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 8, left: 8, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 13, left: 8, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#3a3a3a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#3a3a3a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+  headAccessory: { bg: 'linear-gradient(180deg, #fff 0%, #f0ece8 100%)', w: 22, h: 14, radius: '50% 50% 4px 4px', shadow: '0 2px 4px rgba(0,0,0,0.1)', offsetY: 5, details: [{ bg: '#fff', w: 20, h: 10, top: -6, left: 1, radius: '50%' }] },
+};
+
+// ─── Elen (Swan - Host costume) ───
+export const ELEN_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #f8f4f0 0%, #e8e4e0 60%, #d8d4d0 100%)',
+    w: 20, h: 22, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.12)',
+    details: [
+      { bg: '#e8e4e0', w: 4, h: 4, top: -3, left: 0, radius: '50%' },
+      { bg: '#e8e4e0', w: 4, h: 4, top: -3, left: 16, radius: '50%' },
+      { bg: '#3a3a2a', w: 4, h: 4, top: 8, left: 5, radius: '50%' },
+      { bg: '#3a3a2a', w: 4, h: 4, top: 8, left: 11, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 8, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 8, left: 12, radius: '50%' },
+      { bg: '#e8a020', w: 5, h: 4, top: 14, left: 8, radius: '0 0 50% 50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 60%, #d8d4d0 100%)',
+    w: 16, h: 22, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.1)',
+    details: [
+      { bg: '#d4a54a', w: 8, h: 2, top: 6, left: 4, radius: '3px' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 2, left: 7, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 6, h: 16, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.1)', details: [{ bg: '#e8e4e0', w: 6, h: 5, top: 11, left: 0, radius: '2px 2px 6px 6px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 6, h: 16, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.1)', details: [{ bg: '#e8e4e0', w: 6, h: 5, top: 11, left: 0, radius: '2px 2px 6px 6px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 6, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.1)', details: [{ bg: '#e8a020', w: 8, h: 3, top: 7, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #f8f4f0 0%, #e8e4e0 100%)', w: 6, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.1)', details: [{ bg: '#e8a020', w: 8, h: 3, top: 7, left: 0, radius: '3px' }] },
+  scale: 0.9,
+};
+
+// ─── Puffa (Pufferfish - Tourist costume) ───
+export const PUFFA_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #f0d820 0%, #d0b800 60%, #b09800 100%)',
+    w: 28, h: 28, radius: '50%',
+    shadow: '0 3px 6px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#b09800', w: 3, h: 3, top: 3, left: 3, radius: '50%' },
+      { bg: '#b09800', w: 3, h: 3, top: 3, left: 22, radius: '50%' },
+      { bg: '#b09800', w: 3, h: 3, top: 22, left: 3, radius: '50%' },
+      { bg: '#b09800', w: 3, h: 3, top: 22, left: 22, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 5, top: 9, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 5, top: 9, left: 18, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 9, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 9, left: 19, radius: '50%' },
+      { bg: '#8a6820', w: 6, h: 4, top: 18, left: 11, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #f0d820 0%, #d0b800 60%, #b09800 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '1px 2px 5px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#e8e0d0', w: 8, h: 6, top: 4, left: 7, radius: '4px' },
+      { bg: '#c0a000', w: 22, h: 3, top: 10, left: 0, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f0d820 0%, #d0b800 100%)', w: 8, h: 12, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #f0d820 0%, #d0b800 100%)', w: 8, h: 12, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #d0b800 0%, #b09800 100%)', w: 8, h: 9, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #d0b800 0%, #b09800 100%)', w: 8, h: 9, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  headAccessory: { bg: 'linear-gradient(180deg, #e8c820 0%, #c8a800 100%)', w: 32, h: 10, radius: '50% 50% 4px 4px', shadow: '0 2px 4px rgba(0,0,0,0.2)', offsetY: 4, details: [{ bg: '#c8a800', w: 34, h: 3, top: 7, left: -1, radius: '2px' }] },
+  scale: 1.05,
+};
+
+// ─── Puffo (Pufferfish - Tourist costume) ───
+export const PUFFO_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #c8e040 0%, #a0c020 60%, #80a000 100%)',
+    w: 28, h: 28, radius: '50%',
+    shadow: '0 3px 6px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#80a000', w: 3, h: 3, top: 3, left: 3, radius: '50%' },
+      { bg: '#80a000', w: 3, h: 3, top: 3, left: 22, radius: '50%' },
+      { bg: '#80a000', w: 3, h: 3, top: 22, left: 3, radius: '50%' },
+      { bg: '#80a000', w: 3, h: 3, top: 22, left: 22, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 4, top: 9, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 4, top: 9, left: 18, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 9, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 9, left: 19, radius: '50%' },
+      { bg: '#607820', w: 6, h: 4, top: 18, left: 11, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #c8e040 0%, #a0c020 60%, #80a000 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '1px 2px 5px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#f0ece0', w: 8, h: 6, top: 4, left: 7, radius: '4px' },
+      { bg: '#80a000', w: 22, h: 3, top: 10, left: 0, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #c8e040 0%, #a0c020 100%)', w: 8, h: 12, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #c8e040 0%, #a0c020 100%)', w: 8, h: 12, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #a0c020 0%, #80a000 100%)', w: 8, h: 9, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #a0c020 0%, #80a000 100%)', w: 8, h: 9, radius: '4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  scale: 1.0,
+};
+
+// ─── Slom (Sloth - Hotel Clerk costume) ───
+export const SLOM_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #a09080 0%, #807060 60%, #605040 100%)',
+    w: 24, h: 22, radius: '50%',
+    shadow: '0 2px 5px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#907868', w: 7, h: 6, top: -2, left: 0, radius: '50%' },
+      { bg: '#907868', w: 7, h: 6, top: -2, left: 17, radius: '50%' },
+      { bg: '#c0b0a0', w: 14, h: 10, top: 9, left: 5, radius: '50%' },
+      { bg: '#2a2a2a', w: 5, h: 3, top: 8, left: 5, radius: '50%' },
+      { bg: '#2a2a2a', w: 5, h: 3, top: 8, left: 14, radius: '50%' },
+      { bg: '#4a3a2a', w: 5, h: 3, top: 14, left: 10, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #2a3a5a 0%, #1a2a4a 60%, #0a1a3a 100%)',
+    w: 20, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#f8f4f0', w: 5, h: 14, top: 3, left: 8, radius: '2px' },
+      { bg: '#d4a54a', w: 5, h: 2, top: 6, left: 8, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #a09080 0%, #807060 100%)', w: 8, h: 16, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#c0b0a0', w: 8, h: 5, top: 11, left: 0, radius: '3px 3px 5px 5px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #a09080 0%, #807060 100%)', w: 8, h: 16, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#c0b0a0', w: 8, h: 5, top: 11, left: 0, radius: '3px 3px 5px 5px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #0a1a3a 0%, #051028 100%)', w: 8, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 9, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #0a1a3a 0%, #051028 100%)', w: 8, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 9, h: 4, top: 6, left: 0, radius: '3px' }] },
+  headAccessory: { bg: 'linear-gradient(180deg, #2a3a5a 0%, #1a2a4a 100%)', w: 24, h: 8, radius: '4px 4px 2px 2px', shadow: '0 2px 4px rgba(0,0,0,0.2)', offsetY: 5, details: [{ bg: '#d4a54a', w: 4, h: 4, top: 2, left: 10, radius: '50%' }] },
+  scale: 0.95,
+};
+
+// ─── Bell (Raccoon - Bellhop costume) ───
+export const BELL_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #9a9a9a 0%, #7a7a7a 60%, #5a5a5a 100%)',
+    w: 20, h: 18, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#3a3a3a', w: 6, h: 4, top: 5, left: 2, radius: '50%' },
+      { bg: '#3a3a3a', w: 6, h: 4, top: 5, left: 12, radius: '50%' },
+      { bg: '#e0c890', w: 3, h: 3, top: 6, left: 4, radius: '50%' },
+      { bg: '#e0c890', w: 3, h: 3, top: 6, left: 13, radius: '50%' },
+      { bg: '#5a5a5a', w: 5, h: 5, top: -3, left: 1, radius: '50%' },
+      { bg: '#5a5a5a', w: 5, h: 5, top: -3, left: 14, radius: '50%' },
+      { bg: '#2a2a2a', w: 3, h: 2, top: 12, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #8a1010 0%, #6a0808 60%, #4a0505 100%)',
+    w: 17, h: 18, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#d4a54a', w: 3, h: 3, top: 2, left: 7, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 7, left: 7, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 12, left: 7, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #8a1010 0%, #6a0808 100%)', w: 6, h: 13, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#9a9a9a', w: 6, h: 4, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #8a1010 0%, #6a0808 100%)', w: 6, h: 13, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#9a9a9a', w: 6, h: 4, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #4a0505 0%, #2a0303 100%)', w: 6, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 7, h: 4, top: 5, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #4a0505 0%, #2a0303 100%)', w: 6, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 7, h: 4, top: 5, left: 0, radius: '3px' }] },
+  headAccessory: { bg: 'linear-gradient(180deg, #8a1010 0%, #6a0808 100%)', w: 22, h: 6, radius: '4px 4px 2px 2px', shadow: '0 2px 3px rgba(0,0,0,0.2)', offsetY: 4, details: [{ bg: '#d4a54a', w: 3, h: 3, top: 1, left: 10, radius: '50%' }] },
+  scale: 0.88,
+};
+
+// ─── Arra (Spider - Housekeeper costume) ───
+export const ARRA_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #4a4a4a 0%, #2a2a2a 60%, #1a1a1a 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.25)',
+    details: [
+      { bg: '#2a2a2a', w: 3, h: 3, top: 5, left: 2, radius: '50%' },
+      { bg: '#2a2a2a', w: 3, h: 3, top: 5, left: 17, radius: '50%' },
+      { bg: '#c84040', w: 4, h: 3, top: 7, left: 3, radius: '50%' },
+      { bg: '#c84040', w: 4, h: 3, top: 7, left: 8, radius: '50%' },
+      { bg: '#c84040', w: 4, h: 3, top: 7, left: 13, radius: '50%' },
+      { bg: '#1a1a1a', w: 4, h: 3, top: 13, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #2a2a4a 0%, #1a1a3a 60%, #0a0a2a 100%)',
+    w: 18, h: 18, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#f8f4f0', w: 6, h: 14, top: 2, left: 6, radius: '2px' },
+      { bg: '#c0b8b0', w: 4, h: 4, top: 2, left: 2, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%)', w: 6, h: 14, radius: '3px', shadow: '1px 1px 3px rgba(0,0,0,0.2)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%)', w: 6, h: 14, radius: '3px', shadow: '1px 1px 3px rgba(0,0,0,0.2)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)', w: 6, h: 9, radius: '3px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)', w: 6, h: 9, radius: '3px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [] },
+};
+
+// ─── Nilo (Spider - Housekeeper costume, younger) ───
+export const NILO_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #7a7a7a 0%, #5a5a5a 60%, #3a3a3a 100%)',
+    w: 20, h: 18, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#5a5a5a', w: 3, h: 3, top: 4, left: 2, radius: '50%' },
+      { bg: '#5a5a5a', w: 3, h: 3, top: 4, left: 15, radius: '50%' },
+      { bg: '#d08080', w: 3, h: 3, top: 6, left: 3, radius: '50%' },
+      { bg: '#d08080', w: 3, h: 3, top: 6, left: 7, radius: '50%' },
+      { bg: '#d08080', w: 3, h: 3, top: 6, left: 11, radius: '50%' },
+      { bg: '#3a3a3a', w: 3, h: 3, top: 12, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #2a2a4a 0%, #1a1a3a 60%, #0a0a2a 100%)',
+    w: 17, h: 17, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#f8f4f0', w: 5, h: 12, top: 3, left: 6, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #7a7a7a 0%, #5a5a5a 100%)', w: 5, h: 12, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.15)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #7a7a7a 0%, #5a5a5a 100%)', w: 5, h: 12, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.15)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #5a5a5a 0%, #3a3a3a 100%)', w: 5, h: 8, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.15)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #5a5a5a 0%, #3a3a3a 100%)', w: 5, h: 8, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.15)', details: [] },
+  scale: 0.88,
+};
+
+// ─── Kiki (Parrot - Tourist costume) ───
+export const KIKI_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #50c040 0%, #389028 60%, #206010 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#389028', w: 6, h: 5, top: -3, left: 0, radius: '50% 20% 10% 50%' },
+      { bg: '#389028', w: 6, h: 5, top: -3, left: 16, radius: '20% 50% 50% 10%' },
+      { bg: '#e8c020', w: 10, h: 10, top: 5, left: 6, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 5, top: 7, left: 4, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 5, top: 7, left: 13, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 5, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 14, radius: '50%' },
+      { bg: '#c84020', w: 6, h: 5, top: 13, left: 8, radius: '0 50% 50% 0' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #50c040 0%, #389028 60%, #206010 100%)',
+    w: 18, h: 18, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#c84020', w: 10, h: 8, top: 5, left: 4, radius: '50%' },
+      { bg: '#e8c020', w: 8, h: 6, top: 3, left: 5, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #50c040 0%, #389028 100%)', w: 7, h: 13, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#e8c020', w: 7, h: 4, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #50c040 0%, #389028 100%)', w: 7, h: 13, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#e8c020', w: 7, h: 4, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #206010 0%, #104000 100%)', w: 7, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#e8c020', w: 9, h: 3, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #206010 0%, #104000 100%)', w: 7, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#e8c020', w: 9, h: 3, top: 6, left: 0, radius: '3px' }] },
+  scale: 0.93,
+};
+
+// ─── Yoma (Yak - Tourist costume) ───
+export const YOMA_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #7a6040 0%, #5a4028 60%, #3a2818 100%)',
+    w: 26, h: 24, radius: '50%',
+    shadow: '0 2px 5px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#5a4028', w: 8, h: 7, top: -4, left: 0, radius: '50%' },
+      { bg: '#5a4028', w: 8, h: 7, top: -4, left: 18, radius: '50%' },
+      { bg: '#9a8060', w: 14, h: 9, top: 13, left: 6, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 8, left: 6, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 8, left: 16, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 8, left: 7, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 8, left: 17, radius: '50%' },
+      { bg: '#4a3018', w: 5, h: 4, top: 15, left: 11, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #d8c8a0 0%, #c0a880 60%, #a08860 100%)',
+    w: 22, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#8a6a40', w: 8, h: 14, top: 3, left: 7, radius: '3px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #7a6040 0%, #5a4028 100%)', w: 9, h: 15, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#9a8060', w: 9, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #7a6040 0%, #5a4028 100%)', w: 9, h: 15, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#9a8060', w: 9, h: 5, top: 10, left: 0, radius: '3px 3px 5px 5px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #3a2818 0%, #2a1808 100%)', w: 9, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 10, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #3a2818 0%, #2a1808 100%)', w: 9, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 10, h: 4, top: 6, left: 0, radius: '3px' }] },
+  scale: 1.0,
+};
+
+// ─── Lumo (Llama - Tourist costume) ───
+export const LUMO_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 40%, #f0e8d0 0%, #d8d0b8 60%, #c0b898 100%)',
+    w: 20, h: 24, radius: '50% 50% 40% 40%',
+    shadow: '0 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#d8d0b8', w: 5, h: 6, top: -3, left: 0, radius: '50% 20% 10% 50%' },
+      { bg: '#d8d0b8', w: 5, h: 6, top: -3, left: 15, radius: '20% 50% 50% 10%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 4, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 7, left: 12, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 5, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 13, radius: '50%' },
+      { bg: '#a09070', w: 8, h: 8, top: 14, left: 6, radius: '50%' },
+      { bg: '#7a7060', w: 4, h: 3, top: 18, left: 8, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #d8c8a0 0%, #c0a880 60%, #a08860 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#e8e0d0', w: 8, h: 8, top: 2, left: 5, radius: '3px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f0e8d0 0%, #d8d0b8 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#c0b898', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #f0e8d0 0%, #d8d0b8 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#c0b898', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #a08860 0%, #806840 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #a08860 0%, #806840 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+};
+
+// ─── Lemi (Llama - Tourist Son costume) ───
+export const LEMI_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 40%, #f0e8d0 0%, #d8d0b8 60%, #c0b898 100%)',
+    w: 18, h: 22, radius: '50% 50% 40% 40%',
+    shadow: '0 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#d8d0b8', w: 4, h: 5, top: -3, left: 0, radius: '50% 20% 10% 50%' },
+      { bg: '#d8d0b8', w: 4, h: 5, top: -3, left: 14, radius: '20% 50% 50% 10%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 6, left: 3, radius: '50%' },
+      { bg: '#2a2a1a', w: 4, h: 4, top: 6, left: 11, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 6, left: 4, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 6, left: 12, radius: '50%' },
+      { bg: '#a09070', w: 7, h: 7, top: 13, left: 6, radius: '50%' },
+      { bg: '#7a7060', w: 3, h: 3, top: 17, left: 8, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #50a0d0 0%, #3880b0 60%, #206090 100%)',
+    w: 16, h: 18, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#6ab8e8', w: 10, h: 6, top: 4, left: 3, radius: '3px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #f0e8d0 0%, #d8d0b8 100%)', w: 6, h: 12, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#c0b898', w: 6, h: 4, top: 8, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #f0e8d0 0%, #d8d0b8 100%)', w: 6, h: 12, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#c0b898', w: 6, h: 4, top: 8, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #a08860 0%, #806840 100%)', w: 6, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 7, h: 4, top: 5, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #a08860 0%, #806840 100%)', w: 6, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#1a1a1a', w: 7, h: 4, top: 5, left: 0, radius: '3px' }] },
+  scale: 0.88,
+};
+
+// ─── Kito (Orangutan - Eco-Reformer costume) ───
+export const KITO_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #c87038 0%, #a05020 60%, #803010 100%)',
+    w: 26, h: 24, radius: '50%',
+    shadow: '0 2px 5px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#a05020', w: 8, h: 7, top: -4, left: 0, radius: '50%' },
+      { bg: '#a05020', w: 8, h: 7, top: -4, left: 18, radius: '50%' },
+      { bg: '#d8b090', w: 16, h: 12, top: 9, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 5, top: 9, left: 5, radius: '50%' },
+      { bg: '#2a2a1a', w: 5, h: 5, top: 9, left: 16, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 9, left: 6, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 9, left: 17, radius: '50%' },
+      { bg: '#6a3810', w: 6, h: 4, top: 15, left: 10, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #3a7030 0%, #285020 60%, #183010 100%)',
+    w: 22, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#50a040', w: 14, h: 6, top: 4, left: 4, radius: '3px' },
+      { bg: '#d4a54a', w: 4, h: 4, top: 1, left: 2, radius: '2px' },
+      { bg: '#f0f0f0', w: 10, h: 3, top: 5, left: 6, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #c87038 0%, #a05020 100%)', w: 9, h: 16, radius: '4px 4px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [{ bg: '#d8b090', w: 9, h: 5, top: 11, left: 0, radius: '3px 3px 6px 6px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #c87038 0%, #a05020 100%)', w: 9, h: 16, radius: '4px 4px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [{ bg: '#d8b090', w: 9, h: 5, top: 11, left: 0, radius: '3px 3px 6px 6px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #803010 0%, #602008 100%)', w: 9, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [{ bg: '#1a1a1a', w: 10, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #803010 0%, #602008 100%)', w: 9, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [{ bg: '#1a1a1a', w: 10, h: 4, top: 6, left: 0, radius: '3px' }] },
+  scale: 1.05,
+};
+
+// ─── Vara (Ant - Caretaker costume) ───
+export const VARA_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #7a3a20 0%, #5a2810 60%, #3a1808 100%)',
+    w: 16, h: 16, radius: '50%',
+    shadow: '0 2px 3px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#5a2810', w: 3, h: 7, top: -6, left: 4, radius: '2px 2px 1px 1px' },
+      { bg: '#5a2810', w: 3, h: 7, top: -6, left: 9, radius: '2px 2px 1px 1px' },
+      { bg: '#1a1a1a', w: 3, h: 3, top: 6, left: 4, radius: '50%' },
+      { bg: '#1a1a1a', w: 3, h: 3, top: 6, left: 9, radius: '50%' },
+      { bg: '#3a1808', w: 3, h: 2, top: 11, left: 7, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #e8d0a0 0%, #d0b880 60%, #b8a068 100%)',
+    w: 15, h: 16, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 3px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#b88050', w: 15, h: 4, top: 10, left: 0, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 5, h: 12, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [{ bg: '#3a1808', w: 5, h: 3, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 5, h: 12, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [{ bg: '#3a1808', w: 5, h: 3, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 5, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 5, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  scale: 0.87,
+};
+
+// ─── Nib (Ant - Explorer costume) ───
+export const NIB_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #7a3a20 0%, #5a2810 60%, #3a1808 100%)',
+    w: 15, h: 15, radius: '50%',
+    shadow: '0 2px 3px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#5a2810', w: 3, h: 6, top: -5, left: 3, radius: '2px 2px 1px 1px' },
+      { bg: '#5a2810', w: 3, h: 6, top: -5, left: 9, radius: '2px 2px 1px 1px' },
+      { bg: '#1a1a1a', w: 3, h: 3, top: 5, left: 3, radius: '50%' },
+      { bg: '#1a1a1a', w: 3, h: 3, top: 5, left: 9, radius: '50%' },
+      { bg: '#3a1808', w: 3, h: 2, top: 10, left: 6, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #d08030 0%, #b06020 60%, #904010 100%)',
+    w: 14, h: 15, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 3px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#c09060', w: 6, h: 10, top: 3, left: 4, radius: '3px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 5, h: 11, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [{ bg: '#3a1808', w: 5, h: 3, top: 8, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 5, h: 11, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [{ bg: '#3a1808', w: 5, h: 3, top: 8, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 5, h: 8, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 5, h: 8, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  scale: 0.82,
+};
+
+// ─── Tula (Ant - Listener costume) ───
+export const TULA_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #7a3a20 0%, #5a2810 60%, #3a1808 100%)',
+    w: 15, h: 15, radius: '50%',
+    shadow: '0 2px 3px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#5a2810', w: 3, h: 6, top: -5, left: 3, radius: '2px 2px 1px 1px' },
+      { bg: '#5a2810', w: 3, h: 6, top: -5, left: 9, radius: '2px 2px 1px 1px' },
+      { bg: '#1a1a1a', w: 3, h: 3, top: 5, left: 3, radius: '50%' },
+      { bg: '#1a1a1a', w: 3, h: 3, top: 5, left: 9, radius: '50%' },
+      { bg: '#3a1808', w: 3, h: 2, top: 10, left: 6, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #6a5880 0%, #4a3860 60%, #2a1840 100%)',
+    w: 14, h: 15, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 3px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#8a78a0', w: 8, h: 12, top: 2, left: 3, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 4, h: 10, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 4, h: 10, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 4, h: 8, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 4, h: 8, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  scale: 0.82,
+};
+
+// ─── Dext (Ant - Organizer/Logistics costume) ───
+export const DEXT_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #7a3a20 0%, #5a2810 60%, #3a1808 100%)',
+    w: 17, h: 16, radius: '50%',
+    shadow: '0 2px 3px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#5a2810', w: 3, h: 7, top: -6, left: 4, radius: '2px 2px 1px 1px' },
+      { bg: '#5a2810', w: 3, h: 7, top: -6, left: 10, radius: '2px 2px 1px 1px' },
+      { bg: '#1a1a1a', w: 4, h: 4, top: 6, left: 3, radius: '50%' },
+      { bg: '#1a1a1a', w: 4, h: 4, top: 6, left: 10, radius: '50%' },
+      { bg: '#3a1808', w: 4, h: 3, top: 11, left: 7, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #2a4a7a 0%, #1a3a6a 60%, #0a2a5a 100%)',
+    w: 16, h: 17, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 3px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#d4a54a', w: 4, h: 4, top: 1, left: 1, radius: '2px' },
+      { bg: '#f0f0f0', w: 8, h: 10, top: 4, left: 4, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 5, h: 12, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [{ bg: '#3a1808', w: 5, h: 3, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #7a3a20 0%, #5a2810 100%)', w: 5, h: 12, radius: '3px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [{ bg: '#3a1808', w: 5, h: 3, top: 9, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 5, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #5a2810 0%, #3a1808 100%)', w: 5, h: 9, radius: '3px 3px 4px 4px', shadow: '1px 1px 2px rgba(0,0,0,0.12)', details: [] },
+  scale: 0.9,
+};
+
+// ─── Glint (Raccoon - Jeweler costume) ───
+export const GLINT_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #9a9a9a 0%, #7a7a7a 60%, #5a5a5a 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#3a3a3a', w: 7, h: 5, top: 6, left: 2, radius: '50%' },
+      { bg: '#3a3a3a', w: 7, h: 5, top: 6, left: 13, radius: '50%' },
+      { bg: '#f0d060', w: 3, h: 3, top: 7, left: 4, radius: '50%' },
+      { bg: '#f0d060', w: 3, h: 3, top: 7, left: 15, radius: '50%' },
+      { bg: '#5a5a5a', w: 6, h: 6, top: -3, left: 1, radius: '50%' },
+      { bg: '#5a5a5a', w: 6, h: 6, top: -3, left: 15, radius: '50%' },
+      { bg: '#2a2a2a', w: 4, h: 3, top: 13, left: 9, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 1, left: 10, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #1a1a2a 0%, #0a0a1a 60%, #050510 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.22)',
+    details: [
+      { bg: '#d4a54a', w: 18, h: 2, top: 3, left: 0, radius: '1px' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 7, left: 3, radius: '50%' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 7, left: 12, radius: '50%' },
+      { bg: '#c84040', w: 3, h: 3, top: 12, left: 8, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #1a1a2a 0%, #0a0a1a 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [{ bg: '#9a9a9a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #1a1a2a 0%, #0a0a1a 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.18)', details: [{ bg: '#9a9a9a', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #0a0a1a 0%, #050510 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #0a0a1a 0%, #050510 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+};
+
+// ─── Thri (Praying Mantis - Designer costume) ───
+export const THRI_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 40%, #4a8840 0%, #387030 60%, #205820 100%)',
+    w: 16, h: 20, radius: '40% 40% 50% 50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.2)',
+    details: [
+      { bg: '#2a6020', w: 3, h: 8, top: -7, left: 3, radius: '3px 3px 1px 1px' },
+      { bg: '#2a6020', w: 3, h: 8, top: -7, left: 10, radius: '3px 3px 1px 1px' },
+      { bg: '#70c060', w: 6, h: 6, top: 5, left: 2, radius: '50%' },
+      { bg: '#70c060', w: 6, h: 6, top: 5, left: 8, radius: '50%' },
+      { bg: '#1a2a1a', w: 4, h: 4, top: 6, left: 3, radius: '50%' },
+      { bg: '#1a2a1a', w: 4, h: 4, top: 6, left: 9, radius: '50%' },
+      { bg: '#3a6830', w: 3, h: 3, top: 14, left: 7, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #6a5880 0%, #4a3860 60%, #2a1840 100%)',
+    w: 14, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#4a8840', w: 8, h: 14, top: 3, left: 3, radius: '2px' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 1, left: 10, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #4a8840 0%, #387030 100%)', w: 5, h: 16, radius: '3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #4a8840 0%, #387030 100%)', w: 5, h: 16, radius: '3px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #205820 0%, #104010 100%)', w: 5, h: 12, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #205820 0%, #104010 100%)', w: 5, h: 12, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.15)', details: [] },
+  scale: 0.9,
+};
+
+// ─── Shade (Raccoon - Cloaked Merchant costume) ───
+export const SHADE_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #4a4a4a 0%, #2a2a2a 60%, #1a1a1a 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '0 2px 6px rgba(0,0,0,0.35)',
+    details: [
+      { bg: '#1a1a1a', w: 6, h: 5, top: 6, left: 2, radius: '50%' },
+      { bg: '#1a1a1a', w: 6, h: 5, top: 6, left: 14, radius: '50%' },
+      { bg: '#c8a850', w: 3, h: 3, top: 7, left: 4, radius: '50%' },
+      { bg: '#c8a850', w: 3, h: 3, top: 7, left: 15, radius: '50%' },
+      { bg: '#3a3a3a', w: 5, h: 5, top: -3, left: 1, radius: '50%' },
+      { bg: '#3a3a3a', w: 5, h: 5, top: -3, left: 16, radius: '50%' },
+      { bg: '#1a1a1a', w: 3, h: 2, top: 14, left: 10, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 60%, #020202 100%)',
+    w: 20, h: 22, radius: '6px 6px 2px 2px',
+    shadow: '1px 2px 6px rgba(0,0,0,0.35)',
+    details: [
+      { bg: '#1a1a1a', w: 18, h: 20, top: 0, left: 1, radius: '4px' },
+      { bg: '#c8a850', w: 4, h: 4, top: 4, left: 8, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 8, h: 18, radius: '4px 4px 1px 1px', shadow: '1px 1px 4px rgba(0,0,0,0.3)', details: [] },
+  rightArm: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 8, h: 18, radius: '4px 4px 1px 1px', shadow: '1px 1px 4px rgba(0,0,0,0.3)', details: [] },
+  leftLeg: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 8, h: 10, radius: '1px 1px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.25)', details: [] },
+  rightLeg: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 8, h: 10, radius: '1px 1px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.25)', details: [] },
+};
+
+// ─── Hearth (Raccoon - Caretaker / Homemaker costume) ───
+export const HEARTH_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #b0a898 0%, #908880 60%, #706860 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '0 2px 4px rgba(0,0,0,0.18)',
+    details: [
+      { bg: '#3a3a3a', w: 6, h: 5, top: 6, left: 2, radius: '50%' },
+      { bg: '#3a3a3a', w: 6, h: 5, top: 6, left: 14, radius: '50%' },
+      { bg: '#e8d0a0', w: 3, h: 3, top: 7, left: 4, radius: '50%' },
+      { bg: '#e8d0a0', w: 3, h: 3, top: 7, left: 15, radius: '50%' },
+      { bg: '#808080', w: 5, h: 5, top: -3, left: 1, radius: '50%' },
+      { bg: '#808080', w: 5, h: 5, top: -3, left: 16, radius: '50%' },
+      { bg: '#5a5050', w: 4, h: 3, top: 13, left: 9, radius: '50%' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #e8d4a0 0%, #d0bc88 60%, #b8a470 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.15)',
+    details: [
+      { bg: '#f8f4f0', w: 12, h: 14, top: 3, left: 3, radius: '2px 2px 4px 4px' },
+      { bg: '#d4a54a', w: 5, h: 2, top: 5, left: 7, radius: '2px' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #b0a898 0%, #908880 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#b0a898', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #b0a898 0%, #908880 100%)', w: 7, h: 14, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#b0a898', w: 7, h: 4, top: 10, left: 0, radius: '2px 2px 4px 4px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #706860 0%, #504840 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#3a3030', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #706860 0%, #504840 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.12)', details: [{ bg: '#3a3030', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+};
+
+// ─── Corbin (Raven - Landlord costume) ───
+export const CORBIN_PARTS: CharacterParts = {
+  head: {
+    bg: 'radial-gradient(ellipse at 50% 50%, #2a2a2a 0%, #1a1a1a 60%, #0a0a0a 100%)',
+    w: 22, h: 20, radius: '50%',
+    shadow: '0 2px 5px rgba(0,0,0,0.3)',
+    details: [
+      { bg: '#1a1a1a', w: 6, h: 8, top: -5, left: 0, radius: '50% 20% 10% 50%' },
+      { bg: '#1a1a1a', w: 6, h: 8, top: -5, left: 16, radius: '20% 50% 50% 10%' },
+      { bg: '#5a50c0', w: 5, h: 5, top: 7, left: 4, radius: '50%' },
+      { bg: '#5a50c0', w: 5, h: 5, top: 7, left: 13, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 5, radius: '50%' },
+      { bg: '#fff', w: 2, h: 2, top: 7, left: 14, radius: '50%' },
+      { bg: '#2a2a1a', w: 6, h: 5, top: 13, left: 8, radius: '0 50% 50% 0' },
+    ],
+  },
+  body: {
+    bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 60%, #050505 100%)',
+    w: 18, h: 20, radius: '6px 6px 4px 4px',
+    shadow: '1px 2px 4px rgba(0,0,0,0.28)',
+    details: [
+      { bg: '#f8f4f0', w: 4, h: 14, top: 3, left: 7, radius: '2px' },
+      { bg: '#d4a54a', w: 5, h: 2, top: 7, left: 7, radius: '2px' },
+      { bg: '#d4a54a', w: 3, h: 3, top: 2, left: 13, radius: '50%' },
+    ],
+  },
+  leftArm: { bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)', w: 7, h: 15, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.22)', details: [{ bg: '#2a2a2a', w: 7, h: 5, top: 10, left: 0, radius: '2px 2px 5px 5px' }] },
+  rightArm: { bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)', w: 7, h: 15, radius: '4px 4px 3px 3px', shadow: '1px 1px 3px rgba(0,0,0,0.22)', details: [{ bg: '#2a2a2a', w: 7, h: 5, top: 10, left: 0, radius: '2px 2px 5px 5px' }] },
+  leftLeg: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.2)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: -1, radius: '3px' }] },
+  rightLeg: { bg: 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)', w: 7, h: 10, radius: '3px 3px 4px 4px', shadow: '1px 1px 3px rgba(0,0,0,0.2)', details: [{ bg: '#1a1a1a', w: 8, h: 4, top: 6, left: 0, radius: '3px' }] },
+  headAccessory: { bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)', w: 22, h: 13, radius: '4px 4px 2px 2px', shadow: '0 2px 5px rgba(0,0,0,0.35)', offsetY: 5, details: [{ bg: '#0a0a0a', w: 26, h: 3, top: 11, left: -2, radius: '2px' }] },
+};
+
 /** Map of outfit ID → character parts for costume overrides */
 export const COSTUME_PARTS_MAP: Record<string, CharacterParts> = {
   constable_uniform: CONSTABLE_COSTUME_PARTS,
