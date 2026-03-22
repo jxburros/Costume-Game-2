@@ -170,17 +170,22 @@ function getTimeOverlay(phase: Phase): string | null {
 const VIEWPORT_W = 12; // visible tiles wide
 const VIEWPORT_H = 10; // visible tiles tall
 
+function isNearby(ax: number, ay: number, bx: number, by: number, maxDist = 1): boolean {
+  return Math.abs(ax - bx) + Math.abs(ay - by) <= maxDist;
+}
 function WorldView({
   state,
   movePlayer,
   setLocation,
   onInteract,
+  onInteractKey,
   isDialogueActive
 }: {
   state: any;
   movePlayer: any;
   setLocation: any;
   onInteract: (npcId: string) => void;
+  onInteractKey: () => void;
   isDialogueActive: boolean;
 }) {
   const currentLocation = useMemo(() =>
@@ -212,31 +217,16 @@ function WorldView({
     if (e.key === 'ArrowDown' || e.key === 's') tryMove(0, 1);
     if (e.key === 'ArrowLeft' || e.key === 'a') tryMove(-1, 0);
     if (e.key === 'ArrowRight' || e.key === 'd') tryMove(1, 0);
+    if (e.key.toLowerCase() === 'e' || e.key === ' ') {
+      e.preventDefault();
+      onInteractKey();
+    }
   };
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentLocation, state.playerPosition, isDialogueActive]);
-
-  useEffect(() => {
-    const npcAtPos = NPCS.find(n =>
-      currentLocation.npcs.includes(n.id) &&
-      n.position.x === state.playerPosition.x &&
-      n.position.y === state.playerPosition.y
-    );
-    if (npcAtPos) {
-      onInteract(npcAtPos.id);
-    }
-
-    const connectionAtPos = currentLocation.connections.find(c =>
-      c.x === state.playerPosition.x &&
-      c.y === state.playerPosition.y
-    );
-    if (connectionAtPos) {
-      setLocation(connectionAtPos.locationId);
-    }
-  }, [state.playerPosition]);
+  }, [currentLocation, state.playerPosition, isDialogueActive, onInteractKey]);
 
   // Touch swipe handling
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -353,6 +343,9 @@ function WorldView({
           }}
           onClick={() => setLocation(conn.locationId)}
         >
+          {isNearby(state.playerPosition.x, state.playerPosition.y, conn.x, conn.y) && !isDialogueActive && (
+            <div className="interact-prompt">E</div>
+          )}
           {conn.isDoor ? (
             <div className="door-exit-marker">
               <DoorOpen size={20} className="text-[#f0d9a0]" />
@@ -383,6 +376,9 @@ function WorldView({
           onClick={() => onInteract(npc.id)}
         >
           <div className="relative">
+            {isNearby(state.playerPosition.x, state.playerPosition.y, npc.position.x, npc.position.y) && !isDialogueActive && (
+              <div className="interact-prompt">E</div>
+            )}
             <div className="w-16 h-16 flex items-center justify-center">
               {npc.characterParts ? (
                 <CharacterSprite parts={npc.characterParts} size={64} id={npc.id} />
@@ -445,7 +441,7 @@ function WorldView({
 }
 
 /* ─── Overlay D-Pad ─── */
-function DPad({ onMove }: { onMove: (dx: number, dy: number) => void }) {
+function DPad({ onMove, onInteract }: { onMove: (dx: number, dy: number) => void; onInteract: () => void }) {
   return (
     <div className="dpad-container">
       <div className="dpad-grid">
@@ -457,7 +453,9 @@ function DPad({ onMove }: { onMove: (dx: number, dy: number) => void }) {
         <button className="dpad-btn" onClick={() => onMove(-1, 0)} aria-label="Move left">
           <ChevronLeftIcon size={22} />
         </button>
-        <div className="dpad-center" />
+        <button className="dpad-interact-btn" onClick={onInteract} aria-label="Interact">
+          E
+        </button>
         <button className="dpad-btn" onClick={() => onMove(1, 0)} aria-label="Move right">
           <ChevronRightIcon size={22} />
         </button>
@@ -539,6 +537,26 @@ export default function App() {
     movePlayer(dx, dy, currentLocation.bounds);
   }, [movePlayer, currentLocation]);
 
+  const triggerNearbyInteraction = useCallback(() => {
+    if (activeDialogue) return;
+    const px = state.playerPosition.x;
+    const py = state.playerPosition.y;
+    const nearbyNpc = NPCS.find(n =>
+      currentLocation.npcs.includes(n.id) &&
+      isNearby(px, py, n.position.x, n.position.y)
+    );
+    if (nearbyNpc) {
+      handleInteract(nearbyNpc.id);
+      return;
+    }
+    const nearbyConn = currentLocation.connections.find(c =>
+      isNearby(px, py, c.x, c.y)
+    );
+    if (nearbyConn) {
+      setLocation(nearbyConn.locationId);
+    }
+  }, [activeDialogue, state.playerPosition, currentLocation, handleInteract, setLocation]);
+
   if (state.isGameOver) {
     return (
       <div className="min-h-screen game-over-bg text-zinc-100 flex items-center justify-center p-8">
@@ -598,13 +616,14 @@ export default function App() {
             movePlayer={movePlayer}
             setLocation={setLocation}
             onInteract={handleInteract}
+            onInteractKey={triggerNearbyInteraction}
             isDialogueActive={!!activeDialogue}
           />
         </div>
       </div>
 
       {/* Floating D-pad (bottom right) */}
-      <DPad onMove={handleDPadMove} />
+      <DPad onMove={handleDPadMove} onInteract={triggerNearbyInteraction} />
 
       {/* Floating toolbar (bottom left) */}
       <div className="floating-toolbar">
