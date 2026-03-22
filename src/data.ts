@@ -1,5 +1,5 @@
 import { Item, NPC, Location, Building } from './types';
-import { KING_ARCTOS_PARTS, FENNEL_PARTS, BRAMM_PARTS, DAGAN_PARTS, IVELLE_PARTS, PRINCE_LIO_PARTS, SHERIFF_HALDEN_PARTS, MALLOW_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS, ORYN_PARTS, ELARA_PARTS, THORNE_PARTS, TALLO_PARTS, LERR_PARTS, ELIA_PARTS, ORLA_PARTS, SERA_PARTS, RESSA_PARTS, CORIN_PARTS, FENN_PARTS, ELDA_PARTS, BRAMWELL_PARTS, VAREK_PARTS, NOX_PARTS, SLINK_PARTS, ALDER_PARTS, BORO_PARTS, MARIS_PARTS, NARA_PARTS, VELA_PARTS, DR_PALOMA_PARTS } from './characterParts';
+import { KING_ARCTOS_PARTS, FENNEL_PARTS, BRAMM_PARTS, DAGAN_PARTS, IVELLE_PARTS, PRINCE_LIO_PARTS, SHERIFF_HALDEN_PARTS, MALLOW_PARTS, CONSTABLE_COSTUME_PARTS, BAKER_COSTUME_PARTS, GHOST_COSTUME_PARTS, MASK_COSTUME_PARTS, ORYN_PARTS, ELARA_PARTS, THORNE_PARTS, TALLO_PARTS, LERR_PARTS, ELIA_PARTS, ORLA_PARTS, SERA_PARTS, RESSA_PARTS, CORIN_PARTS, FENN_PARTS, ELDA_PARTS, BRAMWELL_PARTS, VAREK_PARTS, NOX_PARTS, SLINK_PARTS, ALDER_PARTS, BORO_PARTS, MARIS_PARTS, NARA_PARTS, VELA_PARTS, DR_PALOMA_PARTS, HESTA_PARTS, MIRA_PARTS, NYRA_PARTS, KIRI_PARTS, MARA_PARTS, RHO_PARTS, PIP_PARTS, GROM_PARTS, VEX_PARTS, LYRA_PARTS, SIVE_PARTS, OLLO_PARTS, VOSS_PARTS, LIRA_PARTS, KETT_PARTS, NYX_PARTS, VOX_PARTS, PENGO_PARTS, CORVUS_PARTS, ZERA_PARTS, PANRA_PARTS, MELL_PARTS, IVO_PARTS, TORQ_PARTS, BRISK_PARTS, BRUNE_PARTS, PELLI_PARTS, NIRA_PARTS, DREM_PARTS, SOOT_PARTS, ELEN_PARTS, PUFFA_PARTS, PUFFO_PARTS, SLOM_PARTS, BELL_PARTS, ARRA_PARTS, NILO_PARTS, KIKI_PARTS, YOMA_PARTS, LUMO_PARTS, LEMI_PARTS, KITO_PARTS, VARA_PARTS, NIB_PARTS, TULA_PARTS, DEXT_PARTS, GLINT_PARTS, THRI_PARTS, SHADE_PARTS, HEARTH_PARTS, CORBIN_PARTS } from './characterParts';
 
 // Import custom sprite assets in the style of the provided concept art.  The
 // images live in the ./assets directory and are converted to public URLs via
@@ -25,7 +25,7 @@ export const LOCATIONS: Location[] = [
     id: 'town_square',
     name: 'Town Square',
     description: 'The heart of Kraed Maas, where the golden hour light lingers on the cobblestones and colorful banners dance in the breeze.',
-    npcs: ['king_arctos', 'fennel'],
+    npcs: ['king_arctos', 'fennel', 'mira', 'brisk', 'ollo', 'corbin'],
     connections: [
       { locationId: 'bakery', x: 4, y: 3, label: 'Enter Bakery' },
       { locationId: 'docks', x: 17, y: 3, label: 'Enter Warehouse' },
@@ -37,6 +37,10 @@ export const LOCATIONS: Location[] = [
       { locationId: 'cemetery', x: 17, y: 16, label: 'Cemetery Path' },
       { locationId: 'school', x: 12, y: 14, label: 'School & Library' },
       { locationId: 'hospital', x: 9, y: 14, label: 'Hospital' },
+      { locationId: 'restaurant', x: 16, y: 14, label: 'Enter Restaurant' },
+      { locationId: 'bnb', x: 2, y: 14, label: 'Enter B&B' },
+      { locationId: 'hotel', x: 6, y: 16, label: 'Enter Hotel' },
+      { locationId: 'festival_park', x: 14, y: 16, label: 'Festival Park' },
     ],
     bounds: { width: 22, height: 20 },
     buildings: [
@@ -204,7 +208,7 @@ export const LOCATIONS: Location[] = [
     id: 'bakery',
     name: 'The Crusty Crumb',
     description: 'A cozy corner filled with the scent of cinnamon and yeast, where the oven glow warms the soul.',
-    npcs: ['bramm'],
+    npcs: ['bramm', 'hesta'],
     connections: [
       { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
@@ -226,7 +230,7 @@ export const LOCATIONS: Location[] = [
     id: 'docks',
     name: 'Kraed Docks',
     description: 'Where the mist clings to the water and the creak of old wood tells stories of distant lands.',
-    npcs: ['dagan', 'sera'],
+    npcs: ['dagan', 'sera', 'mara'],
     connections: [
       { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
@@ -286,7 +290,7 @@ export const LOCATIONS: Location[] = [
     id: 'coffee_shop',
     name: "Mallow's Brew",
     description: 'Warm light spills over mismatched chairs and steaming cups. The rich aroma of roasted beans fills every corner.',
-    npcs: ['mallow', 'orla'],
+    npcs: ['mallow', 'orla', 'ivo'],
     connections: [
       { locationId: 'town_square', x: 4, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
@@ -308,7 +312,7 @@ export const LOCATIONS: Location[] = [
     id: 'castle_grounds',
     name: 'Castle Kraed',
     description: 'The grand courtyard of Castle Kraed. Stone walls rise high, draped with royal purple banners. A fountain glistens in the center.',
-    npcs: ['elara', 'thorne'],
+    npcs: ['elara', 'thorne', 'grom', 'vex'],
     connections: [
       { locationId: 'town_square', x: 5, y: 9, label: 'Exit to Town Square', isDoor: true }
     ],
@@ -370,7 +374,7 @@ export const LOCATIONS: Location[] = [
     id: 'market',
     name: 'Market Street',
     description: 'A lively cobbled lane crammed with colorful stalls, curious wares, and the smell of street food. Flags and bunting sway between shop signs.',
-    npcs: ['ressa', 'corin', 'elda', 'bramwell', 'varek', 'nox', 'slink'],
+    npcs: ['ressa', 'corin', 'elda', 'bramwell', 'varek', 'nox', 'slink', 'lyra', 'glint', 'thri', 'shade', 'hearth', 'kiri', 'sive'],
     connections: [
       { locationId: 'town_square', x: 9, y: 9, label: 'Return to Town Square', isDoor: true }
     ],
@@ -403,7 +407,7 @@ export const LOCATIONS: Location[] = [
     id: 'school',
     name: 'Kraed Academy',
     description: 'A tidy schoolhouse with chalk-dusted floors and desks that have seen a hundred years of carved initials. The library annex smells of old paper and cedar.',
-    npcs: ['alder', 'boro', 'fenn', 'maris'],
+    npcs: ['alder', 'boro', 'fenn', 'maris', 'torq', 'rho', 'pip', 'nyra', 'vara', 'nib', 'tula', 'dext'],
     connections: [
       { locationId: 'town_square', x: 7, y: 9, label: 'Return to Town Square', isDoor: true }
     ],
@@ -430,7 +434,7 @@ export const LOCATIONS: Location[] = [
     id: 'hospital',
     name: 'Kraed Medical Clinic',
     description: 'A clean whitewashed clinic humming with quiet efficiency. Shelves of remedies line the walls, and the faint smell of lavender and antiseptic mingles in the air.',
-    npcs: ['nara', 'vela', 'dr_paloma'],
+    npcs: ['nara', 'vela', 'dr_paloma', 'mell', 'ivo'],
     connections: [
       { locationId: 'town_square', x: 5, y: 11, label: 'Return to Town Square', isDoor: true }
     ],
@@ -451,6 +455,122 @@ export const LOCATIONS: Location[] = [
       { x: 0, y: 8 }, { x: 9, y: 8 },
       { x: 1, y: 7 }, { x: 7, y: 7 },
       { x: 5, y: 0 },
+    ],
+  },
+  {
+    id: 'restaurant',
+    name: "Voss & Voss Fine Dining",
+    description: 'A candlelit restaurant smelling of rich spices and roasted root vegetables. The tables are too close together but nobody seems to mind.',
+    npcs: ['voss', 'pelli', 'elen', 'lira', 'kett', 'nira', 'drem', 'brune', 'soot'],
+    connections: [
+      { locationId: 'town_square', x: 5, y: 11, label: 'Return to Town Square', isDoor: true }
+    ],
+    bounds: { width: 10, height: 12 },
+    decorations: [
+      { id: 'bench_1', type: 'bench', position: { x: 1, y: 2 } },
+      { id: 'bench_2', type: 'bench', position: { x: 3, y: 2 } },
+      { id: 'bench_3', type: 'bench', position: { x: 6, y: 2 } },
+      { id: 'bench_4', type: 'bench', position: { x: 8, y: 2 } },
+      { id: 'bench_5', type: 'bench', position: { x: 1, y: 5 } },
+      { id: 'bench_6', type: 'bench', position: { x: 3, y: 5 } },
+      { id: 'bench_7', type: 'bench', position: { x: 6, y: 5 } },
+      { id: 'bench_8', type: 'bench', position: { x: 8, y: 5 } },
+      { id: 'flower_1', type: 'flower', position: { x: 2, y: 8 } },
+      { id: 'flower_2', type: 'flower', position: { x: 7, y: 8 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 0, y: 0 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 9, y: 0 } },
+      { id: 'lamp_1', type: 'lamp', position: { x: 5, y: 0 } },
+    ],
+    obstacles: [
+      { x: 1, y: 2 }, { x: 3, y: 2 }, { x: 6, y: 2 }, { x: 8, y: 2 },
+      { x: 1, y: 5 }, { x: 3, y: 5 }, { x: 6, y: 5 }, { x: 8, y: 5 },
+      { x: 0, y: 0 }, { x: 9, y: 0 }, { x: 5, y: 0 },
+    ],
+  },
+  {
+    id: 'bnb',
+    name: "Nyx & Vox's Cosy B&B",
+    description: 'A small and immaculate bed and breakfast run by two bat siblings. Every room has a different quilt. The hallways smell faintly of lavender.',
+    npcs: ['nyx', 'vox', 'puffa', 'puffo'],
+    connections: [
+      { locationId: 'town_square', x: 5, y: 9, label: 'Return to Town Square', isDoor: true }
+    ],
+    bounds: { width: 10, height: 10 },
+    decorations: [
+      { id: 'bench_1', type: 'bench', position: { x: 1, y: 2 } },
+      { id: 'bench_2', type: 'bench', position: { x: 7, y: 2 } },
+      { id: 'flower_1', type: 'flower', position: { x: 2, y: 5 } },
+      { id: 'flower_2', type: 'flower', position: { x: 7, y: 5 } },
+      { id: 'flower_3', type: 'flower', position: { x: 4, y: 1 } },
+      { id: 'lamp_1', type: 'lamp', position: { x: 5, y: 0 } },
+      { id: 'crate_1', type: 'crate', position: { x: 0, y: 0 } },
+      { id: 'crate_2', type: 'crate', position: { x: 9, y: 0 } },
+    ],
+    obstacles: [
+      { x: 1, y: 2 }, { x: 7, y: 2 },
+      { x: 5, y: 0 }, { x: 0, y: 0 }, { x: 9, y: 0 },
+    ],
+  },
+  {
+    id: 'hotel',
+    name: 'The Kraed Grand Hotel',
+    description: 'A recently renovated hotel with too much marble and not enough warmth, run with corporate precision by a penguin who genuinely loves spreadsheets.',
+    npcs: ['pengo', 'slom', 'bell', 'arra', 'nilo', 'kiki', 'yoma', 'lumo', 'lemi'],
+    connections: [
+      { locationId: 'town_square', x: 5, y: 9, label: 'Return to Town Square', isDoor: true }
+    ],
+    bounds: { width: 14, height: 10 },
+    decorations: [
+      { id: 'bench_1', type: 'bench', position: { x: 1, y: 3 } },
+      { id: 'bench_2', type: 'bench', position: { x: 12, y: 3 } },
+      { id: 'flower_1', type: 'flower', position: { x: 3, y: 1 } },
+      { id: 'flower_2', type: 'flower', position: { x: 10, y: 1 } },
+      { id: 'lamp_1', type: 'lamp', position: { x: 7, y: 0 } },
+      { id: 'lamp_2', type: 'lamp', position: { x: 2, y: 7 } },
+      { id: 'lamp_3', type: 'lamp', position: { x: 11, y: 7 } },
+      { id: 'crate_1', type: 'crate', position: { x: 0, y: 0 } },
+      { id: 'crate_2', type: 'crate', position: { x: 13, y: 0 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 0, y: 8 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 13, y: 8 } },
+    ],
+    obstacles: [
+      { x: 1, y: 3 }, { x: 12, y: 3 },
+      { x: 7, y: 0 }, { x: 2, y: 7 }, { x: 11, y: 7 },
+      { x: 0, y: 0 }, { x: 13, y: 0 }, { x: 0, y: 8 }, { x: 13, y: 8 },
+    ],
+  },
+  {
+    id: 'festival_park',
+    name: 'Festival Grounds & Cleanup Area',
+    description: 'A grassy space at the edge of town where festival overflow has been corralled. Recycling bins have multiplied overnight, and a large painted banner reads ZERO WASTE FESTIVAL.',
+    npcs: ['corvus', 'zera', 'panra', 'kito'],
+    connections: [
+      { locationId: 'town_square', x: 9, y: 9, label: 'Return to Town Square', isDoor: true }
+    ],
+    bounds: { width: 18, height: 10 },
+    decorations: [
+      { id: 'tree_1', type: 'tree', position: { x: 0, y: 0 } },
+      { id: 'tree_2', type: 'tree', position: { x: 17, y: 0 } },
+      { id: 'tree_3', type: 'tree', position: { x: 0, y: 9 } },
+      { id: 'tree_4', type: 'tree', position: { x: 17, y: 9 } },
+      { id: 'tree_5', type: 'tree', position: { x: 4, y: 4 } },
+      { id: 'tree_6', type: 'tree', position: { x: 13, y: 4 } },
+      { id: 'flower_1', type: 'flower', position: { x: 2, y: 3 } },
+      { id: 'flower_2', type: 'flower', position: { x: 8, y: 1 } },
+      { id: 'flower_3', type: 'flower', position: { x: 15, y: 3 } },
+      { id: 'bench_1', type: 'bench', position: { x: 6, y: 7 } },
+      { id: 'bench_2', type: 'bench', position: { x: 11, y: 7 } },
+      { id: 'barrel_1', type: 'barrel', position: { x: 2, y: 7 } },
+      { id: 'barrel_2', type: 'barrel', position: { x: 15, y: 7 } },
+      { id: 'lamp_1', type: 'lamp', position: { x: 5, y: 0 } },
+      { id: 'lamp_2', type: 'lamp', position: { x: 12, y: 0 } },
+    ],
+    obstacles: [
+      { x: 0, y: 0 }, { x: 17, y: 0 }, { x: 0, y: 9 }, { x: 17, y: 9 },
+      { x: 4, y: 4 }, { x: 13, y: 4 },
+      { x: 6, y: 7 }, { x: 11, y: 7 },
+      { x: 2, y: 7 }, { x: 15, y: 7 },
+      { x: 5, y: 0 }, { x: 12, y: 0 },
     ],
   },
 ];
@@ -2211,3 +2331,796 @@ export const NPCS: NPC[] = [
     },
   },
 ];
+
+// ─── New characters added from characterTable.md ───
+
+// Town Square
+const NEW_NPC_MIRA: NPC = {
+  id: 'mira',
+  name: 'Mira',
+  species: 'Human',
+  baseCostume: 'Artist',
+  description: 'A warm-eyed human artist in a paint-stained smock. She studies things for too long and sees the disguise in everything.',
+  characterParts: MIRA_PARTS,
+  position: { x: 5, y: 8 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "You found the square before the crowds. I always come early to sketch the festival banners before they get wrinkled.", options: [{ text: "Do you live here?" }, { text: "Beautiful work." }] }],
+    Afternoon: [{ id: 'start', text: "Have you noticed how a disguise reveals as much as it conceals?", options: [{ text: "That's a bit unsettling." }] }],
+    Night: [{ id: 'start', text: "The island looks different after dark — everything softens. It reminds me of the paintings I made when I was young.", options: [{ text: "What changed?" }] }],
+  },
+};
+
+const NEW_NPC_BRISK: NPC = {
+  id: 'brisk',
+  name: 'Brisk',
+  species: 'Squirrel',
+  baseCostume: 'Farmer',
+  description: 'An energetic squirrel in farm overalls and a straw hat. Talks faster than most people think.',
+  characterParts: BRISK_PARTS,
+  position: { x: 8, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Morning! I brought in the last of the harvest squash today. Festival week wipes out my stock every year. The hotel bought three crates already!", options: [{ text: "Good business." }] }],
+    Afternoon: [{ id: 'start', text: "Every year I say I'll enjoy the festival. Every year I sell things instead.", options: [{ text: "Maybe next year." }] }],
+    Night: [{ id: 'start', text: "Closing up. Long day. But this is the good kind of tired — the kind that means something got done.", options: [{ text: "Get some rest." }] }],
+  },
+};
+
+const NEW_NPC_OLLO: NPC = {
+  id: 'ollo',
+  name: 'Ollo',
+  species: 'Walrus',
+  baseCostume: 'Lounger',
+  description: 'A portly walrus in extremely comfortable leisure clothes who has claimed a bench as his personal territory. He is content.',
+  characterParts: OLLO_PARTS,
+  position: { x: 15, y: 10 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "You know what this festival needs more of? Benches. And shade. And longer mornings.", options: [{ text: "Sounds peaceful." }] }],
+    Afternoon: [{ id: 'start', text: "I've been sitting here for four hours. Clouds are interesting, pigeons have disputes, and everyone seems in a great hurry.", options: [{ text: "And you're not?" }] }],
+    Night: [{ id: 'start', text: "I considered going home. Then I thought: this bench is very comfortable. So here I am.", options: [{ text: "Fair enough." }] }],
+  },
+};
+
+const NEW_NPC_CORBIN: NPC = {
+  id: 'corbin',
+  name: 'Corbin',
+  species: 'Raven',
+  baseCostume: 'Landlord',
+  description: 'A sharp-eyed raven in a formal black suit with a leather-bound ledger. Polite, watchful, and knows what every building is worth.',
+  characterParts: CORBIN_PARTS,
+  position: { x: 18, y: 8 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I own eleven properties on this island. Festival week is excellent for real estate conversations — everyone is in good spirits and bad with numbers.", options: [{ text: "That seems convenient." }] }],
+    Afternoon: [{ id: 'start', text: "The hotel had a pipe issue this morning. Pengo handled it before I even knew. I appreciate competence.", options: [{ text: "You own the hotel?" }] }],
+    Night: [{ id: 'start', text: "I walk the island at night. The island looks different when no one is performing for it.", options: [{ text: "Performing?" }] }],
+  },
+};
+
+// Bakery
+const NEW_NPC_HESTA: NPC = {
+  id: 'hesta',
+  name: 'Hesta',
+  species: 'Bear',
+  baseCostume: 'Ringmaster',
+  description: 'A stout older bear in a red ringmaster coat, sitting in the corner of the bakery with absolute authority over the room.',
+  characterParts: HESTA_PARTS,
+  position: { x: 5, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "My son made these scones. He has my hands. I used to do trapeze, you know. Now I mostly eat the scones.", options: [{ text: "Trapeze? Really?" }, { text: "They smell wonderful." }] }],
+    Afternoon: [{ id: 'start', text: "Bramm chose the oven instead of the ring. I don't say it often enough, but I'm proud.", options: [{ text: "That's lovely." }] }],
+    Night: [{ id: 'start', text: "I stay until he closes. Don't tell him I said that.", options: [{ text: "Your secret is safe." }] }],
+  },
+};
+
+// Docks
+const NEW_NPC_MARA: NPC = {
+  id: 'mara',
+  name: 'Mara',
+  species: 'Rhino',
+  baseCostume: 'Builder',
+  description: 'A broad-shouldered rhino in construction gear overseeing festival infrastructure with an iron clipboard.',
+  characterParts: MARA_PARTS,
+  position: { x: 7, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Three of my crew called in sick today. During festival week. I built the stage and half the lighting rig by myself this morning.", options: [{ text: "That's impressive." }] }],
+    Afternoon: [{ id: 'start', text: "The dock scaffolding is mine. I know people say it looks rough. It's holding twelve tonnes of decorations. They can say what they want.", options: [{ text: "Looks sturdy to me." }] }],
+    Night: [{ id: 'start', text: "I walk every structure I build before I sleep. Things shift at night that you miss in daylight.", options: [{ text: "Good habit." }] }],
+  },
+};
+
+// Castle
+const NEW_NPC_GROM: NPC = {
+  id: 'grom',
+  name: 'Grom',
+  species: 'Hippopotamus',
+  baseCostume: 'Royal Chef',
+  description: 'An enormous hippo in an immaculate white chef coat with royal gold trim. He bellows but means well.',
+  characterParts: GROM_PARTS,
+  position: { x: 4, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "TWELVE COURSES. The king wants twelve courses for the festival banquet. Last year it was eight. SOMEONE GET ME MORE OVENS.", options: [{ text: "Is there anything I can do?" }] }],
+    Afternoon: [{ id: 'start', text: "*calmer* Sorry about earlier. The soup is perfect. The soup is always perfect. Everything else is in progress.", options: [{ text: "The soup smells incredible." }] }],
+    Night: [{ id: 'start', text: "I cook better at night. The kitchen is mine alone. Just me and the fire.", options: [{ text: "That sounds peaceful." }] }],
+  },
+};
+
+const NEW_NPC_VEX: NPC = {
+  id: 'vex',
+  name: 'Vex',
+  species: 'Raccoon',
+  baseCostume: 'Royal Guard',
+  description: 'A compact raccoon in deep red royal guard armor. Perpetually alert, slightly bored.',
+  characterParts: VEX_PARTS,
+  position: { x: 8, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Halt. State your business. *pause* The king said to let in festival visitors. You're a festival visitor.", options: [{ text: "That I am." }] }],
+    Afternoon: [{ id: 'start', text: "I have been standing here for four hours. The prince walked past twice and didn't acknowledge me. This is my job.", options: [{ text: "Do you like guarding?" }] }],
+    Night: [{ id: 'start', text: "Night watch. Quieter. I prefer it.", options: [{ text: "Anything unusual?" }] }],
+  },
+};
+
+// Hospital
+const NEW_NPC_MELL: NPC = {
+  id: 'mell',
+  name: 'Mell',
+  species: 'Bee',
+  baseCostume: 'Patient Gown',
+  description: 'A drowsy bee in a patient gown. Nobody is entirely sure how she got here or what the festival did to her.',
+  characterParts: MELL_PARTS,
+  position: { x: 5, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I am having the most wonderful nap. Or I was.", options: [{ text: "Sorry to wake you." }] }],
+    Afternoon: [{ id: 'start', text: "I entered the honey-tasting contest. I was winning. Then everything gets blurry. Then Dr. Paloma.", options: [{ text: "That explains a lot." }] }],
+    Night: [{ id: 'start', text: "The doctor says I can leave tomorrow. I might enter the contest again next year. I'll pace myself.", options: [{ text: "Maybe pace yourself this time." }] }],
+  },
+};
+
+const NEW_NPC_IVO: NPC = {
+  id: 'ivo',
+  name: 'Ivo',
+  species: 'Pigeon',
+  baseCostume: 'Writer',
+  description: 'A thoughtful pigeon novelist who researches his books by sitting in public places and overhearing things.',
+  characterParts: IVO_PARTS,
+  position: { x: 7, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I'm researching my third novel. It's set on a small island during a festival. *looks around* This is going well.", options: [{ text: "Are we in the book?" }] }],
+    Afternoon: [{ id: 'start', text: "Twelve conversations overheard. Three usable. That's a good afternoon.", options: [{ text: "What counts as usable?" }] }],
+    Night: [{ id: 'start', text: "I write the actual words at night. The day is for collecting. The night is for building.", options: [{ text: "Good luck with the book." }] }],
+  },
+};
+
+// School
+const NEW_NPC_TORQ: NPC = {
+  id: 'torq',
+  name: 'Torq',
+  species: 'Turtle',
+  baseCostume: 'Chef',
+  description: 'A cheerful green turtle running the school cafeteria. Moves slowly, produces food with remarkable efficiency.',
+  characterParts: TORQ_PARTS,
+  position: { x: 10, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Breakfast service! I made the oat porridge three different ways this morning. The students have very loud opinions for seven in the morning.", options: [{ text: "What's the most popular?" }] }],
+    Afternoon: [{ id: 'start', text: "Festival menu! I made the sandwiches in the shapes of the island landmarks. The castle was tricky.", options: [{ text: "That sounds delightful." }] }],
+    Night: [{ id: 'start', text: "I prep tomorrow's menu tonight. Slow and steady. I am very much the turtle in that story.", options: [{ text: "And it works." }] }],
+  },
+};
+
+const NEW_NPC_RHO: NPC = {
+  id: 'rho',
+  name: 'Rho',
+  species: 'Rhino',
+  baseCostume: 'Bodyguard',
+  description: 'A young stocky rhino in a formal dark suit who volunteered to be the unofficial school bodyguard. Takes it very seriously.',
+  characterParts: RHO_PARTS,
+  position: { x: 3, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I'm on patrol. The library has rare books. I volunteered. Mr. Alder looked confused but said yes.", options: [{ text: "Good thinking." }] }],
+    Afternoon: [{ id: 'start', text: "Two students almost knocked over the globe. I caught it. This is why I am here.", options: [{ text: "The globe is lucky." }] }],
+    Night: [{ id: 'start', text: "Evening rounds. The school is quiet. It means nothing has gone wrong yet.", options: [{ text: "Good night, then." }] }],
+  },
+};
+
+const NEW_NPC_PIP: NPC = {
+  id: 'pip',
+  name: 'Pip',
+  species: 'Ant',
+  baseCostume: 'Architect',
+  description: 'A very small ant with enormous ambitions for urban planning. Carries a miniature blueprint tube everywhere.',
+  characterParts: PIP_PARTS,
+  position: { x: 11, y: 7 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I've redesigned the school layout twice in my head since breakfast. The benches are in the wrong place.", options: [{ text: "You've thought about this a lot." }] }],
+    Afternoon: [{ id: 'start', text: "I'm working on a proposal for a covered walkway between the school and library. It rains every third Tuesday.", options: [{ text: "Present it to Alder." }] }],
+    Night: [{ id: 'start', text: "I stay late to work on my designs. The school is better when it's quiet.", options: [{ text: "Good luck with the walkway." }] }],
+  },
+};
+
+const NEW_NPC_NYRA: NPC = {
+  id: 'nyra',
+  name: 'Nyra',
+  species: 'White Tiger',
+  baseCostume: 'Archivist',
+  description: 'A rare white tiger with dark markings, buried in library books and wearing small round glasses.',
+  characterParts: NYRA_PARTS,
+  position: { x: 7, y: 2 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Oh. A visitor. To the archive. That's unusual. Is there something I can help you find?", options: [{ text: "Just looking around." }, { text: "I heard you have rare records." }] }],
+    Afternoon: [{ id: 'start', text: "I'm cataloguing festival records. Did you know the Festival of Disguises was originally a harvest ritual? The disguises were to fool away bad spirits.", options: [{ text: "Fascinating." }] }],
+    Night: [{ id: 'start', text: "I often work late. The archive feels less exposed at night. That probably sounds strange.", options: [{ text: "Not at all." }] }],
+  },
+};
+
+const NEW_NPC_VARA: NPC = {
+  id: 'vara',
+  name: 'Vara',
+  species: 'Ant',
+  baseCostume: 'Caretaker',
+  description: 'An older ant sibling in a practical apron, making sure the younger ant students have eaten, slept, and done their assignments.',
+  characterParts: VARA_PARTS,
+  position: { x: 6, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Nib forgot her lunch. Tula's socks don't match but she says it's intentional. Pip is already at the library. Dext filed three incident reports before nine AM.", options: [{ text: "That's a full morning." }] }],
+    Afternoon: [{ id: 'start', text: "I check on them every afternoon. They're old enough to be independent. They're also young enough to need someone checking.", options: [{ text: "You're a good sibling." }] }],
+    Night: [{ id: 'start', text: "The little ones are asleep. I get two hours of quiet.", options: [{ text: "Enjoy it." }] }],
+  },
+};
+
+const NEW_NPC_NIB: NPC = {
+  id: 'nib',
+  name: 'Nib',
+  species: 'Ant',
+  baseCostume: 'Explorer',
+  description: 'A young adventurous ant with an oversized backpack who has mapped half the school in a hand-drawn notebook.',
+  characterParts: NIB_PARTS,
+  position: { x: 9, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I found a door I've never seen before! Behind the art room. Vara says it's just a supply closet. I put it on my map anyway.", options: [{ text: "Every door deserves to be mapped." }] }],
+    Afternoon: [{ id: 'start', text: "I told Tula she was coming with me to explore the festival grounds after school. She said nothing, which I'm counting as yes.", options: [{ text: "Sounds like a plan." }] }],
+    Night: [{ id: 'start', text: "My map is almost done. I just need to find out what's behind the big boiler.", options: [{ text: "Be careful." }] }],
+  },
+};
+
+const NEW_NPC_TULA: NPC = {
+  id: 'tula',
+  name: 'Tula',
+  species: 'Ant',
+  baseCostume: 'Listener',
+  description: 'A very quiet young ant who sits near conversations rather than in them, and notices things that louder people miss.',
+  characterParts: TULA_PARTS,
+  position: { x: 4, y: 7 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "...", options: [{ text: "Good morning." }] }],
+    Afternoon: [{ id: 'start', text: "*after a long pause* I heard two teachers talking about the docks this morning. One of them seemed worried.", options: [{ text: "What did they say?" }] }],
+    Night: [{ id: 'start', text: "I stayed to help Vara clean up. I didn't say so. I just started sweeping.", options: [{ text: "That's kind." }] }],
+  },
+};
+
+const NEW_NPC_DEXT: NPC = {
+  id: 'dext',
+  name: 'Dext',
+  species: 'Ant',
+  baseCostume: 'Organizer',
+  description: 'A hyper-competent ant with a clipboard who coordinates everything from supply deliveries to the lunch schedule with startling precision.',
+  characterParts: DEXT_PARTS,
+  position: { x: 12, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I've filed three incident reports since school started. Two were preventative. The third was about a chair that was slightly off-center.", options: [{ text: "You're very thorough." }] }],
+    Afternoon: [{ id: 'start', text: "The festival supply deliveries are twelve minutes behind schedule. I have already notified the relevant parties and drafted a revised timeline.", options: [{ text: "All that in an afternoon?" }] }],
+    Night: [{ id: 'start', text: "End-of-day report filed. Tomorrow's schedule prepared. Backup schedule prepared. Good night.", options: [{ text: "Good night." }] }],
+  },
+};
+
+// Market
+const NEW_NPC_LYRA: NPC = {
+  id: 'lyra',
+  name: 'Lyra',
+  species: 'Wolf',
+  baseCostume: 'Merchant Queen',
+  description: 'An elegant gray wolf in deep purple merchant finery, presiding over imported festival goods.',
+  characterParts: LYRA_PARTS,
+  position: { x: 14, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Welcome to the finest imported goods on the island. I bring these every year. Every year they sell out. This year I brought twice as many.", options: [{ text: "Confidence suits you." }] }],
+    Afternoon: [{ id: 'start', text: "I know every customer's preferences better than they do. Not bragging. Just data.", options: [{ text: "What do I want?" }] }],
+    Night: [{ id: 'start', text: "Late shoppers are decisive shoppers. They know what they want and they've already talked themselves into it.", options: [{ text: "Then I'll look quickly." }] }],
+  },
+};
+
+const NEW_NPC_KIRI: NPC = {
+  id: 'kiri',
+  name: 'Kiri',
+  species: 'Tiger',
+  baseCostume: 'Messenger',
+  description: 'A young orange tiger with a messenger bag, darting between market stalls with urgent deliveries and infectious energy.',
+  characterParts: KIRI_PARTS,
+  position: { x: 8, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "PARDON — *skids to halt* — sorry. Delivery. Do you know where the soap stall is? I have three messages and one very small parcel and I'm already late.", options: [{ text: "Down that way, I think." }] }],
+    Afternoon: [{ id: 'start', text: "Festival week is my favorite week. So many deliveries. So much running. My legs are very happy.", options: [{ text: "Good career then." }] }],
+    Night: [{ id: 'start', text: "Last run of the day goes to the castle. The guards let me see the courtyard lights.", options: [{ text: "A good reward." }] }],
+  },
+};
+
+const NEW_NPC_SIVE: NPC = {
+  id: 'sive',
+  name: 'Sive',
+  species: 'Owl',
+  baseCostume: 'Server',
+  description: 'A quiet tawny owl working the market gift shop with unhurried precision and excellent memory for what customers previously bought.',
+  characterParts: SIVE_PARTS,
+  position: { x: 11, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good morning. You came two festivals ago and bought the amber candle. I have more if you're interested.", options: [{ text: "How do you remember that?" }] }],
+    Afternoon: [{ id: 'start', text: "The afternoon rush is the honest rush. People come back for what they actually wanted.", options: [{ text: "Makes sense." }] }],
+    Night: [{ id: 'start', text: "I'll be here until close. I'm a night owl — the saying applies more literally than most.", options: [{ text: "Lucky for the late shoppers." }] }],
+  },
+};
+
+const NEW_NPC_GLINT: NPC = {
+  id: 'glint',
+  name: 'Glint',
+  species: 'Raccoon',
+  baseCostume: 'Jeweler',
+  description: 'A well-dressed raccoon running a jewellery stall. Wears more jewellery than the stall.',
+  characterParts: GLINT_PARTS,
+  position: { x: 5, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Ah! You have an eye. This clasp is from the old port district. Handcrafted. Most people walk past.", options: [{ text: "It's beautiful." }] }],
+    Afternoon: [{ id: 'start', text: "Half my morning stock is gone. I'll need more display space for tomorrow.", options: [{ text: "A good problem to have." }] }],
+    Night: [{ id: 'start', text: "Jewels catch the lamp light differently at night. That's when they really shine.", options: [{ text: "Alright." }] }],
+  },
+};
+
+const NEW_NPC_THRI: NPC = {
+  id: 'thri',
+  name: 'Thri',
+  species: 'Praying Mantis',
+  baseCostume: 'Designer',
+  description: 'A tall green praying mantis selling hand-printed festival t-shirts. Has strong opinions about fonts.',
+  characterParts: THRI_PARTS,
+  position: { x: 3, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "This year's design took four months. People will wear it once and donate it. I will still be proud.", options: [{ text: "It looks excellent." }] }],
+    Afternoon: [{ id: 'start', text: "Someone asked for one that says 'I Survived the Festival.' I said no. That is not the vibe.", options: [{ text: "Understandable." }] }],
+    Night: [{ id: 'start', text: "I've already started sketching next year's design. The ideas come when they come.", options: [{ text: "Creative minds don't rest." }] }],
+  },
+};
+
+const NEW_NPC_SHADE: NPC = {
+  id: 'shade',
+  name: 'Shade',
+  species: 'Raccoon',
+  baseCostume: 'Cloaked Merchant',
+  description: 'A very dark raccoon in a long black cloak selling things from a table of suspiciously interesting items that change every time you look.',
+  characterParts: SHADE_PARTS,
+  position: { x: 16, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "You're up early. Most people who find this table are either very curious or very purposeful. Which are you?", options: [{ text: "Curious." }, { text: "Just browsing." }] }],
+    Afternoon: [{ id: 'start', text: "I have what you're looking for. I don't know what that is yet. But I will when you tell me.", options: [{ text: "That's an interesting pitch." }] }],
+    Night: [{ id: 'start', text: "I do my best business at dusk. People are looser with decisions when the day is almost over.", options: [{ text: "What are you selling tonight?" }] }],
+  },
+};
+
+const NEW_NPC_HEARTH: NPC = {
+  id: 'hearth',
+  name: 'Hearth',
+  species: 'Raccoon',
+  baseCostume: 'Caretaker',
+  description: 'A soft-spoken raccoon selling homemade preserves, candles, and knitted goods. The stall smells like cinnamon.',
+  characterParts: HEARTH_PARTS,
+  position: { x: 7, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I made the strawberry conserve last week — if you want a jar, get one now. They went in an hour last year.", options: [{ text: "I'll take one." }] }],
+    Afternoon: [{ id: 'start', text: "Having something warm to hold helps. That's why I always carry the tea.", options: [{ text: "Good advice." }] }],
+    Night: [{ id: 'start', text: "Almost sold out, which means I can go home and start on next week's batch. This is how I rest.", options: [{ text: "Sounds peaceful." }] }],
+  },
+};
+
+// Restaurant
+const NEW_NPC_VOSS: NPC = {
+  id: 'voss',
+  name: 'Voss',
+  species: 'Weasel',
+  baseCostume: 'Tycoon',
+  description: 'A sleek weasel in an extravagant black suit with gold cufflinks who owns this restaurant and two others.',
+  characterParts: VOSS_PARTS,
+  position: { x: 5, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Reservations are full for the entire festival week. I did not expect that when I opened a fine dining restaurant on an island known mainly for its docks.", options: [{ text: "Surprise success." }] }],
+    Afternoon: [{ id: 'start', text: "The bread is baked twice daily. It must never be more than two hours old at the table. It sounds excessive. It is excessive. It is also correct.", options: [{ text: "I respect the commitment." }] }],
+    Night: [{ id: 'start', text: "Last service. I walk the floor myself at this hour. I want every guest leaving thinking about coming back.", options: [{ text: "And do they?" }] }],
+  },
+};
+
+const NEW_NPC_PELLI: NPC = {
+  id: 'pelli',
+  name: 'Pelli',
+  species: 'Deer',
+  baseCostume: 'Host',
+  description: 'An elegant deer in deep blue formal attire managing the front of house with graceful authority.',
+  characterParts: PELLI_PARTS,
+  position: { x: 3, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Welcome! I have your table ready. I also have a note that you prefer the quieter section — is that still accurate?", options: [{ text: "How do you know that?" }] }],
+    Afternoon: [{ id: 'start', text: "Soot made the festival special — a seven-course tasting menu with every course themed to a different festival year.", options: [{ text: "That sounds incredible." }] }],
+    Night: [{ id: 'start', text: "After last service I do one more walk of the floor to make sure everything is ready for tomorrow.", options: [{ text: "That's dedication." }] }],
+  },
+};
+
+const NEW_NPC_ELEN: NPC = {
+  id: 'elen',
+  name: 'Elen',
+  species: 'Swan',
+  baseCostume: 'Host',
+  description: 'A graceful white swan who co-hosts with a calm authority that makes guests feel welcome and slightly underdressed.',
+  characterParts: ELEN_PARTS,
+  position: { x: 7, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good morning. The morning light is particularly lovely near the window, if you don't mind the garden view.", options: [{ text: "That sounds perfect." }] }],
+    Afternoon: [{ id: 'start', text: "We ran out of the amber reserve wine by noon. I told Voss it means we were correct about the selection.", options: [{ text: "Good spin." }] }],
+    Night: [{ id: 'start', text: "The restaurant quiets beautifully at night. The candles do most of the work.", options: [{ text: "It's lovely." }] }],
+  },
+};
+
+const NEW_NPC_LIRA: NPC = {
+  id: 'lira',
+  name: 'Lira',
+  species: 'Ferret',
+  baseCostume: 'Server',
+  description: 'A slender ferret in a crisp white and black server uniform, moving through the tables with balletic efficiency.',
+  characterParts: LIRA_PARTS,
+  position: { x: 6, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Breakfast service is my favorite — everyone is still deciding who they want to be today.", options: [{ text: "Philosophically put." }] }],
+    Afternoon: [{ id: 'start', text: "The afternoon rush is pure momentum. I don't think during the rush. I just move. Almost meditative.", options: [{ text: "Sounds exhausting." }] }],
+    Night: [{ id: 'start', text: "Evening crowd lingers and tells longer stories. I like the lingerers.", options: [{ text: "You're good with people." }] }],
+  },
+};
+
+const NEW_NPC_KETT: NPC = {
+  id: 'kett',
+  name: 'Kett',
+  species: 'Raccoon',
+  baseCostume: 'Waiter',
+  description: 'A young raccoon in a formal waiter uniform who takes every order with the gravity of someone accepting a sacred contract.',
+  characterParts: KETT_PARTS,
+  position: { x: 8, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good morning. I recommend the seasonal mushroom toast. I have strong feelings about the mushroom toast.", options: [{ text: "I'll trust your judgment." }] }],
+    Afternoon: [{ id: 'start', text: "Table seven sent back a plate. It was overcooked. Soot was upset. I said nothing but I agreed with Soot.", options: [{ text: "Discreet." }] }],
+    Night: [{ id: 'start', text: "These guests have been here for three hours. They understood what this place is trying to be.", options: [{ text: "And what is it?" }] }],
+  },
+};
+
+const NEW_NPC_NIRA: NPC = {
+  id: 'nira',
+  name: 'Nira',
+  species: 'Otter',
+  baseCostume: 'Server',
+  description: 'A bright-eyed brown otter with a joke for every table and the best memory for drink orders on the island.',
+  characterParts: NIRA_PARTS,
+  position: { x: 4, y: 7 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Morning! The specials today: the sunrise oat bowl, the dock-smoked salmon tart, and the jam-stuffed pastry Soot made at five this morning.", options: [{ text: "I'll have the pastry." }] }],
+    Afternoon: [{ id: 'start', text: "People eat lunch the way they really are.", options: [{ text: "Is that so?" }] }],
+    Night: [{ id: 'start', text: "Drem is taking over. He'll do the final tables with great solemnity. We leave notes for each other. It's become a whole thing.", options: [{ text: "Sounds like a good team." }] }],
+  },
+};
+
+const NEW_NPC_DREM: NPC = {
+  id: 'drem',
+  name: 'Drem',
+  species: 'Goat',
+  baseCostume: 'Waiter',
+  description: 'A thoughtful goat with small curled horns handling evening service with careful patience and excellent wine recommendations.',
+  characterParts: DREM_PARTS,
+  position: { x: 6, y: 8 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good morning. I prefer evenings, I'll admit, but morning service has a calm I respect.", options: [{ text: "Each meal has its mood." }] }],
+    Afternoon: [{ id: 'start', text: "The wine list changed this year. I tasted all three new bottles and wrote notes.", options: [{ text: "As you should." }] }],
+    Night: [{ id: 'start', text: "The candles, the quiet voices, the last glass. This is what I came to this island for.", options: [{ text: "A true evening person." }] }],
+  },
+};
+
+const NEW_NPC_BRUNE: NPC = {
+  id: 'brune',
+  name: 'Brune',
+  species: 'Boar',
+  baseCostume: 'Chef',
+  description: 'A stocky boar in stained chef whites producing extraordinary food via what appears to be controlled chaos.',
+  characterParts: BRUNE_PARTS,
+  position: { x: 2, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I've been here since three. The broths don't make themselves. Actually they do, if you start them right.", options: [{ text: "That's dedication." }] }],
+    Afternoon: [{ id: 'start', text: "Lunch rush is just muscle memory. My hands know the dish before my brain does.", options: [{ text: "That's impressive." }] }],
+    Night: [{ id: 'start', text: "Last ticket. *exhales* Soot, close the grill. Lira, tell the last table it's the best we had all night.", options: [{ text: "Good service tonight?" }] }],
+  },
+};
+
+const NEW_NPC_SOOT: NPC = {
+  id: 'soot',
+  name: 'Soot',
+  species: 'Cat',
+  baseCostume: 'Chef',
+  description: 'A dark gray cat in chef whites working pastry. Precise, quiet, and produces things that make people go silent when they eat them.',
+  characterParts: SOOT_PARTS,
+  position: { x: 2, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I made the tart at five. It won't be available until afternoon. Good things take the time they take.", options: [{ text: "I'll come back for it." }] }],
+    Afternoon: [{ id: 'start', text: "The festival fruit tart is ready. I put the jam in the middle, not on top. If you know, you know.", options: [{ text: "It looks beautiful." }] }],
+    Night: [{ id: 'start', text: "Last dessert plated. I clean my station before I leave. Always. Brune thinks I'm particular. He's correct.", options: [{ text: "Perfectionism has its rewards." }] }],
+  },
+};
+
+// B&B
+const NEW_NPC_NYX: NPC = {
+  id: 'nyx',
+  name: 'Nyx',
+  species: 'Bat',
+  baseCostume: 'Innkeeper',
+  description: 'A cheerful bat in a warm innkeeper outfit, intensely alive from dusk to dawn.',
+  characterParts: NYX_PARTS,
+  position: { x: 4, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "*yawning* Morning guests... Tea is in the kitchen. Vox handles the mornings. I am... functional. Mostly.", options: [{ text: "No worries, get some sleep." }] }],
+    Afternoon: [{ id: 'start', text: "*perking up* Oh, afternoon! The B&B runs itself in daylight. I make sure everyone has what they need at night.", options: [{ text: "A proper night owl." }] }],
+    Night: [{ id: 'start', text: "The best time of day! Can I get you anything? A warm drink? Extra blankets? I made biscuits.", options: [{ text: "You made biscuits?" }] }],
+  },
+};
+
+const NEW_NPC_VOX: NPC = {
+  id: 'vox',
+  name: 'Vox',
+  species: 'Bat',
+  baseCostume: 'Innkeeper',
+  description: 'A quieter bat who handles daytime B&B operations while their sibling Nyx sleeps.',
+  characterParts: VOX_PARTS,
+  position: { x: 6, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good morning. Breakfast is laid out in the main room. Nyx is resting.", options: [{ text: "Thank you." }] }],
+    Afternoon: [{ id: 'start', text: "Nyx is making biscuits for tonight. I know because I can smell them. I will not eat any because Nyx counts them.", options: [{ text: "That's a very specific detail." }] }],
+    Night: [{ id: 'start', text: "I hand over to Nyx at dusk, but I always check the guest log once more before bed.", options: [{ text: "Sounds like a good team." }] }],
+  },
+};
+
+const NEW_NPC_PUFFA: NPC = {
+  id: 'puffa',
+  name: 'Puffa',
+  species: 'Pufferfish',
+  baseCostume: 'Tourist',
+  description: 'An extremely round and cheerful pufferfish tourist in a sunhat, photographing everything.',
+  characterParts: PUFFA_PARTS,
+  position: { x: 3, y: 7 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Oh! Hello! I have photographed the B&B from eleven angles this morning. The morning light is extraordinary here!", options: [{ text: "Sure!" }, { text: "Maybe later." }] }],
+    Afternoon: [{ id: 'start', text: "I've been to forty-three festivals on fifteen islands. This one has the best *feel*. The light and the cobblestones and the way everyone seems to mean it.", options: [{ text: "Mean what?" }] }],
+    Night: [{ id: 'start', text: "Puffo went to bed. I'm still editing photos. Only four hundred to go.", options: [{ text: "Sleep at some point." }] }],
+  },
+};
+
+const NEW_NPC_PUFFO: NPC = {
+  id: 'puffo',
+  name: 'Puffo',
+  species: 'Pufferfish',
+  baseCostume: 'Tourist',
+  description: 'A slightly nervous yellow-green pufferfish on this trip with their sibling Puffa, mildly overwhelmed by the festival.',
+  characterParts: PUFFO_PARTS,
+  position: { x: 7, y: 7 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Puffa says we need to go to four things before noon. I'm trying to be excited. I am a little bit excited. Mostly I'm worried about the crowds.", options: [{ text: "Take it one thing at a time." }] }],
+    Afternoon: [{ id: 'start', text: "I went to one thing. It was lovely. Maybe I'll go to another one later. I'm being flexible.", options: [{ text: "That's progress!" }] }],
+    Night: [{ id: 'start', text: "I liked today more than I expected to. Don't tell Puffa. They'll say 'I told you so' the whole journey home.", options: [{ text: "Your secret is safe." }] }],
+  },
+};
+
+// Hotel
+const NEW_NPC_PENGO: NPC = {
+  id: 'pengo',
+  name: 'Pengo',
+  species: 'Penguin',
+  baseCostume: 'Executive',
+  description: 'A formal penguin in a sharp suit who runs the hotel with spreadsheet precision and genuine belief that hospitality is an art form.',
+  characterParts: PENGO_PARTS,
+  position: { x: 7, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good morning. Check-in at two, check-out at eleven. Breakfast until ten, and I am available seven to seven. Anything else?", options: [{ text: "Just browsing." }, { text: "Who owns this hotel?" }] }],
+    Afternoon: [{ id: 'start', text: "The hotel has been at capacity every festival for four years. I attribute this to consistency, cleanliness, and a very firm mattress policy.", options: [{ text: "Mattress policy?" }] }],
+    Night: [{ id: 'start', text: "Twelve rooms, twelve guests, twelve breakfasts to prepare tomorrow. I find this deeply satisfying.", options: [{ text: "The joy of full capacity." }] }],
+  },
+};
+
+const NEW_NPC_SLOM: NPC = {
+  id: 'slom',
+  name: 'Slom',
+  species: 'Sloth',
+  baseCostume: 'Clerk',
+  description: 'A drowsy sloth in hotel clerk uniform who handles the front desk with extreme patience in all directions.',
+  characterParts: SLOM_PARTS,
+  position: { x: 5, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "......Good morning. Checking in? *long pause* The forms are right here. There's no hurry.", options: [{ text: "Take your time." }] }],
+    Afternoon: [{ id: 'start', text: "Someone checked out and thanked me. I believe I said... 'welcome'.", options: [{ text: "Words of the day." }] }],
+    Night: [{ id: 'start', text: "Night shift. Much quieter. I prefer it. *very long pause* The lobby has a nice ambiance, don't you think?", options: [{ text: "Very peaceful." }] }],
+  },
+};
+
+const NEW_NPC_BELL: NPC = {
+  id: 'bell',
+  name: 'Bell',
+  species: 'Raccoon',
+  baseCostume: 'Bellhop',
+  description: 'A young raccoon bellhop in a red jacket with gold buttons who takes luggage carrying very seriously.',
+  characterParts: BELL_PARTS,
+  position: { x: 3, y: 3 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Can I carry that for you? I can carry multiple things at once. It's my specialty.", options: [{ text: "Very enthusiastic." }] }],
+    Afternoon: [{ id: 'start', text: "I've carried eleven bags today. One had a very heavy rock collection. Didn't ask questions. Just carried.", options: [{ text: "Professional." }] }],
+    Night: [{ id: 'start', text: "Late arrivals get the best service. I've been told I'm too cheerful at night. I don't know how that's possible.", options: [{ text: "It's a gift." }] }],
+  },
+};
+
+const NEW_NPC_ARRA: NPC = {
+  id: 'arra',
+  name: 'Arra',
+  species: 'Spider',
+  baseCostume: 'Housekeeper',
+  description: 'A tidy spider housekeeper with a strong opinion about folded towels.',
+  characterParts: ARRA_PARTS,
+  position: { x: 10, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I have cleaned twelve rooms this morning. All twelve have the towels folded correctly. Nilo is still learning the fold.", options: [{ text: "Which fold is correct?" }] }],
+    Afternoon: [{ id: 'start', text: "Room nine left their shoes in the middle of the floor. I moved them and left a small note. I'm told the note was 'not standard'. It was helpful.", options: [{ text: "What did it say?" }] }],
+    Night: [{ id: 'start', text: "Evening turndown service. The guests don't always notice the chocolate on the pillow. I notice.", options: [{ text: "Details matter." }] }],
+  },
+};
+
+const NEW_NPC_NILO: NPC = {
+  id: 'nilo',
+  name: 'Nilo',
+  species: 'Spider',
+  baseCostume: 'Housekeeper',
+  description: 'A younger spider learning housekeeping from Arra, still getting to grips with the towel fold situation.',
+  characterParts: NILO_PARTS,
+  position: { x: 11, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "I almost got the towel fold right this morning. Arra showed me again. I think I understand. *pause* I don't fully understand.", options: [{ text: "Keep practising." }] }],
+    Afternoon: [{ id: 'start', text: "I cleaned my first room completely by myself. Arra said 'acceptable'. That's the best she gives on a first try.", options: [{ text: "You should be proud." }] }],
+    Night: [{ id: 'start', text: "I like the evening work. Less pressure to be perfect. More room to try.", options: [{ text: "That's a healthy attitude." }] }],
+  },
+};
+
+const NEW_NPC_KIKI: NPC = {
+  id: 'kiki',
+  name: 'Kiki',
+  species: 'Parrot',
+  baseCostume: 'Tourist',
+  description: 'A loud colourful parrot tourist who has opinions about everything and is having the best time.',
+  characterParts: KIKI_PARTS,
+  position: { x: 4, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "GOOD MORNING! I have been awake since five! I saw the docks! And the bakery! And I got a scone! It was WONDERFUL!", options: [{ text: "That's a lot before noon." }] }],
+    Afternoon: [{ id: 'start', text: "I've taken three hundred photos. Yoma says I shouldn't show all of them to people. So here are the twenty best.", options: [{ text: "Let me see." }] }],
+    Night: [{ id: 'start', text: "I'm not tired at all. I might do it all again tomorrow.", options: [{ text: "Impressive energy." }] }],
+  },
+};
+
+const NEW_NPC_YOMA: NPC = {
+  id: 'yoma',
+  name: 'Yoma',
+  species: 'Yak',
+  baseCostume: 'Tourist',
+  description: 'A large quiet yak travelling with Kiki, Lumo and Lemi. Speaks little, observes much.',
+  characterParts: YOMA_PARTS,
+  position: { x: 8, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "...*nods*... It's a good island.", options: [{ text: "It is." }] }],
+    Afternoon: [{ id: 'start', text: "I had the soup. It was very good. I told the cook. They seemed surprised.", options: [{ text: "Small gestures matter." }] }],
+    Night: [{ id: 'start', text: "Kiki is still awake. Lumo is with Lemi. I am here. I don't mind.", options: [{ text: "Sounds familiar." }] }],
+  },
+};
+
+const NEW_NPC_LUMO: NPC = {
+  id: 'lumo',
+  name: 'Lumo',
+  species: 'Llama',
+  baseCostume: 'Tourist',
+  description: 'A tall protective llama parent travelling with their son Lemi, trying to balance the festival with keeping track of an enthusiastic child.',
+  characterParts: LUMO_PARTS,
+  position: { x: 6, y: 7 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Lemi! Don't — *sigh* — sorry. He saw the bunting. We have been at the hotel for twelve minutes.", options: [{ text: "Kids at festivals are something." }] }],
+    Afternoon: [{ id: 'start', text: "We saw the market, bakery, and half the docks before Lemi needed a nap. Festival parenting is an endurance sport.", options: [{ text: "How's the festival?" }] }],
+    Night: [{ id: 'start', text: "Lemi is asleep. He had the best day of his life, apparently. He told me four times.", options: [{ text: "Sounds like a good day." }] }],
+  },
+};
+
+const NEW_NPC_LEMI: NPC = {
+  id: 'lemi',
+  name: 'Lemi',
+  species: 'Llama',
+  baseCostume: 'Tourist',
+  description: 'A young llama with enormous eyes and insatiable curiosity about every single thing at the festival.',
+  characterParts: LEMI_PARTS,
+  position: { x: 8, y: 8 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "What's that? And THAT? And what does THAT do?", options: [{ text: "This is the town square." }, { text: "Lots of things to explore." }] }],
+    Afternoon: [{ id: 'start', text: "I ate a scone AND a festival cookie AND half of Lumo's tart. I feel GREAT!", options: [{ text: "Impressive." }] }],
+    Night: [{ id: 'start', text: "I'm not tired. ...okay maybe a little. Tomorrow we're going to the docks first thing.", options: [{ text: "Rest up for it." }] }],
+  },
+};
+
+// Festival Park
+const NEW_NPC_CORVUS: NPC = {
+  id: 'corvus',
+  name: 'Corvus',
+  species: 'Shark',
+  baseCostume: 'Warden',
+  description: 'A large imposing shark in a green warden vest running the festival clean-up operation. More caring than he looks.',
+  characterParts: CORVUS_PARTS,
+  position: { x: 8, y: 4 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Zero Waste Festival. Twenty-six recycling stations and a composting corner. I am proud of the composting corner.", options: [{ text: "Very impressive setup." }] }],
+    Afternoon: [{ id: 'start', text: "Sixty percent waste diverted so far. Zera thinks we'll hit ninety. I told her not to over-promise.", options: [{ text: "Who do you think is right?" }] }],
+    Night: [{ id: 'start', text: "Night shift is Panra's domain. I stay late to do the handover. The park has to look right in the morning.", options: [{ text: "You run a tight operation." }] }],
+  },
+};
+
+const NEW_NPC_ZERA: NPC = {
+  id: 'zera',
+  name: 'Zera',
+  species: 'Zebra',
+  baseCostume: 'Volunteer',
+  description: 'A cheerful striped zebra in a bright volunteer vest who approaches cleanup with the enthusiasm of someone at a party.',
+  characterParts: ZERA_PARTS,
+  position: { x: 5, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Good MORNING! The recycling station is up! The compost is RUNNING! I have collected four full bags and it is not yet ten! THIS IS GREAT!", options: [{ text: "You're very enthusiastic about waste management." }] }],
+    Afternoon: [{ id: 'start', text: "I think we can hit ninety percent diversion. Corvus says be realistic. I say optimism is a strategy.", options: [{ text: "How close are you?" }] }],
+    Night: [{ id: 'start', text: "Day's haul: twelve bags, three tonnes of compostable material, and one confused tourist who thought the compost bin was a prize box.", options: [{ text: "Eventful." }] }],
+  },
+};
+
+const NEW_NPC_PANRA: NPC = {
+  id: 'panra',
+  name: 'Panra',
+  species: 'Panther',
+  baseCostume: 'Night Watch',
+  description: 'A sleek black panther handling overnight security. Almost invisible in the dark. Prefers it that way.',
+  characterParts: PANRA_PARTS,
+  position: { x: 12, y: 6 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "Just finished the night shift. Three incidents: dropped ice cream, knocked-over banner, one person asleep in the cleanup tent. All resolved.", options: [{ text: "Quiet night then?" }] }],
+    Afternoon: [{ id: 'start', text: "I sleep during the day. Most people find that unusual. I find most people finding that unusual... unusual.", options: [{ text: "Reasonable." }] }],
+    Night: [{ id: 'start', text: "My shift. The park looks different at night — more honest, somehow.", options: [{ text: "Good watching." }] }],
+  },
+};
+
+const NEW_NPC_KITO: NPC = {
+  id: 'kito',
+  name: 'Kito',
+  species: 'Orangutan',
+  baseCostume: 'Eco-Reformer',
+  description: 'A passionate orangutan in a green eco-volunteer vest who originated the Zero Waste Festival idea.',
+  characterParts: KITO_PARTS,
+  position: { x: 10, y: 5 },
+  dialogue: {
+    Morning: [{ id: 'start', text: "This started as a petition. I printed it on recycled paper, obviously. Corvus runs it better than I ever could have. I'm just here to help.", options: [{ text: "It was your idea though." }] }],
+    Afternoon: [{ id: 'start', text: "The hardest part is convincing vendors it's better for business. Once they see the numbers, they get it.", options: [{ text: "Numbers do help." }] }],
+    Night: [{ id: 'start', text: "I'm updating the impact report for Corvus. Next year will be even better. We always say that. We're always right.", options: [{ text: "That's the spirit." }] }],
+  },
+};
+
+export const NEW_NPCS_LIST = [
+  NEW_NPC_MIRA, NEW_NPC_BRISK, NEW_NPC_OLLO, NEW_NPC_CORBIN,
+  NEW_NPC_HESTA, NEW_NPC_MARA, NEW_NPC_GROM, NEW_NPC_VEX,
+  NEW_NPC_MELL, NEW_NPC_IVO,
+  NEW_NPC_TORQ, NEW_NPC_RHO, NEW_NPC_PIP, NEW_NPC_NYRA, NEW_NPC_VARA, NEW_NPC_NIB, NEW_NPC_TULA, NEW_NPC_DEXT,
+  NEW_NPC_LYRA, NEW_NPC_KIRI, NEW_NPC_SIVE, NEW_NPC_GLINT, NEW_NPC_THRI, NEW_NPC_SHADE, NEW_NPC_HEARTH,
+  NEW_NPC_VOSS, NEW_NPC_PELLI, NEW_NPC_ELEN, NEW_NPC_LIRA, NEW_NPC_KETT, NEW_NPC_NIRA, NEW_NPC_DREM, NEW_NPC_BRUNE, NEW_NPC_SOOT,
+  NEW_NPC_NYX, NEW_NPC_VOX, NEW_NPC_PUFFA, NEW_NPC_PUFFO,
+  NEW_NPC_PENGO, NEW_NPC_SLOM, NEW_NPC_BELL, NEW_NPC_ARRA, NEW_NPC_NILO, NEW_NPC_KIKI, NEW_NPC_YOMA, NEW_NPC_LUMO, NEW_NPC_LEMI,
+  NEW_NPC_CORVUS, NEW_NPC_ZERA, NEW_NPC_PANRA, NEW_NPC_KITO,
+];
+
+// Merge all new NPCs into the main NPCS array so the game engine picks them up
+NPCS.push(...NEW_NPCS_LIST);
