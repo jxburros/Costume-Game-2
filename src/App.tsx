@@ -117,11 +117,15 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
         </div>
 
         {/* Style-specific details */}
+        {style === 'bakery' && <div className="bakery-chimney" />}
+        {style === 'bakery' && <div className="bakery-awning" />}
         {style === 'tailor' && <div className="tailor-awning" />}
         {style === 'tailor' && <div className="tailor-fabric-swatches" />}
         {style === 'sheriff' && <div className="sheriff-badge-emblem" />}
         {style === 'coffee' && <div className="coffee-steam" />}
         {style === 'coffee' && <div className="coffee-awning" />}
+        {style === 'warehouse' && <div className="warehouse-loading-beam" />}
+        {style === 'warehouse' && <div className="warehouse-anchor-emblem" />}
 
         {/* Sign */}
         <div className={`building-sign building-sign-${style}`}>
