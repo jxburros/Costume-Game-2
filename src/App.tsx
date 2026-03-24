@@ -47,6 +47,10 @@ const ICON_MAP: Record<string, any> = {
 };
 
 const TILE_SIZE = 64;
+const bakeryBuildingImg = new URL('./assets/generated/buildings/crusty_crumb_exterior.svg', import.meta.url).href;
+const townSquareBgImg = new URL('./assets/generated/backgrounds/town_square_day_papercut.svg', import.meta.url).href;
+const docksBgImg = new URL('./assets/generated/backgrounds/docks_rain_papercut.svg', import.meta.url).href;
+const festivalParkNightBgImg = new URL('./assets/generated/backgrounds/festival_park_night_papercut.svg', import.meta.url).href;
 
 /* ─── Decoration Components (painted storybook style) ─── */
 function DecorationRenderer({ type }: { type: string }) {
@@ -88,6 +92,13 @@ function BuildingRenderer({ building, tileSize }: { building: Building; tileSize
           height: heightPx,
         }}
       >
+        {style === 'bakery' && (
+          <img
+            src={bakeryBuildingImg}
+            alt={name}
+            className="absolute inset-0 w-full h-full object-cover rounded-xl opacity-95 pointer-events-none"
+          />
+        )}
         {/* Roof */}
         <div className={`building-roof building-roof-${style}`} />
 
@@ -169,6 +180,13 @@ function getTimeOverlay(phase: Phase): string | null {
     case 'Night': return 'world-night-overlay';
     default: return null;
   }
+}
+
+function getLocationBackdrop(locationId: string, phase: Phase): string | null {
+  if (locationId === 'town_square') return townSquareBgImg;
+  if (locationId === 'docks') return docksBgImg;
+  if (locationId === 'festival_park' && phase === 'Night') return festivalParkNightBgImg;
+  return null;
 }
 
 const VIEWPORT_W = 12; // visible tiles wide
@@ -259,6 +277,7 @@ function WorldView({
 
   // Collect lamp positions for glow effects
   const lampPositions = currentLocation.decorations?.filter(d => d.type === 'lamp') || [];
+  const backdrop = getLocationBackdrop(currentLocation.id, state.phase);
 
   // Camera: center on player, clamped to map edges
   const worldW = currentLocation.bounds.width * TILE_SIZE;
@@ -290,6 +309,19 @@ function WorldView({
         height: worldH,
       }}
     >
+      {backdrop && (
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            backgroundImage: `url(${backdrop})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.4,
+            mixBlendMode: 'multiply',
+          }}
+        />
+      )}
+
       {/* Painted paper texture overlay on world */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none z-[2]"
            style={{

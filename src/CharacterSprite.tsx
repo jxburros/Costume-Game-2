@@ -30,11 +30,11 @@ function PartDiv({
       style={{
         width: style.w,
         height: style.h,
-        background: style.bg,
+        background: style.imageUrl ? `url(${style.imageUrl}) center / contain no-repeat` : style.bg,
         borderRadius: style.radius || '4px',
         boxShadow: style.shadow || '1px 2px 4px rgba(0,0,0,0.18)',
         border: style.border || 'none',
-        imageRendering: 'auto',
+        imageRendering: style.imageUrl ? 'high-quality' : 'auto',
       }}
     >
       {/* Render detail overlays */}

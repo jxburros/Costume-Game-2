@@ -91,6 +91,8 @@ export interface GameState {
 export interface BodyPartStyle {
   /** CSS background (gradient, color, etc.) */
   bg: string;
+  /** Optional raster art for this body part */
+  imageUrl?: string;
   /** Width in px */
   w: number;
   /** Height in px */
