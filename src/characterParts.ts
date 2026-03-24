@@ -4130,6 +4130,40 @@ export const CORBIN_PARTS: CharacterParts = {
   headAccessory: { bg: 'linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)', w: 22, h: 13, radius: '4px 4px 2px 2px', shadow: '0 2px 5px rgba(0,0,0,0.35)', offsetY: 5, details: [{ bg: '#0a0a0a', w: 26, h: 3, top: 11, left: -2, radius: '2px' }] },
 };
 
+const noxHeadImg = new URL('./assets/generated/characters/nox_head.svg', import.meta.url).href;
+const noxBodyImg = new URL('./assets/generated/characters/nox_body.svg', import.meta.url).href;
+const noxLeftArmImg = new URL('./assets/generated/characters/nox_left_arm.svg', import.meta.url).href;
+const noxRightArmImg = new URL('./assets/generated/characters/nox_right_arm.svg', import.meta.url).href;
+const noxLeftLegImg = new URL('./assets/generated/characters/nox_left_leg.svg', import.meta.url).href;
+const noxRightLegImg = new URL('./assets/generated/characters/nox_right_leg.svg', import.meta.url).href;
+
+const nyraHeadImg = new URL('./assets/generated/characters/nyra_head.svg', import.meta.url).href;
+const nyraBodyImg = new URL('./assets/generated/characters/nyra_body.svg', import.meta.url).href;
+const nyraLeftArmImg = new URL('./assets/generated/characters/nyra_left_arm.svg', import.meta.url).href;
+const nyraRightArmImg = new URL('./assets/generated/characters/nyra_right_arm.svg', import.meta.url).href;
+const nyraLeftLegImg = new URL('./assets/generated/characters/nyra_left_leg.svg', import.meta.url).href;
+const nyraRightLegImg = new URL('./assets/generated/characters/nyra_right_leg.svg', import.meta.url).href;
+
+export const PAPER_NOX_PARTS: CharacterParts = {
+  head: { bg: 'transparent', imageUrl: noxHeadImg, w: 24, h: 24, shadow: 'none' },
+  body: { bg: 'transparent', imageUrl: noxBodyImg, w: 20, h: 22, shadow: 'none' },
+  leftArm: { bg: 'transparent', imageUrl: noxLeftArmImg, w: 9, h: 18, shadow: 'none' },
+  rightArm: { bg: 'transparent', imageUrl: noxRightArmImg, w: 9, h: 18, shadow: 'none' },
+  leftLeg: { bg: 'transparent', imageUrl: noxLeftLegImg, w: 8, h: 12, shadow: 'none' },
+  rightLeg: { bg: 'transparent', imageUrl: noxRightLegImg, w: 8, h: 12, shadow: 'none' },
+  scale: 0.98,
+};
+
+export const PAPER_NYRA_PARTS: CharacterParts = {
+  head: { bg: 'transparent', imageUrl: nyraHeadImg, w: 24, h: 24, shadow: 'none' },
+  body: { bg: 'transparent', imageUrl: nyraBodyImg, w: 20, h: 22, shadow: 'none' },
+  leftArm: { bg: 'transparent', imageUrl: nyraLeftArmImg, w: 9, h: 18, shadow: 'none' },
+  rightArm: { bg: 'transparent', imageUrl: nyraRightArmImg, w: 9, h: 18, shadow: 'none' },
+  leftLeg: { bg: 'transparent', imageUrl: nyraLeftLegImg, w: 8, h: 12, shadow: 'none' },
+  rightLeg: { bg: 'transparent', imageUrl: nyraRightLegImg, w: 8, h: 12, shadow: 'none' },
+  scale: 0.98,
+};
+
 /** Map of outfit ID → character parts for costume overrides */
 export const COSTUME_PARTS_MAP: Record<string, CharacterParts> = {
   constable_uniform: CONSTABLE_COSTUME_PARTS,

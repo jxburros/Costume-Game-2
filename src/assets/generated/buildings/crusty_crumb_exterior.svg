@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<rect width="1024" height="1024" fill="#f2e3c5"/>
+<rect x="170" y="320" width="684" height="540" fill="#d8b68f"/>
+<polygon points="120,360 512,120 904,360" fill="#b85d45"/>
+<polygon points="170,430 854,430 784,530 240,530" fill="#f4e9d1"/>
+<rect x="450" y="600" width="125" height="260" fill="#6a432a"/>
+<rect x="250" y="570" width="150" height="190" fill="#7fb1c9"/>
+<rect x="624" y="570" width="150" height="190" fill="#7fb1c9"/>
+<text x="512" y="490" font-size="42" text-anchor="middle" fill="#6a432a" font-family="serif">THE CRUSTY CRUMB</text>
+</svg>
